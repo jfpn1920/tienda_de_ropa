@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>panel de control</title>
+    <link rel="stylesheet" href="pagina.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="pagina.js" defer></script>
+</head>
+<body>
+    <!----------------------------------->
+    <!--|estructura_sesion_del_usuario|-->
+    <!----------------------------------->
+    <div class="contenedor">
+        <h1 class="titulo">Panel de Control</h1>
+        <div class="perfil">
+            <i class="fas fa-user-circle"></i>
+        </div>
+    </div>
+    <!--------------------------------->
+    <!--|estructura_menu_hamburguesa|-->
+    <!--------------------------------->
+    <header class="topbar">
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <span class="titulo">Instrumentos</span>
+    </header>
+    <nav class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="#"><i class="fas fa-globe"></i> Sitio Web</a></li>
+            <li><a href="#"><i class="fas fa-file-alt"></i> Página</a></li>
+            <li><a href="#"><i class="fas fa-sitemap"></i> Menu</a></li>
+            <li><a href="#"><i class="fas fa-images"></i> Carrusel</a></li>
+            <li><a href="#"><i class="fas fa-calendar-alt"></i> Eventos</a></li>
+            <li><a href="#"><i class="fas fa-star"></i> Calificaciones</a></li>
+            <li><a href="#"><i class="fas fa-palette"></i> Color de Página</a></li>
+            <li><a href="#"><i class="fas fa-columns"></i> Pie de Página</a></li>
+            <li><a href="#"><i class="fas fa-shopping-cart"></i> Pedidos</a></li>
+            <li><a href="#"><i class="fas fa-box"></i> Productos</a></li>
+            <li><a href="#"><i class="fas fa-chart-line"></i> Reportes</a></li>
+            <li><a href="#"><i class="fas fa-users"></i> Clientes</a></li>
+            <li><a href="#"><i class="fas fa-handshake"></i> Alianzas</a></li>
+            <li><a href="#"><i class="fas fa-robot"></i> Chatbot</a></li>
+            <li><a href="#"><i class="fas fa-cog"></i> Configuración</a></li>
+        </ul>
+    </nav>
+    <div class="contenedor_gris"></div>
+    <!----------------------------------->
+    <!--|estructura_gestion_de_paginas|-->
+    <!----------------------------------->
+    <div class="paginas-container">
+        <h1>Gestión de Páginas</h1>
+        <div class="acciones">
+            <button id="btnNueva"><i class="fas fa-plus"></i> Crear Página</button>
+            <button id="btnGuardar"><i class="fas fa-save"></i> Guardar</button>
+            <div class="filtros">
+                <button onclick="mostrarSeccion('todas')">Todas</button>
+                <button onclick="mostrarSeccion('publicadas')">Publicadas</button>
+                <button onclick="mostrarSeccion('privadas')">Privadas</button>
+                <button onclick="mostrarSeccion('papelera')">Papelera</button>
+            </div>
+            <input type="text" id="busqueda" placeholder="Buscar página...">
+        </div>
+        <div id="modal-crear" class="modal">
+            <div class="modal-contenido">
+                <span class="cerrar">&times;</span>
+                <h2>Crear Página</h2>
+                <form id="form-crear">
+                    <label for="nombre">Nombre de la página:</label>
+                    <input type="text" id="nombre" required>
+                    <label for="estado">Estado:</label>
+                    <select id="estado">
+                        <option value="publico">Público</option>
+                        <option value="privado">Privado</option>
+                    </select>
+                    <button type="submit">Guardar</button>
+                </form>
+            </div>
+        </div>
+        <table class="tabla-paginas" id="tablaPaginas">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="listaPaginas">
+            </tbody>
+        </table>
+        <table class="tabla-paginas" id="tablaPapelera" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="papeleraPaginas">
+            </tbody>
+        </table>
+    </div>
+    <!------------------------------>
+    <!--|estructura_pie_de_pagina|-->
+    <!------------------------------>
+    <footer class="footer">
+        <div class="footer-contenedor">
+            <div class="footer-seccion">
+                <h3>Sobre Nosotros</h3>
+                <p>Somos una tienda online dedicada a ofrecer los mejores productos con calidad y confianza.</p>
+            </div>
+            <div class="footer-seccion">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Ofertas</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-seccion">
+                <h3>Síguenos</h3>
+                <div class="redes">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-derechos">
+            <p>&copy; 2025 Masomy. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
