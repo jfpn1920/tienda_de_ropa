@@ -68,19 +68,32 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="descripcionSitio">¿De qué se tratará el sitio web?</label>
-                <textarea id="descripcionSitio" name="descripcionSitio" rows="3" placeholder="Describe el sitio..." required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="sesionSitio">Seleccionar la sesión:</label>
-                <select id="sesionSitio" name="sesionSitio" required>
-                    <option value="" disabled selected>Seleccione una opción</option>
-                    <option value="publico">Público</option>
-                    <option value="privado">Privado</option>
+                <label for="iconoSitio">Seleccionar icono para el sitio:</label>
+                <select id="iconoSitio" name="iconoSitio" required>
+                    <option value="" disabled selected>Seleccione un icono</option>
+                    <option value="fa-solid fa-store">🏬 Tienda</option>
+                    <option value="fa-solid fa-book">📚 Blog</option>
+                    <option value="fa-solid fa-envelope">✉️ Contacto</option>
+                    <option value="fa-solid fa-image">🖼️ Portafolio</option>
+                    <option value="fa-solid fa-utensils">🍽️ Restaurante</option>
                 </select>
             </div>
             <button type="submit" id="btnCrearSitio">Crear Sitio Web</button>
         </form>
     </div>
+    <!--------------------------------------------->
+    <!--|estructura_barra_de_busqueda_categorias|-->
+    <!--------------------------------------------->
+    <div class="contenedor2">
+        <div class="buscador2">
+            <input type="text" placeholder="Buscar la categoria">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="resultados2">
+            aquí se mostrarán los resultados de búsqueda
+        </div>
+    </div>
+    <!--------------------------------------------->
+    <div id="listaSitios" class="lista-sitios"></div>
 </body>
 </html>

@@ -107,6 +107,7 @@ body {
 h2 {
     text-align: center;
     color: #333;
+    margin-top: -10px;
 }
 .form-grid {
     display: grid;
@@ -158,3 +159,90 @@ textarea {
     padding: 5px 0;
     border-bottom: 1px solid #ccc;
 }
+.tarjeta-sitio {
+    width: 250px;
+    background-color: #77796c;
+    border: 1px solid #ccc;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.tarjeta-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #7d7e6f;
+    padding: 5px;
+    font-weight: bold;
+}
+.tarjeta-contenido {
+    flex: 1;
+    background-color: #77796c;
+}
+.tarjeta-footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #7d7e6f;
+}
+.btn-ver {
+    background-color: #008c9e;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+/*-----------------------------------------*/
+/*--|estilo_barra_de_busqueda_categorias|--*/
+/*-----------------------------------------*/
+.contenedor2 {
+    background: transparent;
+    width: 465px;
+    margin-left: 955px;
+    margin-top: -259px;
+    border-radius: 5px;
+}
+.buscador2 {
+    display: flex;
+    align-items: center;
+    background: #767a6b;
+    padding: 8px 12px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.buscador2 input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: #000;
+    font-weight: bold;
+    font-size: 14px;
+    outline: none;
+}
+.buscador2 input::placeholder {
+    color: #000;
+    font-weight: bold;
+}
+.buscador2 button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: black;
+}
+.buscador2 button:hover {
+    color: #333;
+}
+.resultados2 {
+    margin-top: 10px;
+    background: #767a6b;
+    padding: 15px;
+    border-radius: 4px;
+    color: #000;
+    font-size: 14px;
+    height: 172px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}        

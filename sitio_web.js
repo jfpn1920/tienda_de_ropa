@@ -13,10 +13,9 @@ document.getElementById("formSitioWeb").addEventListener("submit", function(e) {
     e.preventDefault();
     const nombre = document.getElementById("nombreSitio").value.trim();
     const pagina = document.getElementById("paginaPrincipal").value;
-    const descripcion = document.getElementById("descripcionSitio").value.trim();
-    const sesion = document.getElementById("sesionSitio").value;
+    const icono = document.getElementById("iconoSitio").value;
     let sitios = JSON.parse(localStorage.getItem("sitiosWeb")) || [];
-    sitios.push({ nombre, pagina, descripcion, sesion });
+    sitios.push({ nombre, pagina, icono });
     localStorage.setItem("sitiosWeb", JSON.stringify(sitios));
     mostrarSitios();
     this.reset();
@@ -26,9 +25,23 @@ function mostrarSitios() {
     lista.innerHTML = "";
     let sitios = JSON.parse(localStorage.getItem("sitiosWeb")) || [];
     sitios.forEach(sitio => {
-        let li = document.createElement("li");
-        li.textContent = `${sitio.nombre} → Página: ${sitio.pagina}, Sesión: ${sitio.sesion}`;
-        lista.appendChild(li);
+        let tarjeta = document.createElement("div");
+        tarjeta.classList.add("tarjeta-sitio");
+        tarjeta.innerHTML = `
+            <div class="tarjeta-header">
+                <span class="numero">1</span>
+                <span class="nombre"><i class="${sitio.icono}"></i> ${sitio.nombre}</span>
+                <span class="numero">2</span>
+            </div>
+            <div class="tarjeta-contenido"></div>
+            <div class="tarjeta-footer">
+                <button class="btn-ver">ver sitio web</button>
+            </div>
+        `;
+        lista.appendChild(tarjeta);
     });
 }
 document.addEventListener("DOMContentLoaded", mostrarSitios);
+//------------------------------------------------//
+//--|funcionalidad_barra_de_busqueda_categorias|--//
+//------------------------------------------------//
