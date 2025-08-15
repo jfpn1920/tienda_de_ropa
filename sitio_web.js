@@ -14,23 +14,28 @@ document.getElementById("formSitioWeb").addEventListener("submit", function(e) {
     const nombre = document.getElementById("nombreSitio").value.trim();
     const pagina = document.getElementById("paginaPrincipal").value;
     const icono = document.getElementById("iconoSitio").value;
+
     let sitios = JSON.parse(localStorage.getItem("sitiosWeb")) || [];
     sitios.push({ nombre, pagina, icono });
     localStorage.setItem("sitiosWeb", JSON.stringify(sitios));
+
     mostrarSitios();
     this.reset();
 });
+
 function mostrarSitios() {
     const lista = document.getElementById("listaSitios");
     lista.innerHTML = "";
     let sitios = JSON.parse(localStorage.getItem("sitiosWeb")) || [];
+
     sitios.forEach(sitio => {
         let tarjeta = document.createElement("div");
         tarjeta.classList.add("tarjeta-sitio");
+
         tarjeta.innerHTML = `
             <div class="tarjeta-header">
-                <span class="numero">1</span>
-                <span class="nombre"><i class="${sitio.icono}"></i> ${sitio.nombre}</span>
+                <span class="icono"><i class="${sitio.icono}"></i></span>
+                <span class="nombre">${sitio.nombre}</span>
                 <span class="numero">2</span>
             </div>
             <div class="tarjeta-contenido"></div>
@@ -41,6 +46,7 @@ function mostrarSitios() {
         lista.appendChild(tarjeta);
     });
 }
+
 document.addEventListener("DOMContentLoaded", mostrarSitios);
 //------------------------------------------------//
 //--|funcionalidad_barra_de_busqueda_categorias|--//
