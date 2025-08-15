@@ -62,9 +62,6 @@
                 <label for="paginaPrincipal">Seleccionar la página:</label>
                 <select id="paginaPrincipal" name="paginaPrincipal" required>
                     <option value="" disabled selected>Seleccione una página</option>
-                    <option value="inicio">Inicio</option>
-                    <option value="productos">Productos</option>
-                    <option value="contacto">Contacto</option>
                 </select>
             </div>
             <div class="form-group">
@@ -86,14 +83,69 @@
     <!--------------------------------------------->
     <div class="contenedor2">
         <div class="buscador2">
-            <input type="text" placeholder="Buscar la categoria">
+            <input type="text" id="busquedaCategoria" placeholder="Buscar la categoria">
             <button><i class="fas fa-search"></i></button>
         </div>
         <div class="resultados2">
             aquí se mostrarán los resultados de búsqueda
         </div>
     </div>
-    <!--------------------------------------------->
+    <!------------------------->
+    <!--|estructura_opciones|-->
+    <!------------------------->
+    <h2 class="t3">sitios web creados</h2>
+    <div class="barra-opciones2">
+        <div class="opcion2">
+            <label for="filtro">Filtro:</label>
+            <select id="filtro">
+                <option value="alfabetico">Alfabético</option>
+                <option value="iconos">Por Iconos</option>
+                <option value="recientes">Recientes</option>
+                <option value="antiguos">Antiguos</option>
+            </select>
+        </div>
+        <div class="opcion2">
+            <button id="eliminarTodo" class="btn btn-rojo2">Eliminar Todo</button>
+        </div>
+        <div class="opcion2">
+            <button id="seleccionar" class="btn btn-azul2">Seleccionar</button>
+        </div>
+    </div>
+    <!-------------------------------------->
+    <!--|estructura_despliegue_categorias|-->
+    <!-------------------------------------->
     <div id="listaSitios" class="lista-sitios"></div>
+    <!------------------------------>
+    <!--|estructura_pie_de_pagina|-->
+    <!------------------------------>
+    <footer class="footer">
+        <div class="footer-contenedor">
+            <div class="footer-seccion">
+                <h3>Sobre Nosotros</h3>
+                <p>Somos una tienda online dedicada a ofrecer los mejores productos con calidad y confianza.</p>
+            </div>
+            <div class="footer-seccion">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Ofertas</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-seccion">
+                <h3>Síguenos</h3>
+                <div class="redes">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-derechos">
+            <p>&copy; 2025 Masomy. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>

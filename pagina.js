@@ -202,6 +202,8 @@ function mostrarSeccion(seccion) {
 }
 btnGuardar.addEventListener("click", () => {
     guardarEnLocalStorage();
+    let nombresPaginas = paginas.map(p => p.titulo);
+    localStorage.setItem("paginasGuardadas", JSON.stringify(nombresPaginas));
     alert("Contenido guardado correctamente ✅");
 });
 window.addEventListener("load", () => {
