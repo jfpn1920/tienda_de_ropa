@@ -328,13 +328,6 @@ select {
     border-radius: 5px;
     border: 1px solid #ccc;
 }
-.btn-azul2 {
-    background-color: #3498db;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
 .btn2:hover {
     opacity: 0.85;
 }
