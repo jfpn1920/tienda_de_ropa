@@ -392,6 +392,25 @@ img {
     color: #007bff;         
     text-decoration: underline; 
 }
+/*-------------------------------------------*/
+/*--|estilo_boton_crear_menu_de_navegacion|--*/
+/*-------------------------------------------*/
+.btn-crear {
+    background: #2563eb; 
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 7px;
+    margin-left: 210px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.btn-crear:hover {
+    background: #1e40af;
+}
 /*--------------------------*/
 /*--|estilo_pie_de_pagina|--*/
 /*--------------------------*/
