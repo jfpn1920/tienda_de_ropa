@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>panel de control</title>
+    <link rel="stylesheet" href="carrusel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="carrusel.js" defer></script>
+</head>
+<body>
+    <!----------------------------------->
+    <!--|estructura_sesion_del_usuario|-->
+    <!----------------------------------->
+    <div class="contenedor">
+        <h1 class="titulo">Panel de Control</h1>
+        <div class="perfil">
+            <i class="fas fa-user-circle"></i>
+        </div>
+    </div>
+    <!--------------------------------->
+    <!--|estructura_menu_hamburguesa|-->
+    <!--------------------------------->
+    <header class="topbar">
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <span class="titulo">Instrumentos</span>
+    </header>
+    <nav class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="#"><i class="fas fa-globe"></i> Sitio Web</a></li>
+            <li><a href="#"><i class="fas fa-file-alt"></i> Página</a></li>
+            <li><a href="#"><i class="fas fa-sitemap"></i> Menu</a></li>
+            <li><a href="#"><i class="fas fa-images"></i> Carrusel</a></li>
+            <li><a href="#"><i class="fas fa-calendar-alt"></i> Eventos</a></li>
+            <li><a href="#"><i class="fas fa-star"></i> Calificaciones</a></li>
+            <li><a href="#"><i class="fas fa-palette"></i> Color de Página</a></li>
+            <li><a href="#"><i class="fas fa-columns"></i> Pie de Página</a></li>
+            <li><a href="#"><i class="fas fa-shopping-cart"></i> Pedidos</a></li>
+            <li><a href="#"><i class="fas fa-box"></i> Productos</a></li>
+            <li><a href="#"><i class="fas fa-chart-line"></i> Reportes</a></li>
+            <li><a href="#"><i class="fas fa-users"></i> Clientes</a></li>
+            <li><a href="#"><i class="fas fa-handshake"></i> Alianzas</a></li>
+            <li><a href="#"><i class="fas fa-robot"></i> Chatbot</a></li>
+            <li><a href="#"><i class="fas fa-cog"></i> Configuración</a></li>
+        </ul>
+    </nav>
+    <div class="contenedor_gris"></div>
+    <!------------------------------------>
+    <!--|estructura_seleccion_de_imagen|-->
+    <!------------------------------------>
+    <div class="upload-box">
+        <div class="title-container">
+            <h2>Agregar Imagen</h2>
+            <button class="btn" >Guardar Imagen</button>
+        </div>
+        <input type="file">
+    </div>
+    <!------------------------------------->
+    <!--|estructura_imagenes_almacenados|-->
+    <!------------------------------------->
+    <div class="contenedor-imagenes">
+        <div class="header">
+            <h2>imagenes almacenados</h2>
+        </div>
+        <div class="contenido">
+            <p>(Aquí aparecerán las imágenes)</p>
+        </div>
+    </div>
+    <!------------------------------------->
+    <!--|estructura_gestion_de_controles|-->
+    <!------------------------------------->
+    <div class="contenedor-controles">
+        <div class="header">
+            <h2>gestion de controles</h2>
+        </div>
+        <form class="form-controles">
+            <label class="check-item">
+                <input type="checkbox" name="flechas">
+                <span>Mostrar flechas de navegación</span>
+            </label>
+            <label class="check-item">
+                <input type="checkbox" name="puntos">
+                <span>Mostrar puntos indicadores</span>
+            </label>
+            <label class="check-item">
+                <input type="checkbox" name="autoplay">
+                <span>Activar autoplay</span>
+            </label>
+            <div class="form-group">
+                <label for="intervalo">Intervalo (segundos):</label>
+                <input type="number" id="intervalo" name="intervalo" min="1" max="10" value="3">
+            </div>
+            <div class="form-group">
+                <label for="transicion">Tipo de transición:</label>
+                <select id="transicion" name="transicion">
+                    <option value="slide">Deslizante</option>
+                    <option value="fade">Desvanecido</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="velocidad">Velocidad de transición (ms):</label>
+                <input type="number" id="velocidad" name="velocidad" min="100" max="5000" value="1000">
+            </div>
+            <button type="submit" class="btn-guardar">Guardar Configuración</button>
+        </form>
+    </div>
+    <!---------------------------->
+    <!--|estructura_desconocido|-->
+    <!---------------------------->
+    <div class="contenedor2">
+        <div class="header2">
+            agregar texto
+        </div>
+        <div class="caja2">
+            <label for="titulo">añade un titulo:</label>
+            <input type="text" id="titulo" placeholder="escribe el titulo">
+        </div>
+        <div class="caja2 estirar">
+            <label for="parrafo">añade un parrafo:</label>
+            <textarea id="parrafo" rows="6" placeholder="escribe el parrafo que deceas"></textarea>
+        </div>
+    </div>
+</body>
+</html>

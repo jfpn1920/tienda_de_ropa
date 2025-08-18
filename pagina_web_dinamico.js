@@ -1,6 +1,6 @@
-// --------------------------------------- //
-// ---| Obtener parámetros desde URL |----- //
-// --------------------------------------- //
+//--------------------------------------//
+//--|funcionalidad_obtener_parametros|--//
+//--------------------------------------//
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
@@ -12,23 +12,20 @@ document.getElementById("paginaPrincipal").textContent = pagina || "No definida"
 if (nombre) {
     document.title = nombre + "";
 }
-// --------------------------------------- //
-// ---| Reconstruir menú desde localStorage | //
-// --------------------------------------- //
+//-----------------------------------------------//
+//--|funcionalidad_menu_de_navegacion_dinamico|--//
+//-----------------------------------------------//
 document.addEventListener("DOMContentLoaded", () => {
-    // Recuperar info desde localStorage
     const paginasGuardadas = JSON.parse(localStorage.getItem("paginas")) || [];
     const tablaIndices = JSON.parse(localStorage.getItem("tablaPaginas")) || [];
     const imagenGuardada = localStorage.getItem("imagenTabla") || "";
     const submenuGuardadoRaw = localStorage.getItem("submenuTabla");
-    // Reemplazar logo si existe
     if (imagenGuardada) {
         const logoImg = document.querySelector("#imagendinamico img");
         if (logoImg) {
             logoImg.src = imagenGuardada;
         }
     }
-    // Construir opciones principales
     let opcionesHTML = "";
     tablaIndices.forEach(rawIdx => {
         const index = parseInt(rawIdx);
@@ -36,12 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!pagina) return;
         opcionesHTML += `<li><a href="#">${pagina.titulo}</a></li>`;
     });
-    // Insertar opciones en el menú
     const opcionesNav = document.getElementById("opcionesdinamico");
     if (opcionesNav) {
         opcionesNav.innerHTML = opcionesHTML;
     }
-    // Submenú (si existe en localStorage)
     if (submenuGuardadoRaw) {
         const submenuData = JSON.parse(submenuGuardadoRaw);
         let submenuHTML = "";

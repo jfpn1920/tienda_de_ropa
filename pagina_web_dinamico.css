@@ -1,4 +1,3 @@
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -7,22 +6,22 @@
 body {
     font-family: Arial, sans-serif;
 }
-
-/* Barra de navegación */
+/*----------------------------------------*/
+/*--|estilo_menu_de_navegacion_dinamico|--*/
+/*----------------------------------------*/
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #1e293b; /* azul oscuro */
+    background: #1e293b;
     padding: 10px 20px;
 }
-/* Logo */
 #imagendinamico img {
     height: 50px;
     width: auto;
+    border-radius: 5px;
     cursor: pointer;
 }
-/* Opciones principales */
 #opcionesdinamico {
     list-style: none;
     display: flex;
@@ -42,7 +41,6 @@ body {
     background: #334155;
     border-radius: 5px;
 }
-/* Submenú */
 #submenudinamico {
     list-style: none;
     position: absolute;
@@ -53,18 +51,20 @@ body {
     flex-direction: column;
     min-width: 150px;
     border-radius: 5px;
+    margin-top: 10px;
+    margin-left: -12px;
     padding: 5px 0;
 }
 #submenudinamico li a {
     display: block;
     padding: 10px;
+    text-align: center;
     color: #fff;
     font-weight: normal;
 }
 #submenudinamico li a:hover {
     background: #475569;
 }
-/* Mostrar submenú al pasar el mouse */
 #opcionesdinamico li:hover > #submenudinamico {
     display: flex;
 }
