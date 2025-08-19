@@ -54,18 +54,22 @@
     <div class="upload-box">
         <div class="title-container">
             <h2>Agregar Imagen</h2>
-            <button class="btn" >Guardar Imagen</button>
+            <button class="btn" id="guardarImagen">Guardar Imagen</button>
         </div>
-        <input type="file">
+        <input type="file" id="inputImagen" accept="image/*">
     </div>
     <!------------------------------------->
     <!--|estructura_imagenes_almacenados|-->
     <!------------------------------------->
     <div class="contenedor-imagenes">
         <div class="header">
-            <h2>imagenes almacenados</h2>
+            <h2>Imágenes almacenadas</h2>
+            <div class="acciones">
+                <button id="btnAgregar" class="btn-accion">Agregar Imágenes</button>
+                <button id="btnEliminarTodo" class="btn-accion eliminar">Eliminar Todo</button>
+            </div>
         </div>
-        <div class="contenido">
+        <div class="contenido" id="listaImagenes">
             <p>(Aquí aparecerán las imágenes)</p>
         </div>
     </div>
@@ -76,9 +80,9 @@
         <div class="header">
             <h2>gestion de controles</h2>
         </div>
-        <form class="form-controles">
+        <form class="form-controles" id="form-controles">
             <label class="check-item">
-                <input type="checkbox" name="flechas">
+                <input type="checkbox" id="check-flechas" name="flechas">
                 <span>Mostrar flechas de navegación</span>
             </label>
             <label class="check-item">
@@ -104,15 +108,16 @@
                 <label for="velocidad">Velocidad de transición (ms):</label>
                 <input type="number" id="velocidad" name="velocidad" min="100" max="5000" value="1000">
             </div>
-            <button type="submit" class="btn-guardar">Guardar Configuración</button>
+            <button type="submit" class="btn-guardar" id="guardar-config">Guardar Configuración</button>
         </form>
     </div>
-    <!---------------------------->
-    <!--|estructura_desconocido|-->
-    <!---------------------------->
+    <!------------------------------>
+    <!--|estructura_agregar_texto|-->
+    <!------------------------------>
     <div class="contenedor2">
         <div class="header2">
-            agregar texto
+            <span>agregar texto</span>
+            <button class="btn-agregar">Agregar</button>
         </div>
         <div class="caja2">
             <label for="titulo">añade un titulo:</label>
@@ -121,6 +126,24 @@
         <div class="caja2 estirar">
             <label for="parrafo">añade un parrafo:</label>
             <textarea id="parrafo" rows="6" placeholder="escribe el parrafo que deceas"></textarea>
+        </div>
+    </div>
+    <!------------------------------------------>
+    <!--|estructura_visualizacion_de_carrusel|-->
+    <!------------------------------------------>
+    <div class="contenedor3">
+        <div class="barra-superior3">
+            <h2>visualizacion de carrusel</h2>
+            <div class="botones3">
+                <button>eliminar carrusel</button>
+                <button>crear carrusel</button>
+            </div>
+        </div>
+        <div class="carrusel3">
+            <div class="carrusel-imagenes"></div>
+            <button class="btn-lateral3 btn-izq3"><i class="fas fa-arrow-left"></i></button>
+            <button class="btn-lateral3 btn-der3"><i class="fas fa-arrow-right"></i></button>
+            <button class="btn-inferior3"></button>
         </div>
     </div>
 </body>
