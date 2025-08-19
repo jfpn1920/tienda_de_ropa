@@ -409,3 +409,23 @@ body {
 .carrusel-imagenes img.active {
     display: block;
 }
+.indicadores3 {
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+}
+.punto-indicador {
+    width: 12px;
+    height: 12px;
+    background: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.punto-indicador.activo {
+    background: #2271b1;
+}

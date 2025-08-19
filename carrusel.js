@@ -140,12 +140,20 @@ const btnIzq = document.querySelector(".btn-izq3");
 const btnDer = document.querySelector(".btn-der3");
 const btnInferior = document.querySelector(".btn-inferior3");
 const carruselInner = document.querySelector(".carrusel3 .carrusel-imagenes");
+const formControles = document.getElementById("form-controles");
+const guardarConfig = document.getElementById("guardar-config");
+const carrusel = document.querySelector(".carrusel3");
 let indice = 0;
+let indicadoresContainer = document.createElement("div");
+indicadoresContainer.classList.add("indicadores3");
+carrusel.appendChild(indicadoresContainer);
 btnCrear.addEventListener("click", () => {
     alert("✅ Carrusel creado con éxito");
+    aplicarConfiguracion();
 });
 btnEliminar.addEventListener("click", () => {
     carruselInner.innerHTML = "";
+    indicadoresContainer.innerHTML = "";
     alert("🗑️ Carrusel eliminado con éxito");
 });
 btnIzq.addEventListener("click", () => {
@@ -163,4 +171,60 @@ function moverCarrusel(direccion) {
     imagenes[indice].classList.remove("active");
     indice = (indice + direccion + imagenes.length) % imagenes.length;
     imagenes[indice].classList.add("active");
+    actualizarIndicadores();
 }
+if (formControles) {
+    formControles.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const mostrarFlechas = document.getElementById("check-flechas").checked;
+        const mostrarPuntos = formControles.querySelector("input[name='puntos']").checked;
+        localStorage.setItem("configCarrusel", JSON.stringify({
+            mostrarFlechas,
+            mostrarPuntos
+        }));
+        aplicarConfiguracion();
+    });
+}
+function aplicarConfiguracion() {
+    const config = JSON.parse(localStorage.getItem("configCarrusel")) || {};
+    if (config.mostrarFlechas) {
+        btnIzq.style.display = "flex";
+        btnDer.style.display = "flex";
+    } else {
+        btnIzq.style.display = "none";
+        btnDer.style.display = "none";
+    }
+    if (config.mostrarPuntos) {
+        generarIndicadores();
+    } else {
+        indicadoresContainer.innerHTML = "";
+    }
+}
+function generarIndicadores() {
+    const imagenes = carruselInner.querySelectorAll(".imagen-carrusel");
+    indicadoresContainer.innerHTML = "";
+    imagenes.forEach((_, index) => {
+        const punto = document.createElement("span");
+        punto.classList.add("punto-indicador");
+        if (index === indice) punto.classList.add("activo");
+        punto.addEventListener("click", () => {
+            cambiarImagen(index);
+        });
+        indicadoresContainer.appendChild(punto);
+    });
+}
+function actualizarIndicadores() {
+    const puntos = indicadoresContainer.querySelectorAll(".punto-indicador");
+    puntos.forEach((p, i) => {
+        p.classList.toggle("activo", i === indice);
+    });
+}
+function cambiarImagen(nuevoIndice) {
+    const imagenes = carruselInner.querySelectorAll(".imagen-carrusel");
+    if (imagenes.length === 0) return;
+    imagenes[indice].classList.remove("active");
+    indice = nuevoIndice;
+    imagenes[indice].classList.add("active");
+    actualizarIndicadores();
+}
+aplicarConfiguracion();
