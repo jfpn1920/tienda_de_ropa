@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const checkFlechas = document.getElementById("check-flechas");
     const btnIzq = document.querySelector(".btn-izq3");
     const btnDer = document.querySelector(".btn-der3");
+    // Cargar configuración guardada
     const savedConfig = JSON.parse(localStorage.getItem("configControles"));
     if (savedConfig) {
         form.flechas.checked = savedConfig.flechas;
@@ -96,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btnIzq.style.display = savedConfig.flechas ? "block" : "none";
         btnDer.style.display = savedConfig.flechas ? "block" : "none";
     }
+    // Guardar configuración
     form.addEventListener("submit", (e) => {
         e.preventDefault(); 
         const config = {
@@ -104,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
             autoplay: form.autoplay.checked,
             intervalo: Number(form.intervalo.value),
             transicion: form.transicion.value,
-            velocidad: Number(form.velocidad.value)
+            velocidad: Number(form.velocidad.value) // <- se guarda la velocidad
         };
         localStorage.setItem("configControles", JSON.stringify(config));
         btnIzq.style.display = config.flechas ? "block" : "none";
@@ -131,6 +133,38 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+//--------------------------------------//
+//--|funcionalidad_paletas_de_colores|--//
+//--------------------------------------//
+const colores = [
+    "#FF5733", "#33FF57", "#3357FF", "#F1C40F", "#8E44AD",
+    "#E67E22", "#1ABC9C", "#2ECC71", "#E74C3C", "#3498DB",
+    "#9B59B6", "#34495E", "#D35400", "#16A085", "#27AE60",
+    "#2980B9", "#C0392B", "#7F8C8D", "#BDC3C7", "#2C3E50"
+];
+const paleta = document.getElementById("paleta");
+const vistaColor = document.getElementById("vistaColor");
+const agregarBtn = document.getElementById("agregarBtn");
+let colorSeleccionado = null;
+colores.forEach(color => {
+    const div = document.createElement("div");
+    div.classList.add("color-box5");
+    div.style.backgroundColor = color;
+    div.addEventListener("click", () => {
+        document.querySelectorAll(".color-box5").forEach(c => c.classList.remove("seleccionado"));
+        div.classList.add("seleccionado");
+        colorSeleccionado = color;
+        vistaColor.style.backgroundColor = color; 
+    });
+    paleta.appendChild(div);
+});
+agregarBtn.addEventListener("click", () => {
+    if (colorSeleccionado) {
+        alert("Has agregado el color: " + colorSeleccionado);
+    } else {
+        alert("Selecciona un color primero.");
+    }
+});
 //---------------------------------------------//
 //--|funcionalidad_visualizacion_de_carrusel|--//
 //---------------------------------------------//
@@ -144,9 +178,11 @@ const formControles = document.getElementById("form-controles");
 const guardarConfig = document.getElementById("guardar-config");
 const carrusel = document.querySelector(".carrusel3");
 let indice = 0;
+let autoplayId = null;
 let indicadoresContainer = document.createElement("div");
 indicadoresContainer.classList.add("indicadores3");
 carrusel.appendChild(indicadoresContainer);
+// Botones
 btnCrear.addEventListener("click", () => {
     alert("✅ Carrusel creado con éxito");
     aplicarConfiguracion();
@@ -154,23 +190,31 @@ btnCrear.addEventListener("click", () => {
 btnEliminar.addEventListener("click", () => {
     carruselInner.innerHTML = "";
     indicadoresContainer.innerHTML = "";
+    detenerAutoplay();
     alert("🗑️ Carrusel eliminado con éxito");
 });
-btnIzq.addEventListener("click", () => {
-    moverCarrusel(-1);
-});
-btnDer.addEventListener("click", () => {
-    moverCarrusel(1);
-});
+btnIzq.addEventListener("click", () => moverCarrusel(-1));
+btnDer.addEventListener("click", () => moverCarrusel(1));
 btnInferior.addEventListener("click", () => {
     alert("⬇️ Navegaste hacia la parte inferior del carrusel");
 });
+//----------------------------------//
+// Funciones del carrusel
+//----------------------------------//
 function moverCarrusel(direccion) {
     const imagenes = carruselInner.querySelectorAll(".imagen-carrusel");
     if (imagenes.length === 0) return;
-    imagenes[indice].classList.remove("active");
+    const config = JSON.parse(localStorage.getItem("configControles")) || { transicion: "slide", velocidad: 1000 };
+    // Reset clases
+    imagenes[indice].classList.remove("active", "fade-in", "fade-out");
     indice = (indice + direccion + imagenes.length) % imagenes.length;
-    imagenes[indice].classList.add("active");
+    if (config.transicion === "fade") {
+        imagenes[indice].classList.add("fade-in");
+        imagenes[indice].style.transitionDuration = `${config.velocidad}ms`;
+    } else {
+        imagenes[indice].classList.add("active");
+        imagenes[indice].style.transitionDuration = `${config.velocidad}ms`;
+    }
     actualizarIndicadores();
 }
 if (formControles) {
@@ -178,26 +222,41 @@ if (formControles) {
         e.preventDefault();
         const mostrarFlechas = document.getElementById("check-flechas").checked;
         const mostrarPuntos = formControles.querySelector("input[name='puntos']").checked;
+        const autoplay = document.querySelector("input[name='autoplay']").checked;
+        const intervalo = parseInt(document.getElementById("intervalo").value, 10);
+        const transicion = document.getElementById("transicion").value;
+        const velocidad = parseInt(document.getElementById("velocidad").value, 10);
         localStorage.setItem("configCarrusel", JSON.stringify({
             mostrarFlechas,
-            mostrarPuntos
+            mostrarPuntos,
+            autoplay,
+            intervalo,
+            transicion,
+            velocidad
         }));
         aplicarConfiguracion();
     });
 }
 function aplicarConfiguracion() {
     const config = JSON.parse(localStorage.getItem("configCarrusel")) || {};
-    if (config.mostrarFlechas) {
-        btnIzq.style.display = "flex";
-        btnDer.style.display = "flex";
-    } else {
-        btnIzq.style.display = "none";
-        btnDer.style.display = "none";
-    }
+    // Flechas
+    btnIzq.style.display = config.mostrarFlechas ? "flex" : "none";
+    btnDer.style.display = config.mostrarFlechas ? "flex" : "none";
+    // Puntos
     if (config.mostrarPuntos) {
         generarIndicadores();
     } else {
         indicadoresContainer.innerHTML = "";
+    }
+    // Autoplay
+    if (config.autoplay) {
+        iniciarAutoplay(config.intervalo || 3);
+    } else {
+        detenerAutoplay();
+    }
+    // Transición
+    if (config.transicion) {
+        carrusel.setAttribute("data-transicion", config.transicion);
     }
 }
 function generarIndicadores() {
@@ -222,9 +281,29 @@ function actualizarIndicadores() {
 function cambiarImagen(nuevoIndice) {
     const imagenes = carruselInner.querySelectorAll(".imagen-carrusel");
     if (imagenes.length === 0) return;
-    imagenes[indice].classList.remove("active");
+    const config = JSON.parse(localStorage.getItem("configControles")) || { transicion: "slide", velocidad: 1000 };
+    imagenes[indice].classList.remove("active", "fade-in", "fade-out");
     indice = nuevoIndice;
-    imagenes[indice].classList.add("active");
+    if (config.transicion === "fade") {
+        imagenes[indice].classList.add("fade-in");
+        imagenes[indice].style.transitionDuration = `${config.velocidad}ms`;
+    } else {
+        imagenes[indice].classList.add("active");
+        imagenes[indice].style.transitionDuration = `${config.velocidad}ms`;
+    }
     actualizarIndicadores();
 }
+function iniciarAutoplay(intervaloSegundos) {
+    detenerAutoplay();
+    autoplayId = setInterval(() => {
+        moverCarrusel(1);
+    }, intervaloSegundos * 1000);
+}
+function detenerAutoplay() {
+    if (autoplayId) {
+        clearInterval(autoplayId);
+        autoplayId = null;
+    }
+}
+// Inicia con configuración previa
 aplicarConfiguracion();
