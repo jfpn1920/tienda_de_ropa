@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const checkFlechas = document.getElementById("check-flechas");
     const btnIzq = document.querySelector(".btn-izq3");
     const btnDer = document.querySelector(".btn-der3");
-    // Cargar configuración guardada
     const savedConfig = JSON.parse(localStorage.getItem("configControles"));
     if (savedConfig) {
         form.flechas.checked = savedConfig.flechas;
@@ -97,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
         btnIzq.style.display = savedConfig.flechas ? "block" : "none";
         btnDer.style.display = savedConfig.flechas ? "block" : "none";
     }
-    // Guardar configuración
     form.addEventListener("submit", (e) => {
         e.preventDefault(); 
         const config = {
@@ -106,64 +104,13 @@ document.addEventListener("DOMContentLoaded", () => {
             autoplay: form.autoplay.checked,
             intervalo: Number(form.intervalo.value),
             transicion: form.transicion.value,
-            velocidad: Number(form.velocidad.value) // <- se guarda la velocidad
+            velocidad: Number(form.velocidad.value)
         };
         localStorage.setItem("configControles", JSON.stringify(config));
         btnIzq.style.display = config.flechas ? "block" : "none";
         btnDer.style.display = config.flechas ? "block" : "none";
         alert("✅ Configuración guardada con éxito");
     });
-});
-//---------------------------------//
-//--|funcionalidad_agregar_texto|--//
-//---------------------------------//
-document.addEventListener("DOMContentLoaded", function() {
-    const btnAgregar = document.querySelector(".btn-agregar");
-    const inputTitulo = document.getElementById("titulo");
-    const inputParrafo = document.getElementById("parrafo");
-    btnAgregar.addEventListener("click", function() {
-        const titulo = inputTitulo.value.trim();
-        const parrafo = inputParrafo.value.trim();
-        if (titulo && parrafo) {
-            alert("✅ Se ha agregado con éxito el título y el párrafo.");
-            inputTitulo.value = "";
-            inputParrafo.value = "";
-        } else {
-            alert("⚠️ Debes llenar tanto el título como el párrafo.");
-        }
-    });
-});
-//--------------------------------------//
-//--|funcionalidad_paletas_de_colores|--//
-//--------------------------------------//
-const colores = [
-    "#FF5733", "#33FF57", "#3357FF", "#F1C40F", "#8E44AD",
-    "#E67E22", "#1ABC9C", "#2ECC71", "#E74C3C", "#3498DB",
-    "#9B59B6", "#34495E", "#D35400", "#16A085", "#27AE60",
-    "#2980B9", "#C0392B", "#7F8C8D", "#BDC3C7", "#2C3E50"
-];
-const paleta = document.getElementById("paleta");
-const vistaColor = document.getElementById("vistaColor");
-const agregarBtn = document.getElementById("agregarBtn");
-let colorSeleccionado = null;
-colores.forEach(color => {
-    const div = document.createElement("div");
-    div.classList.add("color-box5");
-    div.style.backgroundColor = color;
-    div.addEventListener("click", () => {
-        document.querySelectorAll(".color-box5").forEach(c => c.classList.remove("seleccionado"));
-        div.classList.add("seleccionado");
-        colorSeleccionado = color;
-        vistaColor.style.backgroundColor = color; 
-    });
-    paleta.appendChild(div);
-});
-agregarBtn.addEventListener("click", () => {
-    if (colorSeleccionado) {
-        alert("Has agregado el color: " + colorSeleccionado);
-    } else {
-        alert("Selecciona un color primero.");
-    }
 });
 //---------------------------------------------//
 //--|funcionalidad_visualizacion_de_carrusel|--//
@@ -182,7 +129,6 @@ let autoplayId = null;
 let indicadoresContainer = document.createElement("div");
 indicadoresContainer.classList.add("indicadores3");
 carrusel.appendChild(indicadoresContainer);
-// Botones
 btnCrear.addEventListener("click", () => {
     alert("✅ Carrusel creado con éxito");
     aplicarConfiguracion();
@@ -198,14 +144,10 @@ btnDer.addEventListener("click", () => moverCarrusel(1));
 btnInferior.addEventListener("click", () => {
     alert("⬇️ Navegaste hacia la parte inferior del carrusel");
 });
-//----------------------------------//
-// Funciones del carrusel
-//----------------------------------//
 function moverCarrusel(direccion) {
     const imagenes = carruselInner.querySelectorAll(".imagen-carrusel");
     if (imagenes.length === 0) return;
     const config = JSON.parse(localStorage.getItem("configControles")) || { transicion: "slide", velocidad: 1000 };
-    // Reset clases
     imagenes[indice].classList.remove("active", "fade-in", "fade-out");
     indice = (indice + direccion + imagenes.length) % imagenes.length;
     if (config.transicion === "fade") {
@@ -239,22 +181,18 @@ if (formControles) {
 }
 function aplicarConfiguracion() {
     const config = JSON.parse(localStorage.getItem("configCarrusel")) || {};
-    // Flechas
     btnIzq.style.display = config.mostrarFlechas ? "flex" : "none";
     btnDer.style.display = config.mostrarFlechas ? "flex" : "none";
-    // Puntos
     if (config.mostrarPuntos) {
         generarIndicadores();
     } else {
         indicadoresContainer.innerHTML = "";
     }
-    // Autoplay
     if (config.autoplay) {
         iniciarAutoplay(config.intervalo || 3);
     } else {
         detenerAutoplay();
     }
-    // Transición
     if (config.transicion) {
         carrusel.setAttribute("data-transicion", config.transicion);
     }
@@ -305,5 +243,4 @@ function detenerAutoplay() {
         autoplayId = null;
     }
 }
-// Inicia con configuración previa
 aplicarConfiguracion();
