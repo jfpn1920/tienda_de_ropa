@@ -259,44 +259,56 @@ body {
 /*--|estilo_visualizacion_de_carrusel|--*/
 /*--------------------------------------*/
 .contenedor3 {
-    width: 83.2%;
-    margin-top: 5px;
-    margin-left: 210px;
+    width: 352px;
+    height: 412px;
+    margin-top: -436px;
+    margin-left: 1045px;
     background: #696d5d;
     padding: 10px;
     border-radius: 5px;
     border: 2px solid #333;
 }
+
+/* Barra superior: título arriba y botones debajo */
 .barra-superior3 {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 10px;
+    flex-direction: column; /* apila título y botones */
+    align-items: center;    /* centra en horizontal */
+    margin-bottom: 10px;
 }
+
 .barra-superior3 h2 {
-    margin: 0;
+    margin: 0 0 10px 0; /* espacio debajo del título */
     color: #000;
     font-size: 16px;
     font-weight: bold;
 }
-.barra-superior3 .botones {
+
+.botones3 {
     display: flex;
-    gap: 10px;
+    gap: 10px; /* espacio entre botones */
 }
-.barra-superior3 button {
-    padding: 5px 10px;
-    border: 1px solid #000;
-    background: #25abcc;
-    cursor: pointer;
+
+.botones3 button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: white;
     border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.3s;
 }
-.barra-superior3 button:hover {
-    background: #aaa;
+
+.botones3 button:hover {
+    background-color: #0056b3;
 }
+
 .carrusel3 {
-    margin-top: 10px;
+    margin-top: 5px;
     background: #fff;
-    height: 250px;
+    height: 335px;
     border-radius: 5px;
     border: 2px solid #333;
     position: relative;
@@ -304,6 +316,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .btn-lateral3 {
     position: absolute;
     top: 50%;
