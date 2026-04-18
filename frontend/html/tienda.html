@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>panel de control</title>
+    <link rel="stylesheet" href="../css/tienda.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="../js/tienda.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!----------------------------------->
+    <!--|estructura_menu_de_navegacion|-->
+    <!----------------------------------->
+    <header class="header">
+        <div class="header-left-container">
+            <div class="header-left">
+                <i class="fas fa-bars menu-icon" id="menuToggle"></i>
+                <a href="panel_de_control.html" class="title">panel de control</a>
+            </div>
+        </div>
+        <div class="header-right">
+            <i class="fas fa-user-circle user-icon"></i>
+        </div>
+    </header>
+    <aside class="sidebar" id="sidebar">
+        <ul class="menu">
+            <li><a href="tienda.html"><i class="fas fa-store"></i> Tienda</a></li>
+            <li><a href="productos.html"><i class="fas fa-box"></i> Productos</a></li>
+            <li><a href="inventario.html"><i class="fas fa-warehouse"></i> Inventario</a></li>
+            <li><a href="categorias.html"><i class="fas fa-tags"></i> Categorías</a></li>
+            <li><a href="filtraciones.html"><i class="fas fa-filter"></i> Filtraciones</a></li>
+            <li><a href="estado.html"><i class="fas fa-chart-line"></i> Estado</a></li>
+            <li><a href="historial.html"><i class="fas fa-clock"></i> Historial</a></li>
+            <li><a href="comunidad.html"><i class="fas fa-users"></i> Comunidad</a></li>
+            <li><a href="aliados.html"><i class="fas fa-handshake"></i> Aliados</a></li>
+            <li><a href="pedidos.html"><i class="fas fa-shopping-cart"></i> Pedidos</a></li>
+            <li><a href="eliminados.html"><i class="fas fa-trash"></i> Eliminados</a></li>
+            <li><a href="configuracion.html"><i class="fas fa-cog"></i> Configuración</a></li>
+        </ul>
+    </aside>
+    <!------------------------------------->
+    <!--|estructura_formulario_de_tienda|-->
+    <!------------------------------------->
+    <div class="form-container">
+        <h2>Formulario de tienda</h2>
+        <label>Agregar nombre al sitio</label>
+        <input type="text" id="nombre" placeholder="Escribe el nombre del sitio...">
+        <label>Añade cuantas pestañas</label>
+        <select id="pestanas">
+            <option value="0">Ninguna pestaña</option>
+            <option value="1">1 pestaña</option>
+            <option value="2">2 pestañas</option>
+            <option value="3">3 pestañas</option>
+        </select>
+        <label>Agregar imagen</label>
+        <div class="upload-box" id="uploadBox">
+            <input type="file" id="imagen" hidden>
+                <div class="placeholder" id="placeholder">
+                    <i class="fa-solid fa-image"></i>
+                    <p>Ninguna imagen seleccionada</p>
+                </div>
+            <img id="preview" src="" alt="preview">
+        </div>
+        <button id="crear">Crear sitio</button>
+    </div>
+    <!------------------------------------------------->
+    <!--|estructura_formulario_de_menu_de_navegacion|-->
+    <!------------------------------------------------->
+    <div class="menu-container2">
+        <h2>Formulario de menu de navegacion</h2>
+        <div class="menu-content2">
+            <div class="left2">
+                <label class="subtitulos">Añadir imagen</label>
+                <div class="upload-box2" id="uploadBoxMenu2">
+                    <input type="file" id="imagenMenu2" hidden>
+                    <div class="placeholder2" id="placeholderMenu2">
+                        <i class="fa-solid fa-image"></i>
+                        <p>Ninguna imagen seleccionado</p>
+                    </div>
+                    <img id="previewMenu2">
+                </div>
+                <div class="checkbox-container2">
+                    <label class="subtitulos">Habilitar barra de búsqueda</label>
+                    <div class="check-row2">
+                        <input type="checkbox" id="busqueda2">
+                        <span>Barra de búsqueda</span>
+                    </div>
+                </div>
+            </div>
+            <div class="right2">
+                <label class="subtitulos">Agregar menú de navegación</label>
+                <input type="text" id="nombreMenu2" placeholder="Escribe el nombre del menu...">
+                <label class="subtitulos">añadir opciones</label>
+                <div class="add-option2">
+                    <input type="text" id="opcionInput2" class="opcionInput2" placeholder="Escribe la opcion...">
+                    <button id="addOption2"><i class="fa-solid fa-plus"></i></button>
+                </div>
+                <label class="subtitulos">Lista de opciones</label>
+                <div class="lista2" id="listaOpciones2">
+                    <p class="empty2">Ninguna opcion</p>
+                </div>
+            </div>
+        </div>
+        <button id="crearMenu2">Crear menu</button>
+    </div>
+    <!---------------------------------------->
+    <!--|estructura_formulario_del_carrusel|-->
+    <!---------------------------------------->
+    <div class="carousel-container3">
+        <h2>Formulario del carrusel</h2>
+        <label class="subtitulo3">Agregar imagen</label>
+        <div class="upload-box3" id="uploadBox3">
+            <input type="file" id="imagen3" multiple hidden>
+            <div class="placeholder3" id="placeholder3">
+                <i class="fa-solid fa-image"></i>
+                <p>Selecciona imágenes</p>
+            </div>
+            <div class="preview-container3" id="previewContainer3"></div>
+        </div>
+        <label class="subtitulo3-parte-2">Configuración del carrusel</label>
+        <div class="config3">
+            <div class="check-row3">
+                <input type="checkbox" id="controladores3">
+                <span>Habilitar controladores</span>
+            </div>
+            <div class="check-row3">
+                <input type="checkbox" id="indicadores3">
+                <span>Añadir indicadores</span>
+            </div>
+            <div class="check-row3">
+                <input type="checkbox" id="automatico3">
+                <span>Automático</span>
+            </div>
+        </div>
+        <label class="subtitulo3">Seleccionar tiempo</label>
+        <select id="tiempo3">
+            <option value="2000">2 segundos</option>
+            <option value="3000">3 segundos</option>
+            <option value="5000">5 segundos</option>
+        </select>
+        <button id="crearCarrusel3">Crear carrusel</button>
+    </div>
+    <!-------------------------------------->
+    <!--|estructura_formulario_de_chatbot|-->
+    <!-------------------------------------->
+    <div class="chatbot-container4">
+        <h2>Formulario de chatbot</h2>
+        <label class="subtitulo4">Agregar el chatbot</label>
+        <input type="text" id="nombreChatbot4" placeholder="Escribe el nombre del chatbot...">
+        <label class="subtitulo4">Añadir pregunta</label>
+        <div class="add-item4">
+            <input type="text" id="preguntaInput4" placeholder="Escribe la pregunta...">
+            <button id="addPregunta4"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <label class="subtitulo4">Lista de preguntas</label>
+        <div class="lista4" id="listaPreguntas4">
+            <p class="empty4">Ninguna pregunta añadida</p>
+        </div>
+        <label class="subtitulo4">Añadir respuesta</label>
+        <div class="add-item4">
+            <input type="text" id="respuestaInput4" placeholder="Escribe la respuesta...">
+            <button id="addRespuesta4"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <label class="subtitulo4">Lista de respuestas</label>
+        <div class="lista4" id="listaRespuestas4">
+            <p class="empty4">Ninguna respuesta añadida</p>
+        </div>
+        <h3 class="subtitulo4-parte-2">Configuración del chatbot</h3>
+        <label class="subtitulo4">Seleccionar tiempo</label>
+        <select id="tiempoChatbot4">
+            <option value="1000">1 segundo</option>
+            <option value="2000">2 segundos</option>
+            <option value="3000">3 segundos</option>
+        </select>
+        <button id="crearChatbot4">Crear chatbot</button>
+    </div>
+    <!---------------------------------------->
+    <!--|estructura_formulario_de_contenido|-->
+    <!---------------------------------------->
+    <div class="contenido-container5">
+        <h2>Formulario de contenido</h2>
+        <div class="toolbar5">
+            <select id="posicion5">
+                <option>Ninguna posicion</option>
+            </select>
+            <select id="tipo5">
+                <option>Ningun tipo</option>
+            </select>
+            <select id="cambio5">
+                <option>Ninguna cambio</option>
+            </select>
+            <button class="btn-format5-parte-1" data-type="bold"><b class="btn-text">B</b></button>
+            <button class="btn-format5-parte-2" data-type="italic"><i>I</i></button>
+            <button class="btn-format5-parte-3" data-type="underline"><u>A</u></button>
+            <select id="tamano5">
+                <option>0 px</option>
+                <option>12 px</option>
+                <option>16 px</option>
+                <option>20 px</option>
+            </select>
+            <select id="destino5">
+                <option>Ningun destino</option>
+            </select>
+            <select id="contenido5">
+                <option>Ninguna cont...</option>
+            </select>
+        </div>
+        <div class="editor5" id="editor5" contenteditable="true">
+            <p class="empty5">Ninguna contenido disponible</p>
+        </div>
+        <button id="crearContenido5">Crear contenido</button>
+    </div>
+</body>
+</html>

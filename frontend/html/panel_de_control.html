@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>panel de control</title>
+    <link rel="stylesheet" href="../css/panel_de_control.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="../js/panel_de_control.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!----------------------------------->
+    <!--|estructura_menu_de_navegacion|-->
+    <!----------------------------------->
+    <header class="header">
+        <div class="header-left-container">
+            <div class="header-left">
+                <i class="fas fa-bars menu-icon" id="menuToggle"></i>
+                <a href="panel_de_control.html" class="title">panel de control</a>
+            </div>
+        </div>
+        <div class="header-right">
+            <i class="fas fa-user-circle user-icon"></i>
+        </div>
+    </header>
+    <aside class="sidebar" id="sidebar">
+        <ul class="menu">
+            <li><a href="tienda.html"><i class="fas fa-store"></i> Tienda</a></li>
+            <li><a href="productos.html"><i class="fas fa-box"></i> Productos</a></li>
+            <li><a href="inventario.html"><i class="fas fa-warehouse"></i> Inventario</a></li>
+            <li><a href="categorias.html"><i class="fas fa-tags"></i> Categorías</a></li>
+            <li><a href="filtraciones.html"><i class="fas fa-filter"></i> Filtraciones</a></li>
+            <li><a href="estado.html"><i class="fas fa-chart-line"></i> Estado</a></li>
+            <li><a href="historial.html"><i class="fas fa-clock"></i> Historial</a></li>
+            <li><a href="comunidad.html"><i class="fas fa-users"></i> Comunidad</a></li>
+            <li><a href="aliados.html"><i class="fas fa-handshake"></i> Aliados</a></li>
+            <li><a href="pedidos.html"><i class="fas fa-shopping-cart"></i> Pedidos</a></li>
+            <li><a href="eliminados.html"><i class="fas fa-trash"></i> Eliminados</a></li>
+            <li><a href="configuracion.html"><i class="fas fa-cog"></i> Configuración</a></li>
+        </ul>
+    </aside>
+    <!---------------------------------->
+    <!--|estructura_grafica_de_tienda|-->
+    <!---------------------------------->
+    <div class="main-content">
+        <h2 class="titulo-grafica">Grafica de tienda</h2>
+        <section class="grafica-container">
+            <canvas id="miGrafica"></canvas>
+        </section>
+    </div>
+    <!------------------------------------->
+    <!--|estructura_tarjetas_de_progreso|-->
+    <!------------------------------------->
+    <div class="main-content-2">
+        <section class="cards-container">
+            <div class="card">
+                <div class="card-header">
+                    <span>Total de productos</span>
+                    <i class="fas fa-bag-shopping"></i>
+                </div>
+                <div class="card-body">
+                    <h1 id="totalProductos">0</h1>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span>Productos vendidos</span>
+                    <i class="fas fa-box"></i>
+                </div>
+                <div class="card-body">
+                    <h1 id="productosVendidos">0</h1>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span>Usuarios registrados</span>
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="card-body">
+                    <h1 id="usuariosRegistrados">0</h1>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!------------------------------>
+    <!--|estructura_acceso_rapido|-->
+    <!------------------------------>
+    <div class="main-content-3">
+        <section class="acceso-rapido">
+            <h2 class="titulo-acceso">
+                <i class="fas fa-bolt"></i>
+                Acceso rápido
+            </h2>
+            <div class="grid-acceso">
+                <button class="btn-acceso">Tienda</button>
+                <button class="btn-acceso">Productos</button>
+                <button class="btn-acceso">Inventario</button>
+                <button class="btn-acceso">Categorías</button>
+                <button class="btn-acceso">Filtraciones</button>
+                <button class="btn-acceso">Estado</button>
+                <button class="btn-acceso">Historial</button>
+                <button class="btn-acceso">Comunidad</button>
+                <button class="btn-acceso">Aliados</button>
+                <button class="btn-acceso">Pedidos</button>
+                <button class="btn-acceso">Eliminados</button>
+                <button class="btn-acceso full">Configuración</button>
+            </div>
+        </section>
+    </div>
+    <!---------------------------->
+    <!--|estructura_mis_aliados|-->
+    <!---------------------------->
+    <div class="main-content-4">
+        <section class="mis-aliados">                       
+            <h2 class="titulo-aliados">
+                <i class="fas fa-handshake"></i>
+                Mis aliados
+            </h2>   
+            <div class="grid-aliados">                      
+                <button class="btn-aliado">Aliado 1</button>
+                <button class="btn-aliado">Aliado 2</button>
+                <button class="btn-aliado">Aliado 3</button>
+                <button class="btn-aliado">Aliado 4</button>
+                <button class="btn-aliado">Aliado 5</button>
+                <button class="btn-aliado">Aliado 6</button>
+                <button class="btn-aliado">Aliado 7</button>
+                <button class="btn-aliado">Aliado 8</button>
+                <button class="btn-aliado">Aliado 9</button>
+                <button class="btn-aliado">Aliado 10</button>
+                <button class="btn-aliado">Aliado 11</button>
+                <button class="btn-aliado">Aliado 12</button>
+            </div>                                          
+        </section>  
+    </div>                                       
+    <!------------------------------->
+    <!--|estructura_mis_categorias|-->
+    <!------------------------------->
+    <div class="main-content-5">
+        <section class="categorias">                                     
+            <h2 class="titulo-categorias">
+                <i class="fas fa-tags"></i>
+                Mis categorias
+            </h2>            
+            <div class="contenedor-categorias" id="contenedorCategorias">
+            </div>                                                       
+        </section>
+    </div>                                                     
+    <!-------------------------->
+    <!--|estructura_mi_tienda|-->
+    <!-------------------------->
+    <div class="main-content-6">
+        <section class="mi-tienda">                                   
+            <h2 class="titulo-tienda">
+                <i class="fas fa-store"></i>
+                Mi tienda
+            </h2>                  
+            <div class="card-tienda">                                 
+                <div class="tienda-izquierda">                        
+                    <i class="fas fa-store icono-tienda"></i>         
+                </div>                                                
+                <div class="tienda-derecha">                          
+                    <h3 class="nombre-tienda">Nombre de mi tienda</h3>
+                    <button class="btn-ingresar">Ingresar</button>    
+                </div>                                                
+            </div>                                                    
+        </section>                                                    
+    </div>                                                  
+    <!------------------------------------->
+    <!--|estructura_resumen_de_historial|-->
+    <!------------------------------------->
+    <div class="main-content-7">
+        <section class="movimientos">                                                         
+            <h2 class="titulo-movimientos">                                                   
+                <i class="fas fa-cart-shopping"></i> Últimos movimientos                      
+            </h2>                                                                             
+            <div class="acciones-historial">                                                  
+                <div class="buscador">                                                        
+                    <i class="fas fa-search icono-busqueda"></i>                              
+                    <input type="text" id="buscarHistorial" placeholder="Buscar historial...">
+                </div>                                                                        
+                <select id="filtrarHistorial">                                                
+                    <option value="todos">Filtrar historial</option>                          
+                    <option value="producto">Productos</option>                               
+                    <option value="venta">Ventas</option>                                     
+                    <option value="usuario">Usuarios</option>                                 
+                </select>                                                                     
+            </div>                                                                            
+            <div class="contenedor-movimientos" id="contenedorMovimientos"></div>             
+        </section>
+    </div>                                                                            
+</body>
+</html>
