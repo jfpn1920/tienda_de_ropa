@@ -97,7 +97,7 @@
                     <input type="text" id="opcionInput2" class="opcionInput2" placeholder="Escribe la opcion...">
                     <button id="addOption2"><i class="fa-solid fa-plus"></i></button>
                 </div>
-                <label class="subtitulos">Lista de opciones</label>
+                <label class="subtitulos1">Lista de opciones</label>
                 <div class="lista2" id="listaOpciones2">
                     <p class="empty2">Ninguna opcion</p>
                 </div>
@@ -164,8 +164,8 @@
             <button id="addRespuesta4"><i class="fa-solid fa-plus"></i></button>
         </div>
         <label class="subtitulo4">Lista de respuestas</label>
-        <div class="lista4" id="listaRespuestas4">
-            <p class="empty4">Ninguna respuesta añadida</p>
+        <div class="lista5" id="listaRespuestas4">
+            <p class="empty5">Ninguna respuesta añadida</p>
         </div>
         <h3 class="subtitulo4-parte-2">Configuración del chatbot</h3>
         <label class="subtitulo4">Seleccionar tiempo</label>
@@ -184,12 +184,24 @@
         <div class="toolbar5">
             <select id="posicion5">
                 <option>Ninguna posicion</option>
+                <option>Izquierda</option>
+                <option>Derecha</option>
+                <option>centro</option>
+                <option>Justificado</option>
             </select>
             <select id="tipo5">
                 <option>Ningun tipo</option>
+                <option>Titulo</option>
+                <option>Subtitulo</option>
+                <option>Parrafo</option>
             </select>
             <select id="cambio5">
                 <option>Ninguna cambio</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Verdana">Verdana</option>
             </select>
             <button class="btn-format5-parte-1" data-type="bold"><b class="btn-text">B</b></button>
             <button class="btn-format5-parte-2" data-type="italic"><i>I</i></button>
@@ -204,13 +216,37 @@
                 <option>Ningun destino</option>
             </select>
             <select id="contenido5">
-                <option>Ninguna cont...</option>
+                <option>Ningun conten...</option>
+                <option>contenido 1</option>
+                <option>contenido 2</option>
+                <option>contenido 3</option>
+                <option>contenido 4</option>
+                <option>contenido 5</option>
+                <option>contenido 6</option>
+                <option>contenido 7</option>
             </select>
         </div>
         <div class="editor5" id="editor5" contenteditable="true">
             <p class="empty5">Ninguna contenido disponible</p>
         </div>
         <button id="crearContenido5">Crear contenido</button>
+    </div>
+    <!--------------------------------------->
+    <!--|estructura_versiones_de_la_tienda|-->
+    <!--------------------------------------->
+    <div class="contenedor-versiones6">
+        <h2 class="titulo-versiones6">Versiones de la tienda</h2>
+        <div class="barra-busqueda6">
+            <input 
+                type="text" 
+                id="inputBusqueda6" 
+                placeholder="Buscar el sitio deseado..."
+            >
+            <button id="btnBuscar6">
+                <i class="fas fa-search"></i>
+            </button>
+            <button id="btnFiltrar6">Filtrar sitio</button>
+        </div>
     </div>
 </body>
 </html>
