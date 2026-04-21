@@ -234,6 +234,12 @@ document.getElementById("crearChatbot4").addEventListener("click", () => {
 //-------------------------------------------//
 const editor5 = document.getElementById("editor5");
 let empty5 = editor5.querySelector(".empty5");
+let elementoActivo = null;
+editor5.addEventListener("focusin", (e) => {
+    if (e.target.matches("input, textarea")) {
+        elementoActivo = e.target;
+    }
+});
 editor5.setAttribute("contenteditable", "false");
 editor5.addEventListener("input", () => {
     if (editor5.innerText.trim() === "") {
@@ -242,12 +248,76 @@ editor5.addEventListener("input", () => {
         if (empty5) empty5.style.display = "none";
     }
 });
+//----------------------//
+//--|cambiar_posicion|--//
+//----------------------//
+document.getElementById("posicion5").addEventListener("change", (e) => {
+    if (!elementoActivo) return;
+    const valor = e.target.value;
+    switch (valor) {
+        case "Izquierda":
+            elementoActivo.style.textAlign = "left";
+            break;
+        case "Derecha":
+            elementoActivo.style.textAlign = "right";
+            break;
+        case "centro":
+            elementoActivo.style.textAlign = "center";
+            break;
+        case "Justificado":
+            elementoActivo.style.textAlign = "justify";
+            break;
+        default:
+            elementoActivo.style.textAlign = "left";
+    }
+});
+//-------------------//
+//--|tipo_de_texto|--//
+//-------------------//
+document.getElementById("tipo5").addEventListener("change", (e) => {
+    if (!elementoActivo) return;
+    const valor = e.target.value;
+    switch (valor) {
+        case "Titulo":
+            elementoActivo.style.fontSize = "28px";
+            elementoActivo.style.fontWeight = "bold";
+            break;
+        case "Subtitulo":
+            elementoActivo.style.fontSize = "20px";
+            elementoActivo.style.fontWeight = "600";
+            break;
+        case "Parrafo":
+            elementoActivo.style.fontSize = "14px";
+            elementoActivo.style.fontWeight = "normal";
+            break;
+        default:
+            elementoActivo.style.fontSize = "";
+            elementoActivo.style.fontWeight = "";
+    }
+});
 //-----------------------//
 //--|formato_del_texto|--//
 //-----------------------//
 document.querySelectorAll("[data-type]").forEach(btn => {
     btn.addEventListener("click", () => {
         const type = btn.dataset.type;
+        if (elementoActivo) {
+            if (type === "bold") {
+                elementoActivo.style.fontWeight =
+                    elementoActivo.style.fontWeight === "bold" ? "normal" : "bold";
+            }
+            if (type === "italic") {
+                elementoActivo.style.fontStyle =
+                    elementoActivo.style.fontStyle === "italic" ? "normal" : "italic";
+            }
+            if (type === "underline") {
+                elementoActivo.style.textDecoration =
+                    elementoActivo.style.textDecoration === "underline" ? "none" : "underline";
+            }
+            return;
+        }
+        const seleccion = window.getSelection();
+        if (!seleccion.rangeCount) return;
         editor5.setAttribute("contenteditable", "true");
         if (type === "bold") document.execCommand("bold");
         if (type === "italic") document.execCommand("italic");
@@ -259,26 +329,31 @@ document.querySelectorAll("[data-type]").forEach(btn => {
 //--|tamaño_del_texto|--//
 //----------------------//
 document.getElementById("tamano5").addEventListener("change", (e) => {
-    editor5.setAttribute("contenteditable", "true");
-    document.execCommand("fontSize", false, "7");
-    const fontElements = document.getElementsByTagName("font");
-    for (let i = 0; i < fontElements.length; i++) {
-        if (fontElements[i].size == "7") {
-            fontElements[i].removeAttribute("size");
-            fontElements[i].style.fontSize = e.target.value;
-        }
+    const size = e.target.value;
+    if (elementoActivo) {
+        elementoActivo.style.fontSize = size;
+        return;
     }
+    const seleccion = window.getSelection();
+    if (!seleccion.rangeCount) return;
+    const range = seleccion.getRangeAt(0);
+    if (range.collapsed) return;
+    editor5.setAttribute("contenteditable", "true");
+    const span = document.createElement("span");
+    span.style.fontSize = size;
+    span.appendChild(range.extractContents());
+    range.insertNode(span);
+    seleccion.removeAllRanges();
     editor5.setAttribute("contenteditable", "false");
 });
 //----------------------//
 //--|fuente_del_texto|--//
 //----------------------//
 document.getElementById("cambio5").addEventListener("change", (e) => {
+    if (!elementoActivo) return;
     const fuente = e.target.value;
-    if (fuente) {
-        editor5.setAttribute("contenteditable", "true");
-        document.execCommand("fontName", false, fuente);
-        editor5.setAttribute("contenteditable", "false");
+    if (fuente && fuente !== "Ninguna cambio") {
+        elementoActivo.style.fontFamily = fuente;
     }
 });
 //----------------------------//
