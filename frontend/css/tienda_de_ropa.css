@@ -1,0 +1,193 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+/*----------------------------------------*/
+/*--|estilo_dinamica_menu_de_navegacion|--*/
+/*----------------------------------------*/
+#navbar-tienda {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #5d7fa3;
+    padding: 10px 20px;
+    color: white;
+}
+#logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#logo-menu {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+#titulo-menu {
+    font-size: 20px;
+}
+#opciones-menu {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+}
+#opciones-menu li {
+    cursor: pointer;
+}
+#busqueda-container {
+    position: relative;
+}
+#input-busqueda {
+    padding: 5px 30px 5px 10px;
+    border: none;
+    outline: none;
+}
+#icono-busqueda {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: black;
+}
+#iconos-menu {
+    display: flex;
+    gap: 15px;
+    font-size: 18px;
+    cursor: pointer;
+}
+/*---------------------------------------*/
+/*--|estilo_dinamica_dinamica_carrusel|--*/
+/*---------------------------------------*/
+#slider-container {
+    position: relative;
+    width: 100%;
+    width: 100%;
+    margin-top: 0px;
+    height: 500px;
+    overflow: hidden;
+}
+#slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.slide {
+    min-width: 100%;
+}
+.slide img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+#prev-slide, #next-slide {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+#prev-slide {
+    left: 10px;
+}
+#next-slide {
+    right: 10px;
+}
+#indicators {
+    position: relative;
+    bottom: 15px;
+    top: -35px;
+    width: 100%;
+    text-align: center;
+}
+.indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 5px;
+    background: #4a76a8;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.indicator.active {
+    background: #545d66;
+}
+/*-----------------------------*/
+/*--|estilo_dinamica_chatbot|--*/
+/*-----------------------------*/
+.chatbot-container9 {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 425px;
+    height: 400px;
+    background: #dcdcdc;
+    border-radius: 5px;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+.chat-header9 {
+    background: #6c8fb8;
+    color: black;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+.chat-header9 i {
+    font-size: 20px;
+}
+.chat-body9 {
+    background: #bfbfbf;
+    height: 325px;
+    padding: 10px;
+    font-weight: bold;
+    overflow-y: auto;
+}
+.chat-footer9 {
+    display: flex;
+}
+.chat-footer9 button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: #6c8fb8;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+.chat-footer9 button:hover {
+    background: #5a7aa0;
+}
+.chat-toggle9 {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: #5d7fa3;
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 0.2s;
+}
+.chat-toggle9:hover {
+    transform: scale(1.1);
+}
+.hidden9 {
+    display: none;
+}

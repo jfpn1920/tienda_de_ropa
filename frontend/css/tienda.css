@@ -6,6 +6,7 @@
 body{
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+    overflow-x: hidden;
 }
 /*-------------------------------*/
 /*--|estilo_menu_de_navegacion|--*/
@@ -100,7 +101,7 @@ body{
     background: #dcdcdc;
     padding: 15px;
     margin-top: 70px;
-    margin-left: 115px;
+    margin-left: 10px;
 }
 h2 {
     margin-bottom: 10px;
@@ -122,7 +123,7 @@ input, select {
 }
 .upload-box {
     width: 100%;
-    min-height: 99px;
+    min-height: 355px;
     max-height: 200px;
     background: #cfcfcf;
     border: 2px dashed #888;
@@ -169,11 +170,11 @@ button:hover {
 /*--|estilo_formulario_de_menu_de_navegacion|--*/
 /*---------------------------------------------*/
 .menu-container2 { 
-    width: 600px; 
+    width: 505px; 
     background: #dcdcdc; 
     padding: 15px; 
-    margin-top: -376px; 
-    margin-left: 415px; 
+    margin-top: -632px; 
+    margin-left: 310px; 
 }
 .menu-container2 h2 { 
     text-align: center; 
@@ -193,7 +194,7 @@ button:hover {
     font-size: 15px;
 }
 .upload-box2 {
-    height: 150px;
+    height: 340px;
     background: #cfcfcf;
     border: 2px dashed #888;
     margin-top: 5px;
@@ -260,7 +261,7 @@ button:hover {
 }
 .lista2 {
     margin-top: 5px;
-    height: 92px;
+    height: 310px;
     background: #cfcfcf;
     border: 1px solid #999;
     padding: 5px;
@@ -279,7 +280,7 @@ button:hover {
     position: absolute;
     bottom: 5px;
     left: 50%;
-    top: 28px;
+    top: 143px;
     transform: translateX(-50%);
     color: #666;
     font-size: 13px;
@@ -291,6 +292,10 @@ button:hover {
     left: 9px;
     height: 35px;
 }
+#crearMenu2{
+    width: 110px;
+    margin-left: 225px;
+}
 /*------------------------------------*/
 /*--|estilo_formulario_del_carrusel|--*/
 /*------------------------------------*/
@@ -298,8 +303,8 @@ button:hover {
     width: 300px;
     background: #dcdcdc;
     padding: 15px;
-    margin-left: 1015px;
-    margin-top: -376px;
+    margin-left: 815px;
+    margin-top: -632px;
 }
 .carousel-container3 h2 {
     margin-bottom: 10px;
@@ -315,8 +320,8 @@ button:hover {
 }
 .upload-box3 {
     width: 100%;
-    min-height: 68px;
-    max-height: 200px;
+    min-height: 324px;
+    max-height: 500px;
     background: #cfcfcf;
     border: 2px dashed #888;
     display: flex;
@@ -379,134 +384,218 @@ button:hover {
 /*----------------------------------*/
 /*--|estilo_formulario_de_chatbot|--*/
 /*----------------------------------*/
-.chatbot-container4 {
+.contenedor4 {
     width: 300px;
-    background: #dcdcdc;
+    height: 632px;
+    margin-top: -632px;
+    margin-left: 1115px;
+    background-color: #dcdcdc;
     padding: 15px;
-    margin-top: 0px;
-    margin-left: 115px;
 }
-.chatbot-container4 h2 {
-    margin-bottom: 10px;
-    border-bottom: 3px solid #4a76a8;
+.contenedor4 h2{
+    text-align: center;
+    margin-bottom: 15px;
+    border-bottom: 3px solid #5c7ea5; 
     padding-bottom: 5px;
+}
+.contenedor4 input, 
+.contenedor4 select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #aaa;
+    background-color: #e6e6e6;
+}
+.titulo_preguntas4{
+    position: relative;
+    top: 40px;
+    left: 0px;
+}
+#idNodo4{
+    width: 270px;
+    top: 148px;
+    left: 1130px;
+    position: absolute;
+}
+#pregunta4{
+    width: 270px;
+    top: 214px;
+    margin-left: 0px;
+    position: absolute;
+}
+.crear_opciones4{
+    position: relative;
+    top: 87px;
+    width: 268px;
+    text-align: center;
+    font-weight: bold;
+    left: 1px;
+}
+.opcion4 {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 8px;
+    align-items: center;
+}
+.opcion4 input,
+.opcion4 select {
+    margin: 0;
+    padding: 8px;
+    height: 38px;
+    box-sizing: border-box;
+}
+#opciones-container4{
+    position: relative;
+    top: 93px;
+    margin-left: -0px;
+}
+.contenedor4 button {
+    width: 49%;
+    padding: 10px;
+    margin-top: 8px;
+    border: none;
+    background-color: #5c7ea5;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.contenedor4 button:hover {
+    background-color: #4a6a8c;
+}
+.boton_agregar_opciones4{
+    top: 85px;
+    position: relative;
+    min-width: 110px;
+}
+.boton_guardar_nodo4{
+    top: 42px;
+    left: -91px;
+    position: relative;
+    margin-left: 230px;
+    width: 140px;
+}
+/*-------------------------------------------*/
+/*--|estructura_flujo_generado_del_chatbot|--*/
+/*-------------------------------------------*/
+.contenedor_flujo4{
+    width: 272px;
+    margin-top: 50px;
+}
+.titular_flujo4{
     text-align: center;
 }
-.subtitulo4 {
+#resultado4{
+    background-color: #e6e6e6;
+    border: 1px solid #aaa;
+    padding: 10px;
+    font-size: 12px;
+    height: 190px;
+    width: 272px;
+    margin-top: 5px;
+    max-height: 250px; 
+    overflow-y: auto;   
+    overflow-x: auto;   
+}
+/*-----------------------------------------*/
+/*--|estilo_formulario_del_pie_de_pagina|--*/
+/*-----------------------------------------*/
+.footer-container8 {
+    width: 505px;
+    background: #dcdcdc;
+    padding: 20px;
+    margin-top: 0px;
+    margin-left: 10px;
+    font-family: Arial, sans-serif;
+}
+.footer-container8 h2 {
+    text-align: center;
+    border-bottom: 3px solid #4a76a8;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+.grid8 {
+    display: flex;
+    gap: 20px;
+}
+.left8, .right8 {
+    width: 50%;
+    
+    margin-top: -15px;
+}
+label {
     display: block;
     margin-top: 10px;
     font-size: 14px;
 }
-.subtitulo4-parte-2 {
-    margin-top: 15px;
-    text-align: center;
-    font-size: 15px;
+.upload-box8 {
+    width: 100%;
+    height: 78px;
+    background: #cfcfcf;
+    border: 2px dashed #888;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 6px;
+    position: relative;
 }
-input, select {
+.ningunimagentexto{
+    font-size: 14px;
+}
+.placeholder8 {
+    text-align: center;
+    color: #555;
+}
+#preview8 {
+    max-width: 100%;
+    max-height: 100%;
+    display: none;
+}
+input {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
     border: 1px solid #999;
     background: #e6e6e6;
 }
-.add-item4 {
+.row-input8 {
     display: flex;
     gap: 5px;
+    height: 40px;
+    margin-top: 1px;
 }
-.add-item4 button {
+.row-input8 button {
     width: 40px;
     background: #5d7fa3;
     color: white;
-    border: none;
-    margin-top: 5px;
     height: 35px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.add-item4 button i {
+    margin-top: 4.5px;
     font-size: 16px;
-    height: 20px;
+    border: none;
+    cursor: pointer;
 }
-.lista4 {
-    margin-top: 5px;
-    height: 80px;
+.lista8 {
     background: #cfcfcf;
-    border: 1px solid #999;
-    padding: 5px;
-    overflow-y: auto;
-    text-align: justify;
-    position: relative;
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+    min-height: 229px;
 }
-.lista4 .item4 {
-    background: #e6e6e6;
-    padding: 9px;
-    width: 100%;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
+.texto8 {
+    margin-top: 20px;
+    color: #555;
 }
-.lista4 .item4 span {
-    word-break: break-word;
-    flex: 1;
-}
-.lista4 .empty4 {
-    position: absolute;
-    bottom: 5px;
-    width: 60%;
-    left: 52%;
-    top: 30px;
-    transform: translateX(-50%);
-    color: #666;
-    font-size: 13px;
-}
-.lista5 {
-    margin-top: 5px;
-    height: 80px;
-    background: #cfcfcf;
-    border: 1px solid #999;
-    padding: 5px;
-    overflow-y: auto;
-    text-align: justify;
-    position: relative;
-}
-.lista5 .item5 {
-    background: #e6e6e6;
-    padding: 9px;
-    width: 100%;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-}
-.lista5 .item5 span {
-    word-break: break-word;
-    flex: 1;
-}
-.lista5 .empty5 {
-    position: absolute;
-    bottom: 5px;
-    width: 60%;
-    left: 52%;
-    top: 30px;
-    transform: translateX(-50%);
-    color: #666;
-    font-size: 13px;
-}
-#crearChatbot4 {
-    width: 100%;
+#crearFooter8 {
     margin-top: 15px;
+    width: 200px;
     padding: 10px;
     background: #5d7fa3;
-    border: none;
     color: white;
-    font-weight: bold;
-    cursor: pointer;
-}
-#crearChatbot4:hover {
-    background: #4a6c90;
+    border: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 /*------------------------------------*/
 /*--|estilo_formulario_de_contenido|--*/
@@ -517,7 +606,7 @@ input, select {
     background: #dcdcdc;
     padding: 15px;
     margin-top: -632px;
-    margin-left: 415px;
+    margin-left: 515px;
 }
 .contenido-container5 h2 {
     text-align: center;
@@ -1039,4 +1128,78 @@ input, select {
 }
 #btnFiltrar6:hover {
     background: #4a6c90;
+}
+/*------------------------------------*/
+/*--|estilo_categoria_del_sitio_web|--*/
+/*------------------------------------*/
+#contenedor-sitios {
+    margin-top: 2px;
+    margin-left: 130px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.tarjeta-sitio {
+    width: 300px;
+    border: 1px solid #888;
+    background: #ccc;
+}
+.header-sitio {
+    background: #6c8ebf;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+.imagen-sitio {
+    height: 150px;
+    background: #bdbdbd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imagen-sitio img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.acciones-sitio {
+    background: #6c8ebf;
+    height: 35px;
+    padding: 10px;
+}
+.acciones-sitio button {
+    flex: 1;
+    background: #5d7fa3;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px;
+    text-align: center;
+}
+.eliminar{
+    margin-top: 15px;
+    text-align: center;
+    margin-left: -19px;
+    position: relative;
+    min-width: 70px;
+}
+.ver{
+    text-align: center;
+    margin-top: -10px;
+    margin-left: 9px;
+    width: 128px;
+    position: absolute;
+    height: 35px;
+}
+.editar{
+    margin-top: -10px;
+    margin-left: 137px;
+    width: 100px;
+    text-align: center;
+    position: absolute;
+    height: 35px;
+}
+.eliminar:hover, .ver:hover, .editar:hover {
+    background: #6c8ebf;
 }

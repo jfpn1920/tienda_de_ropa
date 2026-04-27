@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/script.js" defer></script>
+</head>
+<body>
+    <!--------------------------------------->
+    <!--|estructura_formulario_del_chatbot|-->
+    <!--------------------------------------->
+    <div class="contenedor">
+        <h2>formulario del Chatbot</h2>
+        <label>agregar un titular</label>
+        <input type="text" id="idNodo" placeholder="ID del nodo (ej: inicio)">
+        <label class="titulo_preguntas">añadir pregunta</label>
+        <input type="text" id="pregunta" placeholder="Escribe la pregunta">
+        <p class="crear_opciones">crear opciones dinamico</p>
+        <div id="opciones-container">
+            <div class="opcion">
+                <input type="text" placeholder="Texto de la opción">
+                <select></select>
+            </div>
+            <div class="opcion">
+                <input type="text" placeholder="Texto de la opción">
+                <select></select>
+            </div>
+            <div class="opcion">
+                <input type="text" placeholder="Texto de la opción">
+                <select></select>
+            </div>
+        </div>
+        <button onclick="crearChatbot()" class="boton_agregar_opciones">
+            Crear chatbot
+        </button>
+        <button onclick="guardarNodo()" class="boton_guardar_nodo">
+            Guardar nodo
+        </button>
+        <!------------------------------------------->
+        <!--|estructura_flujo_generado_del_chatbot|-->
+        <!------------------------------------------->
+        <div class="contenedor_flujo">
+            <h3 class="titular_flujo">Flujo generado del chatbot</h3>
+            <pre id="resultado"></pre>
+        </div>
+    </div>
+</body>
+</html>

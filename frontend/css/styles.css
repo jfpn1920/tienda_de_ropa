@@ -1,0 +1,112 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+/*---------------------------------------*/
+/*--|estructura_formulario_del_chatbot|--*/
+/*---------------------------------------*/
+.contenedor {
+    width: 380px;
+    height: 728px;
+    margin: 40px auto;
+    background-color: #cfcfcf;
+    padding: 15px;
+}
+.contenedor h2{
+    text-align: center;
+    margin-bottom: 15px;
+    border-bottom: 3px solid #5c7ea5; 
+    padding-bottom: 5px;
+}
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #aaa;
+    background-color: #e6e6e6;
+}
+.titulo_preguntas{
+    position: relative;
+    top: 70px;
+    left: -126px;
+}
+#idNodo{
+    width: 358px;
+    top: 146px;
+    margin-left: -125px;
+    position: absolute;
+}
+#pregunta{
+    width: 358px;
+    top: 216px;
+    margin-left: -238px;
+    position: absolute;
+}
+.crear_opciones{
+    position: relative;
+    top: 110px;
+    font-weight: bold;
+    left: 95px;
+}
+.opcion {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 8px;
+    align-items: center;
+}
+.opcion input,
+.opcion select {
+    margin: 0;
+    padding: 8px;
+    height: 38px;
+    box-sizing: border-box;
+}
+#opciones-container{
+    position: relative;
+    top: 100px;
+    margin-left: -0px;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border: none;
+    background-color: #5c7ea5;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+button:hover {
+    background-color: #4a6a8c;
+}
+.boton_agregar_opciones{
+    margin-top: 103px;
+    width: 150px;
+}
+.boton_guardar_nodo{
+    top: -43px;
+    position: relative;
+    margin-left: 230px;
+    width: 150px;
+}
+/*-------------------------------------------*/
+/*--|estructura_flujo_generado_del_chatbot|--*/
+/*-------------------------------------------*/
+.contenedor_flujo{
+    width: 380px;
+    margin-top: -50px;
+}
+.titular_flujo{
+    text-align: center;
+}
+#resultado{
+    background-color: #e6e6e6;
+    border: 1px solid #aaa;
+    padding: 10px;
+    font-size: 12px;
+    height: 250px;
+    margin-top: -10px;
+    max-height: 250px; 
+    overflow-y: auto;   
+    overflow-x: auto;   
+}

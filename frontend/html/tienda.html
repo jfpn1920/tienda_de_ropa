@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../css/tienda.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <script src="../js/tienda.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <!----------------------------------->
@@ -82,10 +81,22 @@
                     <img id="previewMenu2">
                 </div>
                 <div class="checkbox-container2">
-                    <label class="subtitulos">Habilitar barra de búsqueda</label>
+                    <label class="subtitulos">Elementos del menú de navegacion</label>
                     <div class="check-row2">
                         <input type="checkbox" id="busqueda2">
                         <span>Barra de búsqueda</span>
+                    </div>
+                    <div class="check-row2">
+                        <input type="checkbox" id="perfil2">
+                        <span>Perfil de usuario</span>
+                    </div>
+                    <div class="check-row2">
+                        <input type="checkbox" id="notificaciones2">
+                        <span>Notificaciones</span>
+                    </div>
+                    <div class="check-row2">
+                        <input type="checkbox" id="carrito2">
+                        <span>Carrito de compras</span>
                     </div>
                 </div>
             </div>
@@ -145,36 +156,81 @@
     <!-------------------------------------->
     <!--|estructura_formulario_de_chatbot|-->
     <!-------------------------------------->
-    <div class="chatbot-container4">
-        <h2>Formulario de chatbot</h2>
-        <label class="subtitulo4">Agregar el chatbot</label>
-        <input type="text" id="nombreChatbot4" placeholder="Escribe el nombre del chatbot...">
-        <label class="subtitulo4">Añadir pregunta</label>
-        <div class="add-item4">
-            <input type="text" id="preguntaInput4" placeholder="Escribe la pregunta...">
-            <button id="addPregunta4"><i class="fa-solid fa-plus"></i></button>
+    <div class="contenedor4">
+        <h2>formulario del Chatbot</h2>
+        <label>agregar un titular</label>
+        <input type="text" id="idNodo4" placeholder="ID del nodo (ej: inicio)">
+        <label class="titulo_preguntas4">añadir pregunta</label>
+        <input type="text" id="pregunta4" placeholder="Escribe la pregunta">
+        <p class="crear_opciones4">crear opciones dinamico</p>
+        <div id="opciones-container4">
+            <div class="opcion4">
+                <input type="text" placeholder="Texto de la opción">
+                <select></select>
+            </div>
+            <div class="opcion4">
+                <input type="text" placeholder="Texto de la opción">
+                <select></select>
+            </div>
+            <div class="opcion4">
+                <input type="text" placeholder="Texto de la opción">
+                <select></select>
+            </div>
         </div>
-        <label class="subtitulo4">Lista de preguntas</label>
-        <div class="lista4" id="listaPreguntas4">
-            <p class="empty4">Ninguna pregunta añadida</p>
+        <button onclick="crearChatbot()" class="boton_agregar_opciones4">
+            Crear chatbot
+        </button>
+        <button onclick="guardarNodo()" class="boton_guardar_nodo4">
+            Guardar nodo
+        </button>
+        <div class="contenedor_flujo4">
+            <h3 class="titular_flujo4">Flujo generado del chatbot</h3>
+            <pre id="resultado4"></pre>
         </div>
-        <label class="subtitulo4">Añadir respuesta</label>
-        <div class="add-item4">
-            <input type="text" id="respuestaInput4" placeholder="Escribe la respuesta...">
-            <button id="addRespuesta4"><i class="fa-solid fa-plus"></i></button>
+    </div>
+    <!--------------------------------------------->
+    <!--|estructura_formulario_del_pie_de_pagina|-->
+    <!--------------------------------------------->
+    <div class="footer-container8">
+        <h2>Formulario de pie de pagina</h2>
+        <div class="grid8">
+            <div class="left8">
+                <label>Seleccionar la imagen</label>
+                <div class="upload-box8" id="uploadBox8">
+                    <input type="file" id="imagen8" hidden>
+                    <div class="placeholder8" id="placeholder8">
+                        <i class="fa-solid fa-image"></i>
+                        <p class="ningunimagentexto">Ninguna imagen seleccionada</p>
+                    </div>
+                    <img id="preview8">
+                </div>
+                <label>Crear títulos representativo</label>
+                <input type="text" id="titulo8" placeholder="Escribe el nombre representativo...">
+                <label>Crear subtítulos</label>
+                <div class="row-input8">
+                    <input type="text" id="subtitulo8" placeholder="Escribe el subtitulo...">
+                    <button id="addSubtitulo8">+</button>
+                </div>
+                <label>Lista de subtítulos añadidos</label>
+                <div class="lista8" id="listaSubtitulos8">
+                    <p class="texto8">Ninguna opcion disponible</p>
+                </div>
+            </div>
+            <div class="right8">
+                <label>Añadir las opciones</label>
+                <div class="row-input8">
+                    <input type="text" id="opcion8" placeholder="Escribe la opción...">
+                    <button id="addOpcion8">+</button>
+                </div>
+                <label>Lista de opciones añadidas</label>
+                <div class="lista8" id="listaOpciones8">
+                    <p class="texto8">Ninguna opcion disponible</p>
+                </div>
+                <label>Marca de agua</label>
+                <input type="text" id="marca8" placeholder="Escribe la marca de agua del sitio...">
+            </div>
         </div>
-        <label class="subtitulo4">Lista de respuestas</label>
-        <div class="lista5" id="listaRespuestas4">
-            <p class="empty5">Ninguna respuesta añadida</p>
-        </div>
-        <h3 class="subtitulo4-parte-2">Configuración del chatbot</h3>
-        <label class="subtitulo4">Seleccionar tiempo</label>
-        <select id="tiempoChatbot4">
-            <option value="1000">1 segundo</option>
-            <option value="2000">2 segundos</option>
-            <option value="3000">3 segundos</option>
-        </select>
-        <button id="crearChatbot4">Crear chatbot</button>
+        <button id="crearFooter8">Crear pie de pagina</button>
     </div>
     <!---------------------------------------->
     <!--|estructura_formulario_de_contenido|-->
@@ -247,5 +303,9 @@
             <button id="btnFiltrar6">Filtrar sitio</button>
         </div>
     </div>
+    <!---------------------------------------->
+    <!--|estructura_categoria_del_sitio_web|-->
+    <!---------------------------------------->
+    <div id="contenedor-sitios"></div>
 </body>
 </html>

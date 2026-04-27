@@ -19,6 +19,8 @@ const uploadBox = document.getElementById("uploadBox");
 const inputFile = document.getElementById("imagen");
 const preview = document.getElementById("preview");
 const placeholder = document.getElementById("placeholder");
+let tiendas = JSON.parse(localStorage.getItem("tiendas")) || [];
+const lista = document.getElementById("contenedor-sitios");
 uploadBox.addEventListener("click", () => {
     inputFile.click();
 });
@@ -37,19 +39,60 @@ inputFile.addEventListener("change", () => {
 document.getElementById("crear").addEventListener("click", () => {
     const nombre = document.getElementById("nombre").value.trim();
     const pestanas = document.getElementById("pestanas").value;
-    if (nombre === "" && pestanas === "0") {
-        alert("No hay ningún sitio web creado.");
+    const imagen = preview.src;
+    if (nombre === "" || pestanas === "0") {
+        alert("Completa todos los campos para crear la tienda.");
         return;
     }
-    if (nombre !== "" && pestanas !== "0") {
-        alert(`Has creado la tienda "${nombre}" con éxito.`);
-    } else {
-        alert("Completa todos los campos para crear la tienda.");
-    }
+    const nuevaTienda = {
+        id: Date.now(),
+        nombre,
+        pestanas,
+        imagen
+    };
+    tiendas.push(nuevaTienda);
+    localStorage.setItem("tiendas", JSON.stringify(tiendas));
+    alert(`Has creado la tienda "${nombre}" con éxito.`);
+    renderTiendas();
 });
+function renderTiendas() {
+    lista.innerHTML = "";
+    tiendas.forEach(tienda => {
+        const card = document.createElement("div");
+        card.classList.add("tarjeta-sitio");
+        card.innerHTML = `
+            <div class="header-sitio">
+                ${tienda.nombre}
+            </div>
+            <div class="imagen-sitio">
+                ${tienda.imagen ? `<img src="${tienda.imagen}">` : "Sin imagen"}
+            </div>
+            <div class="acciones-sitio">
+                <button class="eliminar" onclick="eliminarTienda(${tienda.id})">Eliminar</button>
+                <button class="ver" onclick="window.open('tienda_de_ropa.html?id=${tienda.id}', '_blank')">Ver sitio web</button>
+                <button class="editar" onclick="editarTienda(${tienda.id})">Editar</button>
+            </div>
+        `;
+        lista.appendChild(card);
+    });
+}
+function eliminarTienda(id) {
+    tiendas = tiendas.filter(t => t.id !== id);
+    localStorage.setItem("tiendas", JSON.stringify(tiendas));
+    renderTiendas();
+}
+function verTienda(id) {
+    const tienda = tiendas.find(t => t.id === id);
+    alert("Viendo: " + tienda.nombre);
+}
+function editarTienda(id) {
+    const tienda = tiendas.find(t => t.id === id);
+    alert("Editar: " + tienda.nombre);
+}
 //----------------------------------------------------//
 //--|funcionalidad_formulario_de_menu_de_navegacion|--//
 //----------------------------------------------------//
+let imagenBase64 = "";
 const uploadBoxMenu2 = document.getElementById("uploadBoxMenu2");
 const inputMenu2 = document.getElementById("imagenMenu2");
 const previewMenu2 = document.getElementById("previewMenu2");
@@ -60,7 +103,8 @@ inputMenu2.addEventListener("change", () => {
     if (file) {
         const reader = new FileReader();
         reader.onload = (e) => {
-            previewMenu2.src = e.target.result;
+            imagenBase64 = e.target.result;
+            previewMenu2.src = imagenBase64;
             previewMenu2.style.display = "block";
             placeholderMenu2.style.display = "none";
         };
@@ -101,12 +145,27 @@ function eliminar2(index) {
 document.getElementById("crearMenu2").addEventListener("click", () => {
     const nombre = document.getElementById("nombreMenu2").value;
     const busqueda = document.getElementById("busqueda2").checked;
-    if (!nombre) {
+    const perfil = document.getElementById("perfil2").checked;
+    const notificaciones = document.getElementById("notificaciones2").checked;
+    const carrito = document.getElementById("carrito2").checked;
+    if (!nombre.trim()) {
         alert("Escribe el nombre del menú");
         return;
     }
-    console.log({ nombre, opciones2, busqueda });
-    alert("Menú creado correctamente");
+    const menuData = {
+        nombre,
+        opciones: opciones2,
+        logo: imagenBase64,
+        elementos: {
+            busqueda,
+            perfil,
+            notificaciones,
+            carrito
+        }
+    };
+    console.log(menuData);
+    localStorage.setItem("menuNavegacion", JSON.stringify(menuData));
+    alert("Menú guardado correctamente ✅");
 });
 //-------------------------------------------//
 //--|funcionalidad_formulario_del_carrusel|--//
@@ -132,6 +191,8 @@ input3.addEventListener("change", () => {
             };
             reader.readAsDataURL(file);
         });
+    } else {
+        placeholder3.style.display = "block";
     }
 });
 document.getElementById("crearCarrusel3").addEventListener("click", () => {
@@ -144,90 +205,197 @@ document.getElementById("crearCarrusel3").addEventListener("click", () => {
         alert("No hay datos ingresados en el carrusel.");
         return;
     }
-    console.log({
-        controladores,
-        indicadores,
-        automatico,
-        tiempo,
-        cantidadImagenes: files.length
+    const imagenes = [];
+    let archivosProcesados = 0;
+    Array.from(files).forEach(file => {
+        if (!file.type.startsWith("image/")) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            imagenes.push(e.target.result);
+            archivosProcesados++;
+            if (archivosProcesados === files.length) {
+                const datosCarrusel = {
+                    imagenes,
+                    controladores,
+                    indicadores,
+                    automatico,
+                    tiempo
+                };
+                localStorage.setItem("carruselData", JSON.stringify(datosCarrusel));
+                console.log("Datos guardados:", datosCarrusel);
+                alert("Carrusel guardado correctamente.");
+                input3.value = "";
+                previewContainer3.innerHTML = "";
+                placeholder3.style.display = "block";
+            }
+        };
+        reader.readAsDataURL(file);
     });
-    alert("Carrusel creado correctamente.");
 });
 //-----------------------------------------//
 //--|funcionalidad_formulario_de_chatbot|--//
 //-----------------------------------------//
-let preguntas4 = [];
-let respuestas4 = [];
-const listaPreguntas4 = document.getElementById("listaPreguntas4");
-const listaRespuestas4 = document.getElementById("listaRespuestas4");
-document.getElementById("addPregunta4").addEventListener("click", () => {
-    const input = document.getElementById("preguntaInput4");
+let flujo = {};
+let contadorOpciones = 0;
+function guardarEnLocalStorage() {
+    localStorage.setItem("flujoChatbot4", JSON.stringify(flujo));
+}
+function cargarDesdeLocalStorage() {
+    const datos = localStorage.getItem("flujoChatbot4");
+    if (datos) {
+        flujo = JSON.parse(datos);
+        mostrarJSON();
+        actualizarSelects();
+    }
+}
+function actualizarSelects() {
+    const selects = document.querySelectorAll("#opciones-container4 select");
+    selects.forEach(select => {
+        const valorActual = select.value;
+        select.innerHTML = `
+            <option value="">Seleccionar nodo</option>
+            ${Object.keys(flujo)
+                .map(id => `<option value="${id}">${id}</option>`)
+                .join("")}
+        `;
+        select.value = valorActual;
+    });
+}
+function limpiarTodo() {
+    localStorage.removeItem("flujoChatbot4");
+    flujo = {};
+    mostrarJSON();
+}
+function agregarOpcion() {
+    const container = document.getElementById("opciones-container4");
+    const div = document.createElement("div");
+    div.classList.add("opcion4");
+    const opcionesNodos = Object.keys(flujo)
+        .map(id => `<option value="${id}">${id}</option>`)
+        .join("");
+    div.innerHTML = `
+        <input type="text" placeholder="Texto de la opción">
+        <select>
+            <option value="">Seleccionar nodo</option>
+            ${opcionesNodos}
+        </select>
+    `;
+    container.appendChild(div);
+}
+function guardarNodo() {
+    const pregunta = document.getElementById("pregunta4").value.trim();
+    const idNodo = document.getElementById("idNodo4").value.trim();
+    if (!idNodo || !pregunta) {
+        alert("Debes completar el ID y la pregunta");
+        return;
+    }
+    const opcionesHTML = document.querySelectorAll("#opciones-container4 .opcion4");
+    let opciones = [];
+    opcionesHTML.forEach(op => {
+        const input = op.querySelector("input");
+        const select = op.querySelector("select");
+        if (input.value && select.value) {
+            opciones.push({
+                texto: input.value,
+                siguiente: select.value
+            });
+        }
+    });
+    if (flujo[idNodo]) {
+        const confirmar = confirm("Este nodo ya existe. ¿Deseas actualizarlo?");
+        if (!confirmar) return;
+    }
+    flujo[idNodo] = {
+        texto: pregunta,
+        opciones: opciones
+    };
+    guardarEnLocalStorage();
+    actualizarSelects();
+    mostrarJSON();
+    limpiarFormulario();
+}
+function limpiarFormulario() {
+    document.getElementById("pregunta4").value = "";
+    document.getElementById("idNodo4").value = "";
+    const inputs = document.querySelectorAll("#opciones-container4 input");
+    const selects = document.querySelectorAll("#opciones-container4 select");
+    inputs.forEach(input => input.value = "");
+    selects.forEach(select => select.value = "");
+}
+function mostrarJSON() {
+    document.getElementById("resultado4").textContent =
+        JSON.stringify(flujo, null, 2);
+}
+function crearChatbot() {
+    if (Object.keys(flujo).length === 0) {
+        alert("No hay datos en el chatbot");
+        return;
+    }
+    localStorage.setItem("chatbotFinal4", JSON.stringify(flujo));
+    alert("Chatbot creado y guardado correctamente");
+}
+window.onload = function () {
+    cargarDesdeLocalStorage();
+};
+//------------------------------------------------//
+//--|funcionalidad_formulario_del_pie_de_pagina|--//
+//------------------------------------------------//
+const uploadBox8 = document.getElementById("uploadBox8");
+const input8 = document.getElementById("imagen8");
+const preview8 = document.getElementById("preview8");
+const placeholder8 = document.getElementById("placeholder8");
+uploadBox8.addEventListener("click", () => input8.click());
+input8.addEventListener("change", () => {
+    const file = input8.files[0];
+    if (file && file.type.startsWith("image/")) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            preview8.src = e.target.result;
+            preview8.style.display = "block";
+            placeholder8.style.display = "none";
+        };
+        reader.readAsDataURL(file);
+    }
+});
+const listaSubtitulos8 = document.getElementById("listaSubtitulos8");
+document.getElementById("addSubtitulo8").addEventListener("click", () => {
+    const input = document.getElementById("subtitulo8");
     const valor = input.value.trim();
     if (!valor) return;
-    preguntas4.push(valor);
+    if (listaSubtitulos8.textContent.includes("Ninguna")) {
+        listaSubtitulos8.innerHTML = "";
+    }
+    const item = document.createElement("p");
+    item.textContent = valor;
+    listaSubtitulos8.appendChild(item);
     input.value = "";
-    renderPreguntas4();
 });
-document.getElementById("addRespuesta4").addEventListener("click", () => {
-    const input = document.getElementById("respuestaInput4");
+const listaOpciones8 = document.getElementById("listaOpciones8");
+document.getElementById("addOpcion8").addEventListener("click", () => {
+    const input = document.getElementById("opcion8");
     const valor = input.value.trim();
     if (!valor) return;
-    respuestas4.push(valor);
+    if (listaOpciones8.textContent.includes("Ninguna")) {
+        listaOpciones8.innerHTML = "";
+    }
+    const item = document.createElement("p");
+    item.textContent = valor;
+    listaOpciones8.appendChild(item);
     input.value = "";
-    renderRespuestas4();
 });
-function renderPreguntas4() {
-    listaPreguntas4.innerHTML = "";
-    if (preguntas4.length === 0) {
-        listaPreguntas4.innerHTML = `<p class="empty4">Ninguna pregunta añadida</p>`;
-        return;
-    }
-    preguntas4.forEach((p) => {
-        const div = document.createElement("div");
-        div.classList.add("item4");
-        div.innerHTML = `
-            <span>${p}</span>
-        `;
-        listaPreguntas4.appendChild(div);
-    });
-}
-function renderRespuestas4() {
-    listaRespuestas4.innerHTML = "";
-    if (respuestas4.length === 0) {
-        listaRespuestas4.innerHTML = `<p class="empty5">Ninguna respuesta añadida</p>`;
-        return;
-    }
-    respuestas4.forEach((r) => {
-        const div = document.createElement("div");
-        div.classList.add("item5");
-        div.innerHTML = `
-            <span>${r}</span>
-        `;
-        listaRespuestas4.appendChild(div);
-    });
-}
-function eliminarPregunta4(i) {
-    preguntas4.splice(i, 1);
-    renderPreguntas4();
-}
-function eliminarRespuesta4(i) {
-    respuestas4.splice(i, 1);
-    renderRespuestas4();
-}
-document.getElementById("crearChatbot4").addEventListener("click", () => {
-    const nombre = document.getElementById("nombreChatbot4").value;
-    const tiempo = document.getElementById("tiempoChatbot4").value;
-    if (!nombre) {
-        alert("Escribe el nombre del chatbot");
-        return;
-    }
-    console.log({
-        nombre,
-        preguntas4,
-        respuestas4,
-        tiempo
-    });
-    alert("Chatbot creado correctamente");
+document.getElementById("crearFooter8").addEventListener("click", () => {
+    const titulo = document.getElementById("titulo8").value;
+    const marca = document.getElementById("marca8").value;
+    const subtitulos = [...listaSubtitulos8.querySelectorAll("p")].map(p => p.textContent);
+    const opciones = [...listaOpciones8.querySelectorAll("p")].map(p => p.textContent);
+    const data = {
+        titulo,
+        subtitulos,
+        opciones,
+        marca
+    };
+    console.log("Footer creado:", data);
+    alert("Pie de página creado correctamente");
 });
 //-------------------------------------------//
 //--|funcionalidad_formulario_de_contenido|--//
@@ -659,14 +827,39 @@ document.getElementById("crearContenido5").addEventListener("click", () => {
 //--|funcionalidad_versiones_de_la_tienda|--//
 //------------------------------------------//
 document.getElementById("btnBuscar6").addEventListener("click", () => {
-    const valor = document.getElementById("inputBusqueda6").value;
-    console.log("Buscando:", valor);
+    const valor = document.getElementById("inputBusqueda6").value.toLowerCase();
+    const filtradas = tiendas.filter(tienda =>
+        tienda.nombre.toLowerCase().includes(valor)
+    );
+    renderTiendasFiltradas(filtradas);
 });
-document.getElementById("btnFiltrar6").addEventListener("click", () => {
-    alert("Aquí puedes abrir opciones de filtrado");
-});
+function renderTiendasFiltradas(listaFiltrada) {
+    lista.innerHTML = "";
+    listaFiltrada.forEach(tienda => {
+        const card = document.createElement("div");
+        card.classList.add("tarjeta-sitio");
+        card.innerHTML = `
+            <div class="header-sitio">
+                ${tienda.nombre}
+            </div>
+            <div class="imagen-sitio">
+                ${tienda.imagen ? `<img src="${tienda.imagen}">` : "Sin imagen"}
+            </div>
+            <div class="acciones-sitio">
+                <button class="eliminar" onclick="eliminarTienda(${tienda.id})">Eliminar</button>
+                <button class="ver" onclick="window.open('tienda_de_ropa.html?id=${tienda.id}', '_blank')">Ver sitio web</button>
+                <button class="editar" onclick="editarTienda(${tienda.id})">Editar</button>
+            </div>
+        `;
+        lista.appendChild(card);
+    });
+}
 document.getElementById("inputBusqueda6").addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
         document.getElementById("btnBuscar6").click();
     }
 });
+document.getElementById("btnFiltrar6").addEventListener("click", () => {
+    alert("Aquí puedes abrir opciones de filtrado");
+});
+renderTiendas();

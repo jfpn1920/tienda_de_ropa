@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" id="favicon" href="">
+    <link rel="stylesheet" href="../css/tienda_de_ropa.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="../js/tienda_de_ropa.js" defer></script>
+</head>
+<body>
+    <!-------------------------------------------->
+    <!--|estructura_dinamica_menu_de_navegacion|-->
+    <!-------------------------------------------->
+    <nav id="navbar-tienda">
+        <div id="logo-container">
+            <img id="logo-menu" src="" alt="logo">
+            <h2 id="titulo-menu">Mi Tienda</h2>
+        </div>
+        <ul id="opciones-menu">
+        </ul>
+        <div id="busqueda-container">
+            <input type="text" id="input-busqueda" placeholder="Buscar...">
+            <i class="fa-solid fa-magnifying-glass" id="icono-busqueda"></i>
+        </div>
+        <div id="iconos-menu">
+            <i class="fa-solid fa-bell" id="icono-notificaciones"></i>
+            <i class="fa-solid fa-user" id="icono-perfil"></i>
+            <i class="fa-solid fa-cart-shopping" id="icono-carrito"></i>
+        </div>
+    </nav>
+    <!---------------------------------->
+    <!--|estructura_dinamica_carrusel|-->
+    <!---------------------------------->
+    <section id="slider-container">
+        <div id="slider">
+            <div class="slide active">
+                <img src="https://picsum.photos/1200/400?1" alt="slide1">
+            </div>
+            <div class="slide">
+                <img src="https://picsum.photos/1200/400?2" alt="slide2">
+            </div>
+            <div class="slide">
+                <img src="https://picsum.photos/1200/400?3" alt="slide3">
+            </div>
+        </div>
+        <button id="prev-slide"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="next-slide"><i class="fa-solid fa-chevron-right"></i></button>
+        <div id="indicators"></div>
+    </section>
+    <!--------------------------------->
+    <!--|estructura_dinamica_chatbot|-->
+    <!--------------------------------->
+    <div id="chatToggle9" class="chat-toggle9">
+        <i class="fa-solid fa-robot"></i>
+    </div>
+    <div id="chatbot9" class="chatbot-container9 hidden9">
+        <div class="chat-header9">
+            <i class="fa-solid fa-robot"></i>
+            <span>Masomy Bot</span>
+        </div>
+        <div class="chat-body9">
+            <p id="pregunta9">Aquí irá la pregunta...</p>
+        </div>
+        <div id="respuestas9" class="chat-footer9">
+        </div>
+    </div>
+</body>
+</html>
