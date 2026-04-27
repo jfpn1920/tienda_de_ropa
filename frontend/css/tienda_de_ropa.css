@@ -8,7 +8,7 @@ body{
     background-color: #ffffff;
 }
 /*----------------------------------------*/
-/*--|estilo_dinamica_menu_de_navegacion|--*/
+/*--|estilo_menu_de_navegacion_dinamica|--*/
 /*----------------------------------------*/
 #navbar-tienda {
     display: flex;
@@ -60,9 +60,9 @@ body{
     font-size: 18px;
     cursor: pointer;
 }
-/*---------------------------------------*/
-/*--|estilo_dinamica_dinamica_carrusel|--*/
-/*---------------------------------------*/
+/*------------------------------*/
+/*--|estilo_carrusel_dinamica|--*/
+/*------------------------------*/
 #slider-container {
     position: relative;
     width: 100%;
@@ -120,7 +120,7 @@ body{
     background: #545d66;
 }
 /*-----------------------------*/
-/*--|estilo_dinamica_chatbot|--*/
+/*--|estilo_chatbot_dinamica|--*/
 /*-----------------------------*/
 .chatbot-container9 {
     position: fixed;
@@ -190,4 +190,84 @@ body{
 }
 .hidden9 {
     display: none;
+}
+/*----------------------------------*/
+/*--|estilo_pie_de_pagia_dinamica|--*/
+/*----------------------------------*/
+#footer {
+    background-color: #8aa6c1;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+}
+#footer-contenido {
+    display: flex;
+    gap: 10px;
+}
+#footer-imagen {
+    width: 220px;
+    height: 205px;
+    background: #bdbdbd;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #555;
+}
+#img-footer {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+#footer-columnas {
+    display: flex;
+    flex: 1;
+    gap: 10px;
+}
+.footer-columna {
+    flex: 1;
+}
+.footer-columna h3 {
+    background: #bdbdbd;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #555;
+    text-align: center;
+}
+.opcion {
+    background: #bdbdbd;
+    margin: 4px 0;
+    padding: 5px;
+    border: 1px solid #555;
+    text-align: center;
+    cursor: pointer;
+}
+#footer-titulo {
+    margin-top: 10px;
+}
+#texto-titulo {
+    background: #bdbdbd;
+    padding: 5px;
+    font-size: 13px;
+    text-align: center;
+    margin-top: -12px;
+    border: 1px solid #555;
+    width: 220px;
+}
+#footer-marca {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    border-top: 4px solid #4a7bbd;
+    padding-top: 10px;
+}
+#texto-marca {
+    background: #bdbdbd;
+    padding: 5px 20px;
+    border: 1px solid #555;
+}
+#footer-izquierda {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 220px;
 }

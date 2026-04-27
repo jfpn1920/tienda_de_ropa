@@ -358,43 +358,82 @@ input8.addEventListener("change", () => {
     }
 });
 const listaSubtitulos8 = document.getElementById("listaSubtitulos8");
+const mensajeSubtitulos8 = document.getElementById("mensajeSubtitulos8");
 document.getElementById("addSubtitulo8").addEventListener("click", () => {
     const input = document.getElementById("subtitulo8");
     const valor = input.value.trim();
     if (!valor) return;
-    if (listaSubtitulos8.textContent.includes("Ninguna")) {
-        listaSubtitulos8.innerHTML = "";
+    if (mensajeSubtitulos8) {
+        mensajeSubtitulos8.style.display = "none";
     }
-    const item = document.createElement("p");
-    item.textContent = valor;
+    const item = document.createElement("div");
+    item.classList.add("subtitulo-item8");
+    const texto = document.createElement("span");
+    texto.classList.add("subtitulo-texto8");
+    texto.textContent = valor;
+    const btnEliminar = document.createElement("button");
+    btnEliminar.classList.add("subtitulo-eliminar8");
+    btnEliminar.textContent = "x";
+    btnEliminar.addEventListener("click", () => {
+        item.remove();
+        if (listaSubtitulos8.querySelectorAll(".subtitulo-item8").length === 0) {
+            if (mensajeSubtitulos8) {
+                mensajeSubtitulos8.style.display = "block";
+            }
+        }
+    });
+    item.appendChild(texto);
+    item.appendChild(btnEliminar);
     listaSubtitulos8.appendChild(item);
     input.value = "";
 });
 const listaOpciones8 = document.getElementById("listaOpciones8");
+const mensajeOpciones8 = document.getElementById("mensajeOpciones8");
 document.getElementById("addOpcion8").addEventListener("click", () => {
     const input = document.getElementById("opcion8");
     const valor = input.value.trim();
     if (!valor) return;
-    if (listaOpciones8.textContent.includes("Ninguna")) {
-        listaOpciones8.innerHTML = "";
+    if (mensajeOpciones8) {
+        mensajeOpciones8.style.display = "none";
     }
-    const item = document.createElement("p");
-    item.textContent = valor;
+    const item = document.createElement("div");
+    item.classList.add("opcion-item8");
+    const texto = document.createElement("span");
+    texto.classList.add("opcion-texto8");
+    texto.textContent = valor;
+    const btnEliminar = document.createElement("button");
+    btnEliminar.classList.add("opcion-eliminar8");
+    btnEliminar.textContent = "x";
+    btnEliminar.addEventListener("click", () => {
+        item.remove();
+        if (listaOpciones8.querySelectorAll(".opcion-item8").length === 0) {
+            if (mensajeOpciones8) {
+                mensajeOpciones8.style.display = "block";
+            }
+        }
+    });
+    item.appendChild(texto);
+    item.appendChild(btnEliminar);
     listaOpciones8.appendChild(item);
     input.value = "";
 });
 document.getElementById("crearFooter8").addEventListener("click", () => {
     const titulo = document.getElementById("titulo8").value;
     const marca = document.getElementById("marca8").value;
-    const subtitulos = [...listaSubtitulos8.querySelectorAll("p")].map(p => p.textContent);
-    const opciones = [...listaOpciones8.querySelectorAll("p")].map(p => p.textContent);
+    const subtitulos = [...listaSubtitulos8.querySelectorAll(".subtitulo-texto8")]
+        .map(el => el.textContent);
+    const opciones = [...listaOpciones8.querySelectorAll(".opcion-texto8")]
+        .map(el => el.textContent);
+    const imagen = preview8.src || "";
     const data = {
         titulo,
         subtitulos,
         opciones,
-        marca
+        marca,
+        imagen
     };
-    console.log("Footer creado:", data);
+    localStorage.setItem("footerData", JSON.stringify(data));
+    console.log("Footer guardado:", data);
     alert("Pie de página creado correctamente");
 });
 //-------------------------------------------//

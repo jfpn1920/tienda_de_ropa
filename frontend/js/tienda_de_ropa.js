@@ -1,6 +1,6 @@
-//-----------------------------------------//
-//--|funcionalidad_titular_del_sitio_web|--//
-//-----------------------------------------//
+//--------------------------------------------------//
+//--|funcionalidad_titular_del_sitio_web_dinamica|--//
+//--------------------------------------------------//
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 const tiendas = JSON.parse(localStorage.getItem("tiendas")) || [];
@@ -13,7 +13,7 @@ if (tienda) {
     }
 }
 //-----------------------------------------------//
-//--|funcionalidad_dinamica_menu_de_navegacion|--//
+//--|funcionalidad_menu_de_navegacion_dinamica|--//
 //-----------------------------------------------//
 const opcionesMenu = [
     { nombre: "Inicio", enlace: "#" },
@@ -124,23 +124,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 //------------------------------------//
-//--|funcionalidad_dinamica_chatbot|--//
+//--|funcionalidad_chatbot_dinamica|--//
 //------------------------------------//
-// 🔥 CHATBOT POR DEFECTO
 const preguntasPorDefecto9 = {
     inicio: {
         texto: "¿En qué podemos ayudarte?",
         opciones: []
     }
 };
-
-//------------------------------------//
-//--|CARGAR DATOS DESDE LOCALSTORAGE|--//
-//------------------------------------//
 const datos = localStorage.getItem("chatbotFinal");
-
 let preguntas9 = {};
-
 if (datos) {
     try {
         preguntas9 = JSON.parse(datos);
@@ -152,76 +145,86 @@ if (datos) {
     console.warn("No hay datos del chatbot, usando fallback");
     preguntas9 = preguntasPorDefecto9;
 }
-
-//--------------------------------//
-// ELEMENTOS
-//--------------------------------//
 const chatToggle9 = document.getElementById("chatToggle9");
 const chatbot9 = document.getElementById("chatbot9");
 const preguntaElemento9 = document.getElementById("pregunta9");
 const respuestasContenedor9 = document.getElementById("respuestas9");
-
-//--------------------------------//
-// ABRIR / CERRAR
-//--------------------------------//
 chatToggle9.addEventListener("click", () => {
     chatbot9.classList.toggle("hidden9");
 });
-
-//--------------------------------//
-// 🔥 DETECTAR NODO INICIAL AUTOMÁTICO
-//--------------------------------//
 function obtenerNodoInicial(flujo) {
     const claves = Object.keys(flujo);
-
     if (claves.length === 0) return null;
-
-    // 1. Si existe "inicio", usarlo
     if (flujo["inicio"]) return "inicio";
-
-    // 2. Si no, usar el primer nodo creado
     return claves[0];
 }
-
-//--------------------------------//
-// 🔥 RENDER DINÁMICO ROBUSTO
-//--------------------------------//
 function cargarPregunta9(clave) {
     const pregunta = preguntas9[clave];
-
     if (!pregunta) {
         preguntaElemento9.textContent = "⚠️ Nodo no encontrado";
         respuestasContenedor9.innerHTML = "";
         return;
     }
-
     preguntaElemento9.textContent = pregunta.texto || "Sin texto";
     respuestasContenedor9.innerHTML = "";
-
-    // si no hay opciones
     if (!pregunta.opciones || pregunta.opciones.length === 0) {
         return;
     }
-
     pregunta.opciones.forEach(opcion => {
         const btn = document.createElement("button");
         btn.textContent = opcion.texto || "Opción";
-
         btn.addEventListener("click", () => {
             cargarPregunta9(opcion.siguiente);
         });
-
         respuestasContenedor9.appendChild(btn);
     });
 }
-
-//--------------------------------//
-// 🔥 INICIAR CORRECTAMENTE
-//--------------------------------//
 const nodoInicial = obtenerNodoInicial(preguntas9);
-
 if (nodoInicial) {
     cargarPregunta9(nodoInicial);
 } else {
     preguntaElemento9.textContent = "No hay flujo disponible";
 }
+//-----------------------------------------//
+//--|funcionalidad_pie_de_pagia_dinamica|--//
+//-----------------------------------------//
+const opciones = document.querySelectorAll(".opcion");
+opciones.forEach(opcion => {
+    opcion.addEventListener("click", () => {
+        alert("Has hecho clic en: " + opcion.textContent);
+    });
+});
+function cambiarTitulo(texto) {
+    document.getElementById("texto-titulo").textContent = texto;
+}
+function cambiarMarca(texto) {
+    document.getElementById("texto-marca").textContent = texto;
+}
+document.addEventListener("DOMContentLoaded", () => {
+    const data = JSON.parse(localStorage.getItem("footerData"));
+    if (!data) return;
+    cambiarTitulo(data.titulo);
+    cambiarMarca(data.marca);
+    if (data.imagen) {
+        document.getElementById("img-footer").src = data.imagen;
+        document.getElementById("texto-imagen").style.display = "none";
+    }
+    data.subtitulos.forEach((sub, i) => {
+        const elemento = document.getElementById(`subtitulo-${i + 1}`);
+        if (elemento) {
+            elemento.textContent = sub;
+        }
+    });
+    const columnas = document.querySelectorAll(".footer-columna");
+    let indexOpcion = 0;
+    columnas.forEach(columna => {
+        columna.querySelectorAll(".opcion").forEach(op => {
+            if (data.opciones[indexOpcion]) {
+                op.textContent = data.opciones[indexOpcion];
+                indexOpcion++;
+            } else {
+                op.style.display = "none";
+            }
+        });
+    });
+});

@@ -475,9 +475,6 @@ button:hover {
     margin-left: 230px;
     width: 140px;
 }
-/*-------------------------------------------*/
-/*--|estructura_flujo_generado_del_chatbot|--*/
-/*-------------------------------------------*/
 .contenedor_flujo4{
     width: 272px;
     margin-top: 50px;
@@ -520,7 +517,6 @@ button:hover {
 }
 .left8, .right8 {
     width: 50%;
-    
     margin-top: -15px;
 }
 label {
@@ -578,13 +574,45 @@ input {
 .lista8 {
     background: #cfcfcf;
     padding: 10px;
-    text-align: center;
     margin-top: 10px;
-    min-height: 229px;
+    height: 229px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    gap: 8px;              
 }
 .texto8 {
-    margin-top: 20px;
+    width: 100%;         
+    text-align: center;
     color: #555;
+    margin-top: 20px;
+}
+.opcion-item8 {
+    display: flex;              
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 6px;
+    height: 38px;
+    background: #bdbdbd;
+    padding: 5px 8px;
+    font-size: 13px;
+}
+.opcion-texto8 {
+    flex: 1;            
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.opcion-eliminar8 {
+    background: #5d7fa3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 38px;       
+    font-size: 12px;
+    margin-top: -1px;        
+    left: 8px;
+    position: relative;   
 }
 #crearFooter8 {
     margin-top: 15px;
@@ -596,6 +624,46 @@ input {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+.opcion-item8:last-child {
+    margin-bottom: 0;
+}
+#mensajeOpciones8{
+    margin-top: 90px;
+}
+.subtitulo-item8 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 38px;
+    background: #bdbdbd;
+    padding: 5px 8px;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+.subtitulo-texto8 {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.subtitulo-eliminar8 {
+    background: #5d7fa3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 38px;
+    font-size: 12px;
+    left: 8px;
+    margin-top: -1px;   
+    position: relative;
+}
+.subtitulo-item8:last-child {
+    margin-bottom: 0;
+}
+#mensajeSubtitulos8{
+    margin-top: 90px;
 }
 /*------------------------------------*/
 /*--|estilo_formulario_de_contenido|--*/
