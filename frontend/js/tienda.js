@@ -118,7 +118,16 @@ let opciones2 = [];
 btnAdd2.addEventListener("click", () => {
     const valor = inputOption2.value.trim();
     if (!valor) return;
-    opciones2.push(valor);
+    opciones2.push({
+        nombre: valor,
+        clave: valor.toLowerCase(),
+        contenido: `
+            <section class="vista">
+                <h1>${valor}</h1>
+                <p>Contenido dinámico de ${valor}</p>
+            </section>
+        `
+    });
     inputOption2.value = "";
     renderLista2();
 });
@@ -132,7 +141,7 @@ function renderLista2() {
         const div = document.createElement("div");
         div.classList.add("item2");
         div.innerHTML = `
-            <span>${op}</span>
+            <span>${op.nombre}</span>
             <button onclick="eliminar2(${index})" class="eliminar">x</button>
         `;
         lista2.appendChild(div);

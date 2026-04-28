@@ -13,27 +13,30 @@
     <!-------------------------------------------->
     <!--|estructura_menu_de_navegacion_dinamica|-->
     <!-------------------------------------------->
-    <nav id="navbar-tienda">
-        <div id="logo-container">
-            <img id="logo-menu" src="" alt="logo">
-            <h2 id="titulo-menu">Mi Tienda</h2>
-        </div>
-        <ul id="opciones-menu">
-        </ul>
-        <div id="busqueda-container">
-            <input type="text" id="input-busqueda" placeholder="Buscar...">
-            <i class="fa-solid fa-magnifying-glass" id="icono-busqueda"></i>
-        </div>
-        <div id="iconos-menu">
-            <i class="fa-solid fa-bell" id="icono-notificaciones"></i>
-            <i class="fa-solid fa-user" id="icono-perfil"></i>
-            <i class="fa-solid fa-cart-shopping" id="icono-carrito"></i>
-        </div>
-    </nav>
+    <header>
+        <nav id="navbar-tienda">
+            <div id="logo-container">
+                <img id="logo-menu" src="" alt="logo">
+                <h2 id="titulo-menu">Mi Tienda</h2>
+            </div>
+            <ul id="opciones-menu"></ul>
+            <div id="busqueda-container">
+                <input type="text" id="input-busqueda" placeholder="Buscar...">
+                <i class="fa-solid fa-magnifying-glass" id="icono-busqueda"></i>
+            </div>
+            <div id="iconos-menu">
+                <i class="fa-solid fa-bell" id="icono-notificaciones"></i>
+                <i class="fa-solid fa-user" id="icono-perfil"></i>
+                <i class="fa-solid fa-cart-shopping" id="icono-carrito"></i>
+            </div>
+        </nav>
+    </header>
+    <main id="contenido-principal">
+    </main>
     <!---------------------------------->
     <!--|estructura_carrusel_dinamica|-->
     <!---------------------------------->
-    <section id="slider-container">
+    <section id="slider-container" class="seccion-estatica">
         <div id="slider">
             <div class="slide active">
                 <img src="https://picsum.photos/1200/400?1" alt="slide1">
@@ -49,6 +52,50 @@
         <button id="next-slide"><i class="fa-solid fa-chevron-right"></i></button>
         <div id="indicators"></div>
     </section>
+    <!------------------------------------->
+    <!--|estructura_contenido_1_dinamica|-->
+    <!------------------------------------->
+    <div class="contenedor seccion-estatica" id="contenedor1">
+        <div class="barra-superior" id="barraSuperior">
+            <h2 class="titulo" id="tituloContenido">aqui ira el titulo...</h2>
+            <button id="btnVerMas">Ver mas</button>
+        </div>
+        <div class="linea"></div>
+        <div class="tarjetas" id="contenedorTarjetas">
+            <div class="tarjeta" id="tarjeta1">
+                <div class="imagen">
+                    <span>aqui ira la imagen</span>
+                </div>
+                <div class="subtitulo">aqui ira el subtitulo...</div>
+            </div>
+            <div class="tarjeta" id="tarjeta2">
+                <div class="imagen">
+                    <span>aqui ira la imagen</span>
+                </div>
+                <div class="subtitulo">aqui ira el subtitulo...</div>
+            </div>
+            <div class="tarjeta" id="tarjeta3">
+                <div class="imagen">
+                    <span>aqui ira la imagen</span>
+                </div>
+                <div class="subtitulo">aqui ira el subtitulo...</div>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------->
+    <!--|estructura_contenido_2_dinamica|-->
+    <!------------------------------------->
+    <div class="contenedor2 seccion-estatica" id="contenedor2">
+        <div class="barra-superior2">
+            <h2 class="titulo2" id="tituloContenido2">aqui ira el titulo</h2>
+        </div>
+        <div class="linea2"></div>
+        <div class="contenedor-imagen2" id="contenedorImagen2">
+            <div class="imagen2">
+                <span>aqui ira la imagen</span>
+            </div>
+        </div>
+    </div>
     <!--------------------------------->
     <!--|estructura_chatbot_dinamica|-->
     <!--------------------------------->

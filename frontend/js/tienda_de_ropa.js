@@ -16,46 +16,127 @@ if (tienda) {
 //--|funcionalidad_menu_de_navegacion_dinamica|--//
 //-----------------------------------------------//
 const opcionesMenu = [
-    { nombre: "Inicio", enlace: "#" },
-    { nombre: "Hombre", enlace: "#" },
-    { nombre: "Mujer", enlace: "#" },
-    { nombre: "Niños", enlace: "#" },
-    { nombre: "Ofertas", enlace: "#" },
-    { nombre: "Contacto", enlace: "#" }
+    { nombre: "Inicio" },
+    { nombre: "Nosotros" },
+    { nombre: "Categorias" },
+    { nombre: "Contacto" }
 ];
 const contenedorMenu = document.getElementById("opciones-menu");
-const data = JSON.parse(localStorage.getItem("menuNavegacion"));
+const contenedorPrincipal = document.getElementById("contenido-principal");
+document.addEventListener("DOMContentLoaded", () => {
+    contenedorPrincipal.innerHTML = "";
+});
+const seccionesEstaticas = document.querySelectorAll(".seccion-estatica");
+function ocultarEstaticos() {
+    seccionesEstaticas.forEach(el => el.style.display = "none");
+}
+function mostrarEstaticos() {
+    seccionesEstaticas.forEach(el => el.style.display = "block");
+}
+const mapaVistas = {
+    inicio: "inicio",
+    nosotros: "nosotros",
+    categorias: "categorias",
+    contacto: "contacto",
+    contactanos: "contacto"
+};
+const vistas = {
+    inicio: `
+        <!------------------------------->
+        <!--|este espacio estara vacio|-->
+        <!------------------------------->
+    `,
+    nosotros: `
+        <section class="vista nosotros">
+            <h1>Sobre Nosotros</h1>
+            <p>Somos una tienda moderna enfocada en calidad y estilo.</p>
+        </section>
+    `,
+    categorias: `
+        <section class="vista categorias">
+            <h1>Categorías</h1>
+            <p>Aquí puedes explorar todas nuestras categorías disponibles.</p>
+        </section>
+    `,
+    contacto: `
+        <section class="vista contacto">
+            <h1>📞 Contáctanos</h1>
+            <form>
+                <input type="text" placeholder="Nombre">
+                <input type="email" placeholder="Correo">
+                <button>Enviar</button>
+            </form>
+        </section>
+    `
+};
+function cargarVista(nombre) {
+    const claveRaw = nombre.trim().toLowerCase();
+    const clave = mapaVistas[claveRaw] || claveRaw;
+    if (vistas[clave]) {
+        contenedorPrincipal.style.opacity = 0;
+        setTimeout(() => {
+            contenedorPrincipal.innerHTML = vistas[clave];
+            contenedorPrincipal.style.opacity = 1;
+        }, 150);
+        if (clave === "inicio") {
+            mostrarEstaticos(); 
+        } else {
+            ocultarEstaticos();  
+        }
+        history.pushState({}, "", "#" + clave);
+    } else {
+        console.warn("No existe vista para:", clave);
+        contenedorPrincipal.innerHTML = "<h1>Sección no encontrada</h1>";
+    }
+}
 function crearMenu(lista) {
     contenedorMenu.innerHTML = "";
-    lista.forEach(opcion => {
+    const clavesBase = ["inicio", "nosotros", "categorias", "contacto"];
+    lista.forEach((opcion, index) => {
         const li = document.createElement("li");
-        li.textContent = opcion.nombre || opcion;
+        let nombre = opcion.nombre || opcion;
+        const clave = clavesBase[index] || "inicio";
+        li.textContent = nombre;
         li.addEventListener("click", () => {
-            console.log("Click en:", opcion.nombre || opcion);
+            cargarVista(clave);
         });
         contenedorMenu.appendChild(li);
     });
 }
+window.addEventListener("popstate", () => {
+    const vista = location.hash.replace("#", "").trim().toLowerCase() || "inicio";
+    cargarVista(vista);
+});
+let data = null;
+try {
+    data = JSON.parse(localStorage.getItem("menuNavegacion"));
+} catch (error) {
+    console.error("Error leyendo localStorage:", error);
+}
 if (data) {
     document.getElementById("titulo-menu").textContent = data.nombre;
-    if (data.logo) {
+    if (data.logo && data.logo.trim() !== "") {
         document.getElementById("logo-menu").src = data.logo;
     }
-    crearMenu(data.opciones);
-    document.getElementById("busqueda-container").style.display =
-        data.elementos.busqueda ? "flex" : "none";
-    document.getElementById("icono-perfil").style.display =
-        data.elementos.perfil ? "inline-block" : "none";
-    document.getElementById("icono-notificaciones").style.display =
-        data.elementos.notificaciones ? "inline-block" : "none";
-    document.getElementById("icono-carrito").style.display =
-        data.elementos.carrito ? "inline-block" : "none";
+    crearMenu(data.opciones || opcionesMenu);
+    if (data.elementos) {
+        document.getElementById("busqueda-container").style.display =
+            data.elementos.busqueda ? "flex" : "none";
+        document.getElementById("icono-perfil").style.display =
+            data.elementos.perfil ? "inline-block" : "none";
+        document.getElementById("icono-notificaciones").style.display =
+            data.elementos.notificaciones ? "inline-block" : "none";
+        document.getElementById("icono-carrito").style.display =
+            data.elementos.carrito ? "inline-block" : "none";
+    }
 } else {
     console.warn("No hay datos del menú, usando menú por defecto");
     crearMenu(opcionesMenu);
 }
+const vistaInicial = location.hash.replace("#", "").trim().toLowerCase() || "inicio";
+cargarVista(vistaInicial);
 //-------------------------------------//
-//--|funcionalidad_dinamica_carrusel|--//
+//--|funcionalidad_carrusel_dinamica|--//
 //-------------------------------------//
 document.addEventListener("DOMContentLoaded", () => {
     const slider = document.getElementById("slider");
@@ -123,6 +204,43 @@ document.addEventListener("DOMContentLoaded", () => {
         }, tiempo);
     }
 });
+//----------------------------------------//
+//--|funcionalidad_contenido_1_dinamica|--//
+//----------------------------------------//
+const titulo = document.getElementById("tituloContenido");
+const btnVerMas = document.getElementById("btnVerMas");
+const contenedorTarjetas = document.getElementById("contenedorTarjetas");
+function cambiarTitulo(nuevoTitulo) {
+    titulo.textContent = nuevoTitulo;
+}
+btnVerMas.addEventListener("click", () => {
+    alert("Botón 'Ver más' funcionando");
+});
+function crearTarjeta(texto) {
+    const tarjeta = document.createElement("div");
+    tarjeta.classList.add("tarjeta");
+    tarjeta.innerHTML = `
+        <div class="imagen">
+            <span>Imagen dinámica</span>
+        </div>
+        <div class="subtitulo">${texto}</div>
+    `;
+    contenedorTarjetas.appendChild(tarjeta);
+}
+cambiarTitulo("Productos destacados");
+//----------------------------------------//
+//--|funcionalidad_contenido_2_dinamica|--//
+//----------------------------------------//
+const titulo2 = document.getElementById("tituloContenido2");
+const imagen2 = document.querySelector(".imagen2");
+function cambiarTitulo2(texto) {
+    titulo2.textContent = texto;
+}
+function cambiarImagenTexto(texto) {
+    imagen2.innerHTML = `<span>${texto}</span>`;
+}
+cambiarTitulo2("Producto destacado");
+cambiarImagenTexto("Nueva imagen dinámica");
 //------------------------------------//
 //--|funcionalidad_chatbot_dinamica|--//
 //------------------------------------//
