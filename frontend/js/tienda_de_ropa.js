@@ -16,10 +16,10 @@ if (tienda) {
 //--|funcionalidad_menu_de_navegacion_dinamica|--//
 //-----------------------------------------------//
 const opcionesMenu = [
-    { nombre: "Inicio" },
-    { nombre: "Nosotros" },
-    { nombre: "Categorias" },
-    { nombre: "Contacto" }
+    { nombre: "Opción 1" },
+    { nombre: "Opción 2" },
+    { nombre: "Opción 3" },
+    { nombre: "Opción 4" }
 ];
 const contenedorMenu = document.getElementById("opciones-menu");
 const contenedorPrincipal = document.getElementById("contenido-principal");
@@ -34,38 +34,33 @@ function mostrarEstaticos() {
     seccionesEstaticas.forEach(el => el.style.display = "block");
 }
 const mapaVistas = {
-    inicio: "inicio",
-    nosotros: "nosotros",
-    categorias: "categorias",
-    contacto: "contacto",
-    contactanos: "contacto"
+    "opción 1": "opcion1",
+    "opción 2": "opcion2",
+    "opción 3": "opcion3",
+    "opción 4": "opcion4"
 };
 const vistas = {
-    inicio: `
+    opcion1: `
         <!------------------------------->
         <!--|este espacio estara vacio|-->
         <!------------------------------->
     `,
-    nosotros: `
-        <section class="vista nosotros">
-            <h1>Sobre Nosotros</h1>
-            <p>Somos una tienda moderna enfocada en calidad y estilo.</p>
+    opcion2: `
+        <section class="vista">
+            <h1>Contenido Opción 2</h1>
+            <p>Este es el contenido que antes era "Nosotros".</p>
         </section>
     `,
-    categorias: `
-        <section class="vista categorias">
-            <h1>Categorías</h1>
-            <p>Aquí puedes explorar todas nuestras categorías disponibles.</p>
+    opcion3: `
+        <section class="vista">
+            <h1>Contenido Opción 3</h1>
+            <p>Este es el contenido que antes era "Categorías".</p>
         </section>
     `,
-    contacto: `
-        <section class="vista contacto">
-            <h1>📞 Contáctanos</h1>
-            <form>
-                <input type="text" placeholder="Nombre">
-                <input type="email" placeholder="Correo">
-                <button>Enviar</button>
-            </form>
+    opcion4: `
+        <section class="vista">
+            <h1>Contenido Opción 4</h1>
+            <p>Este es el contenido que antes era "Contacto".</p>
         </section>
     `
 };
@@ -78,10 +73,10 @@ function cargarVista(nombre) {
             contenedorPrincipal.innerHTML = vistas[clave];
             contenedorPrincipal.style.opacity = 1;
         }, 150);
-        if (clave === "inicio") {
-            mostrarEstaticos(); 
+        if (clave === "opcion1") {
+            mostrarEstaticos();
         } else {
-            ocultarEstaticos();  
+            ocultarEstaticos();
         }
         history.pushState({}, "", "#" + clave);
     } else {
@@ -91,11 +86,11 @@ function cargarVista(nombre) {
 }
 function crearMenu(lista) {
     contenedorMenu.innerHTML = "";
-    const clavesBase = ["inicio", "nosotros", "categorias", "contacto"];
+    const clavesBase = ["opcion1", "opcion2", "opcion3", "opcion4"];
     lista.forEach((opcion, index) => {
         const li = document.createElement("li");
         let nombre = opcion.nombre || opcion;
-        const clave = clavesBase[index] || "inicio";
+        const clave = clavesBase[index] || "opcion1";
         li.textContent = nombre;
         li.addEventListener("click", () => {
             cargarVista(clave);
@@ -104,7 +99,7 @@ function crearMenu(lista) {
     });
 }
 window.addEventListener("popstate", () => {
-    const vista = location.hash.replace("#", "").trim().toLowerCase() || "inicio";
+    const vista = location.hash.replace("#", "").trim().toLowerCase() || "opcion1";
     cargarVista(vista);
 });
 let data = null;
@@ -133,7 +128,7 @@ if (data) {
     console.warn("No hay datos del menú, usando menú por defecto");
     crearMenu(opcionesMenu);
 }
-const vistaInicial = location.hash.replace("#", "").trim().toLowerCase() || "inicio";
+const vistaInicial = location.hash.replace("#", "").trim().toLowerCase() || "opcion1";
 cargarVista(vistaInicial);
 //-------------------------------------//
 //--|funcionalidad_carrusel_dinamica|--//
@@ -207,40 +202,144 @@ document.addEventListener("DOMContentLoaded", () => {
 //----------------------------------------//
 //--|funcionalidad_contenido_1_dinamica|--//
 //----------------------------------------//
-const titulo = document.getElementById("tituloContenido");
-const btnVerMas = document.getElementById("btnVerMas");
-const contenedorTarjetas = document.getElementById("contenedorTarjetas");
-function cambiarTitulo(nuevoTitulo) {
-    titulo.textContent = nuevoTitulo;
+const tituloContenido1 = document.getElementById("tituloContenido1");
+const btnVerMas1 = document.getElementById("btnVerMas1");
+const contenedorTarjetas1 = document.getElementById("contenedorTarjetas1");
+function cambiarTituloContenido1(nuevoTitulo) {
+    tituloContenido1.textContent = nuevoTitulo;
 }
-btnVerMas.addEventListener("click", () => {
+btnVerMas1.addEventListener("click", () => {
     alert("Botón 'Ver más' funcionando");
 });
-function crearTarjeta(texto) {
+function crearTarjeta1(texto) { 
     const tarjeta = document.createElement("div");
-    tarjeta.classList.add("tarjeta");
+    tarjeta.classList.add("tarjeta1");
     tarjeta.innerHTML = `
-        <div class="imagen">
+        <div class="imagen1">
             <span>Imagen dinámica</span>
         </div>
-        <div class="subtitulo">${texto}</div>
+        <div class="subtitulo1">${texto}</div>
     `;
-    contenedorTarjetas.appendChild(tarjeta);
+    contenedorTarjetas1.appendChild(tarjeta);
 }
-cambiarTitulo("Productos destacados");
+
+cambiarTituloContenido1("Productos destacados");
 //----------------------------------------//
-//--|funcionalidad_contenido_2_dinamica|--//
+//--|funcionalidad_contenido_3_dinamica|--//
 //----------------------------------------//
-const titulo2 = document.getElementById("tituloContenido2");
-const imagen2 = document.querySelector(".imagen2");
-function cambiarTitulo2(texto) {
-    titulo2.textContent = texto;
+const tituloContenido3 = document.getElementById("tituloContenido3"); 
+const imagenContenido3 = document.querySelector(".imagen3");
+function cambiarTituloContenido3(texto) { 
+    tituloContenido3.textContent = texto;
 }
-function cambiarImagenTexto(texto) {
-    imagen2.innerHTML = `<span>${texto}</span>`;
+function cambiarImagenTexto3(texto) { 
+    imagenContenido3.innerHTML = `<span>${texto}</span>`;
 }
-cambiarTitulo2("Producto destacado");
-cambiarImagenTexto("Nueva imagen dinámica");
+cambiarTituloContenido3("Producto destacado"); 
+cambiarImagenTexto3("Nueva imagen dinámica"); 
+//----------------------------------------//
+//--|funcionalidad_contenido_8_dinamica|--//
+//----------------------------------------//
+const contenedor8 = document.getElementById("contenido8");
+const imagenes8 = document.querySelectorAll(".imagen8");
+function cambiarTextoImagen8(index, texto) {
+    if (imagenes8[index]) {
+        imagenes8[index].innerHTML = `
+            <i class="fas fa-image"></i>
+            <p>${texto}</p>
+        `;
+    }
+}
+function cargarContenido8(datos) {
+    datos.forEach((texto, i) => {
+        cambiarTextoImagen8(i, texto);
+    });
+}
+imagenes8.forEach((img, index) => {
+    img.addEventListener("click", () => {
+        alert("Hiciste click en la imagen " + (index + 1));
+    });
+});
+cargarContenido8([
+    "Imagen 1 dinámica",
+    "Imagen 2 dinámica",
+    "Imagen 3 dinámica",
+    "Imagen 4 dinámica",
+    "Imagen 5 dinámica",
+    "Imagen 6 dinámica",
+    "Imagen 7 dinámica"
+]);
+//----------------------------------------//
+//--|funcionalidad_contenido_9_dinamica|--//
+//----------------------------------------//
+const contenedor9 = document.getElementById("contenido9");
+const imagenPrincipal9 = document.querySelector(".contenido9-imagen-principal");
+const imagenes9 = document.querySelectorAll(".imagen9");
+const subtitulos9 = document.querySelectorAll(".subtitulo9");
+function cambiarImagenPrincipal9(texto) {
+    imagenPrincipal9.innerHTML = `
+        <i class="fas fa-image"></i>
+        <p>${texto}</p>
+    `;
+}
+function cambiarImagenes9(datos) {
+    datos.forEach((texto, i) => {
+        if (imagenes9[i]) {
+            imagenes9[i].innerHTML = `
+                <i class="fas fa-image"></i>
+                <p>${texto}</p>
+            `;
+        }
+    });
+}
+function cambiarSubtitulos9(datos) {
+    datos.forEach((texto, i) => {
+        if (subtitulos9[i]) {
+            subtitulos9[i].textContent = texto;
+        }
+    });
+}
+imagenes9.forEach((img, index) => {
+    img.addEventListener("click", () => {
+        alert("Click en imagen secundaria " + (index + 1));
+    });
+});
+imagenPrincipal9.addEventListener("click", () => {
+    alert("Click en imagen principal");
+});
+function cargarContenido9(data) {
+    if (!data) return;
+    cambiarImagenPrincipal9(data.principal);
+    cambiarImagenes9(data.imagenes);
+    cambiarSubtitulos9(data.subtitulos);
+}
+const dataEjemplo9 = {
+    principal: "Imagen principal dinámica",
+    imagenes: [
+        "Imagen 1",
+        "Imagen 2",
+        "Imagen 3"
+    ],
+    subtitulos: [
+        "Subtítulo 1",
+        "Subtítulo 2",
+        "Subtítulo 3"
+    ]
+};
+cargarContenido9(dataEjemplo9);
+//-----------------------------------------//
+//--|funcionalidad_contenido_10_dinamica|--//
+//-----------------------------------------//
+const tituloContenido10 = document.getElementById("titulo10");
+tituloContenido10.addEventListener("input", () => { 
+    console.log("Título:", tituloContenido10.value);
+});
+for (let i = 1; i <= 6; i++) {
+    const card = document.getElementById("card" + i + "10");
+    card.addEventListener("click", () => { 
+        alert("Hiciste click en la card " + i);
+    });
+}
 //------------------------------------//
 //--|funcionalidad_chatbot_dinamica|--//
 //------------------------------------//

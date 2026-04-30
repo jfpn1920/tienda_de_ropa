@@ -753,6 +753,106 @@ document.getElementById("contenido5").addEventListener("change", (e) => {
                 </div>
             `;
             break;
+        //-----------------//
+        //--|contenido_8|--//
+        //-----------------//
+        case "contenido 8":
+            html = `
+                <div class="contenido8">
+                    <div class="contenido8-header">
+                        <input type="text" placeholder="Escribir el título..." class="titulo-input">
+                    </div>
+                    <div class="contenido8-grid">
+                        <div class="imagen8 img1">
+                            <i class="fas fa-image"></i>
+                            <p>Ninguna imagen añadido</p>
+                        </div>
+                        <div class="imagen8 img2">
+                            <i class="fas fa-image"></i>
+                            <p>Ninguna imagen añadido</p>
+                        </div>
+                        <div class="imagen8 img3">
+                            <i class="fas fa-image"></i>
+                            <p>Ninguna imagen añadido</p>
+                        </div>
+                        <div class="imagen8 img4">
+                            <i class="fas fa-image"></i>
+                            <p>Ninguna imagen añadido</p>
+                        </div>
+                        <div class="imagen8 img5">
+                            <i class="fas fa-image"></i>
+                            <p>Ninguna imagen añadido</p>
+                        </div>
+                        <div class="imagen8 img6">
+                            <i class="fas fa-image"></i>
+                            <p>Ninguna imagen añadido</p>
+                        </div>
+                        <div class="imagen8 img7">
+                            <i class="fas fa-image"></i>
+                            <p>Ninguna imagen añadido</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            break;
+        //-----------------//
+        //--|contenido_9|--//
+        //-----------------//
+        case "contenido 9":
+            html = `
+                <div class="contenido9">
+                    <div class="contenido9-header">
+                        <input type="text" placeholder="Escribir el título..." class="titulo-input">
+                    </div>
+                    <div class="contenido9-imagen-principal">
+                        <i class="fas fa-image"></i>
+                        <p>Ninguna imagen añadido</p>
+                    </div>
+                    <div class="contenido9-grid">
+                        <div class="imagen9">
+                            <i class="fas fa-image"></i>
+                            <p>Ninguna imagen añadido</p>
+                        </div>
+                        <div class="imagen9">
+                            <i class="fas fa-image"></i>
+                            <p>Ninguna imagen añadido</p>
+                        </div>
+                        <div class="imagen9">
+                            <i class="fas fa-image"></i>
+                            <p>Ninguna imagen añadido</p>
+                        </div>
+                    </div>
+                    <div class="contenido9-subtitulos">
+                        <input type="text" placeholder="Escribir el subtitulo..." class="subtitulo9">
+                        <input type="text" placeholder="Escribir el subtitulo..." class="subtitulo9">
+                        <input type="text" placeholder="Escribir el subtitulo..." class="subtitulo9">
+                    </div>
+                </div>
+            `;
+            break;
+        //------------------//
+        //--|contenido_10|--//
+        //------------------//
+        case "contenido 10":
+            html = `
+                <div class="contenido10">
+                    <div class="contenido10-header">
+                        <input type="text" placeholder="Escribir el título..." class="titulo-input">
+                    </div>
+                    <div class="contenido10-grid">
+                        ${[1,2,3,4,5,6].map(() => `
+                            <div class="card10">
+                                <div class="imagen10">
+                                    <i class="fas fa-image"></i>
+                                    <p>Ninguna imagen añadido</p>
+                                </div>
+                                <input type="text" placeholder="Escribir el subtitulo..." class="subtitulo10">
+                            </div>
+                        `).join("")}
+                    </div>
+                </div>
+            `;
+            break;
         default:
             html = `<p class="empty5">Ninguna contenido disponible</p>`;
     }
@@ -792,9 +892,12 @@ editor5.addEventListener("click", (e) => {
     const img4 = e.target.closest(".imagen4");
     const img5 = e.target.closest(".imagen5");
     const img6 = e.target.closest(".imagen6");
+    const img8 = e.target.closest(".imagen8");
+    const img9 = e.target.closest(".imagen9");
+    const img9Principal = e.target.closest(".contenido9-imagen-principal");
+    const img10 = e.target.closest(".imagen10");
     const img7 = e.target.closest(".contenido7-header");
     const img7b = e.target.closest(".contenido7-body");
-    const img7c = null;
     const btnMas6 = e.target.closest(".btn-mas");
     const btnMas7 = e.target.closest(".btn-mas7");
     if (img1) activarSelectorImagen(img1);
@@ -803,6 +906,10 @@ editor5.addEventListener("click", (e) => {
     if (img4) activarSelectorImagen(img4);
     if (img5) activarSelectorImagen(img5);
     if (img6) activarSelectorImagen(img6);
+    if (img8) activarSelectorImagen(img8);
+    if (img9) activarSelectorImagen(img9);
+    if (img9Principal) activarSelectorImagen(img9Principal);
+    if (img10) activarSelectorImagen(img10);
     if (img7) activarSelectorImagen(img7);
     if (img7b) activarSelectorImagen(img7b);
     if (btnMas6) {
