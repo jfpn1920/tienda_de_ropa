@@ -853,6 +853,142 @@ document.getElementById("contenido5").addEventListener("change", (e) => {
                 </div>
             `;
             break;
+        //------------------//
+        //--|contenido_11|--//
+        //------------------//
+        case "contenido 11":
+            html = `
+                <div class="contenido11">
+                    <div class="contenido11-body">
+                        <div class="contenido11-izquierda">
+                            <input type="text" placeholder="Escribir el título..." class="titulo-input">
+                            <textarea placeholder="Añade una descripcion..." class="descripcion11"></textarea>
+                        </div>
+                        <div class="contenido11-derecha imagen11">
+                            <i class="fas fa-image"></i>
+                            <p class="texto11">Ninguna imagen añadida</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            break;
+        //------------------//
+        //--|contenido_12|--//
+        //------------------//
+        case "contenido 12":
+            html = `
+                <div class="contenido12">
+                    <div class="contenido12-body">
+                        <!-- IZQUIERDA -->
+                        <div class="contenido12-izquierda imagen12">
+                            <i class="fas fa-image"></i>
+                            <p>Ninguna imagen añadida</p>
+                        </div>
+                        <div class="contenido12-derecha">
+                            <div class="contenido12-header">
+                                <input type="text" placeholder="Escribir el título..." class="titulo-input">
+                            </div>
+                            <textarea placeholder="Añade una descripcion..." class="descripcion12"></textarea>
+                            <div class="contenido12-cards">
+                                ${[1,2,3].map(() => `
+                                    <div class="card12">
+                                        <div class="imagen12">
+                                            <i class="fas fa-image"></i>
+                                            <p class="texto12">Ninguna imagen añadida</p>
+                                        </div>
+                                        <input type="text" placeholder="Escribir el subtitulo..." class="subtitulo12">
+                                        <textarea placeholder="Añade una descripcion..." class="descripcion-card12"></textarea>
+                                    </div>
+                                `).join("")}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            break;
+        //------------------//
+        //--|contenido_13|--//
+        //------------------//
+        case "contenido 13":
+            html = `
+                <div class="contenido13">
+                    <div class="contenido13-body">
+                        <div class="contenido13-izquierda">
+                            <div class="contenido13-header">
+                                <input type="text" placeholder="Escribir el título..." class="titulo-input">
+                            </div>
+                            <textarea placeholder="Añade una descripcion..." class="descripcion13"></textarea>
+                            <div class="contenido13-cards">
+                                ${[1,2,3].map(() => `
+                                    <div class="card13">
+                                        <div class="imagen13">
+                                            <i class="fas fa-image"></i>
+                                            <p class="texto13">Ninguna imagen añadida</p>
+                                        </div>
+                                        <input type="text" placeholder="Escribir el subtitulo..." class="subtitulo13">
+                                        <textarea placeholder="Añade una descripcion..." class="descripcion-card13"></textarea>
+                                    </div>
+                                `).join("")}
+                            </div>
+                        </div>
+                        <div class="contenido13-derecha imagen13">
+                            <i class="fas fa-image"></i>
+                            <p>Ninguna imagen añadida</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            break;
+        //------------------//
+        //--|contenido_14|--//
+        //------------------//
+        case "contenido 14":
+            html = `
+                <div class="contenido14">
+                    <div class="contenido14-header">
+                        <input type="text" placeholder="Aqui ira el titulo..." class="titulo-input">
+                    </div>
+                    <div class="contenido14-grid">
+                        ${[1,2,3,4].map(() => `
+                            <div class="card14">
+                                <div class="imagen14">
+                                    <i class="fas fa-image"></i>
+                                    <p>Ninguna imagen añadido</p>
+                                </div>
+                                <textarea placeholder="Añade una descripcion..." class="descripcion14"></textarea>
+                                <input type="text" placeholder="Escribir el subtitulo..." class="subtitulo14">
+                            </div>
+                        `).join("")}
+                    </div>
+                </div>
+            `;
+            break;
+        //------------------//
+        //--|contenido_15|--//
+        //------------------//
+        case "contenido 15":
+            html = `
+                <div class="contenido15">
+                    <div class="contenido15-header">
+                        <input type="text" placeholder="aqui ira el titulo..." class="titulo-input">
+                    </div>
+                    <div class="contenido15-grid">
+                        ${[1,2,3,4].map(() => `
+                            <div class="card15">
+                                <div class="imagen15">
+                                    <i class="fas fa-image"></i>
+                                    <p>Ninguna imagen añadido</p>
+                                </div>
+                                <textarea
+                                    placeholder="Añade una descripcion..." 
+                                    class="descripcion15"
+                                ></textarea>
+                            </div>
+                        `).join("")}
+                    </div>
+                </div>
+            `;
+            break;
         default:
             html = `<p class="empty5">Ninguna contenido disponible</p>`;
     }
@@ -896,6 +1032,11 @@ editor5.addEventListener("click", (e) => {
     const img9 = e.target.closest(".imagen9");
     const img9Principal = e.target.closest(".contenido9-imagen-principal");
     const img10 = e.target.closest(".imagen10");
+    const img11 = e.target.closest(".imagen11");
+    const img12 = e.target.closest(".imagen12");
+    const img13 = e.target.closest(".imagen13");
+    const img14 = e.target.closest(".imagen14");
+    const img15 = e.target.closest(".imagen15");
     const img7 = e.target.closest(".contenido7-header");
     const img7b = e.target.closest(".contenido7-body");
     const btnMas6 = e.target.closest(".btn-mas");
@@ -910,6 +1051,11 @@ editor5.addEventListener("click", (e) => {
     if (img9) activarSelectorImagen(img9);
     if (img9Principal) activarSelectorImagen(img9Principal);
     if (img10) activarSelectorImagen(img10);
+    if (img11) activarSelectorImagen(img11);
+    if (img12) activarSelectorImagen(img12);
+    if (img13) activarSelectorImagen(img13);
+    if (img14) activarSelectorImagen(img14);
+    if (img15) activarSelectorImagen(img15);
     if (img7) activarSelectorImagen(img7);
     if (img7b) activarSelectorImagen(img7b);
     if (btnMas6) {
