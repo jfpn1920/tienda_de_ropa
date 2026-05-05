@@ -989,6 +989,51 @@ document.getElementById("contenido5").addEventListener("change", (e) => {
                 </div>
             `;
             break;
+        //------------------//
+        //--|contenido_16|--//
+        //------------------//
+        case "contenido 16":
+            html = `
+                <div class="contenido16">
+                    <div class="contenido16-grid">
+                        ${[1,2,3,4].map(() => `
+                            <div class="card16">
+                                <div class="imagen16">
+                                    <i class="fas fa-image"></i>
+                                    <p>Ninguna imagen añadida</p>
+                                </div>
+                                <input type="text" placeholder="Escribir el subtitulo..." class="subtitulo16">
+                                <button class="btn-ver16">Ver todo</button>
+                            </div>
+                        `).join("")}
+                    </div>
+                </div>
+            `;
+        break;
+        //------------------//
+        //--|contenido_17|--//
+        //------------------//
+        case "contenido 17":
+            html = `
+                <div class="contenido17">
+                    <div class="contenido17-header">
+                        <input type="text" placeholder="Aqui ira el titulo..." class="titulo-input">
+                    </div>
+                    <div class="contenido17-grid">
+                        ${[1,2,3,4,5,6].map(() => `
+                            <div class="card17">
+                                <div class="imagen17">
+                                    <i class="fas fa-image"></i>
+                                    <p>Ninguna imagen añadida</p>
+                                </div>
+                                <input type="text" placeholder="Escribir el subtitulo..." class="subtitulo17">
+                                <button class="btn-ver17">Ver categoria</button>
+                            </div>
+                        `).join("")}
+                    </div>
+                </div>
+            `;
+        break;
         default:
             html = `<p class="empty5">Ninguna contenido disponible</p>`;
     }
@@ -1037,6 +1082,8 @@ editor5.addEventListener("click", (e) => {
     const img13 = e.target.closest(".imagen13");
     const img14 = e.target.closest(".imagen14");
     const img15 = e.target.closest(".imagen15");
+    const img16 = e.target.closest(".imagen16");
+    const img17 = e.target.closest(".imagen17");
     const img7 = e.target.closest(".contenido7-header");
     const img7b = e.target.closest(".contenido7-body");
     const btnMas6 = e.target.closest(".btn-mas");
@@ -1056,6 +1103,8 @@ editor5.addEventListener("click", (e) => {
     if (img13) activarSelectorImagen(img13);
     if (img14) activarSelectorImagen(img14);
     if (img15) activarSelectorImagen(img15);
+    if (img16) activarSelectorImagen(img16);
+    if (img17) activarSelectorImagen(img17);
     if (img7) activarSelectorImagen(img7);
     if (img7b) activarSelectorImagen(img7b);
     if (btnMas6) {

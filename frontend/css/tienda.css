@@ -1577,6 +1577,104 @@ input {
     background: #dcdcdc;
     resize: none;
 }
+/*------------------*/
+/*--|contenido_16|--*/
+/*------------------*/
+.contenido16 {
+    width: 100%;
+}
+.contenido16-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+.card16 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.imagen16 {
+    height: 180px;
+    background: #bdbdbd;
+    border: 2px solid #888;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.imagen16 i {
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+.subtitulo16 {
+    padding: 6px;
+    margin-top: -1px;
+    border: 1px solid #999;
+    background: #dcdcdc;
+}
+.btn-ver16 {
+    padding: 8px;
+    background: #cfcfcf;
+    border: 1px solid #999;
+    cursor: pointer;
+    margin-top: -1px;
+    transition: 0.2s;
+}
+/*------------------*/
+/*--|contenido_17|--*/
+/*------------------*/
+.contenido17 {
+    width: 100%;
+}
+.contenido17-header {
+    margin-bottom: 10px;
+    border-bottom: 3px solid #4a76a8;
+    padding-bottom: 5px;
+}
+.contenido17-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+.card17 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #dcdcdc;
+    border: 1px solid #999;
+    padding: 10px;
+}
+.imagen17 {
+    height: 300px;
+    background: #bdbdbd;
+    border: 2px solid #888;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.imagen17 i {
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+.subtitulo17 {
+    padding: 6px;
+    position: relative;
+    top: -5px;
+    border: 1px solid #999;
+    background: #dcdcdc;
+}
+.btn-ver17 {
+    padding: 6px;
+    background: #cfcfcf;
+    border: 1px solid #999;
+    cursor: pointer;
+    margin-top: -5px;
+    transition: 0.2s;
+}
+.btn-ver17:hover {
+    background: #bdbdbd;
+}
 /*-----------------------------------*/
 /*--|estilo_versiones_de_la_tienda|--*/
 /*-----------------------------------*/
