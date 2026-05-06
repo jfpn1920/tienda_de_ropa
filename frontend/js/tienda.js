@@ -1420,17 +1420,52 @@ document.getElementById("crearContenido5").addEventListener("click", () => {
     //--|enviando_datos_a_contenido_1|--//
     //----------------------------------//
     if (contenido === "contenido 1") {
+        function obtenerEstilos(el) {
+            return {
+                fontSize: el.style.fontSize,
+                textAlign: el.style.textAlign,
+                fontFamily: el.style.fontFamily,
+                fontWeight: el.style.fontWeight,
+                fontStyle: el.style.fontStyle,
+                textDecoration: el.style.textDecoration
+            };
+        }
+        const tituloInput = editor.querySelector(".titulo-input");
         const subtitulos = Array.from(editor.querySelectorAll(".subtitulo"))
-            .map(el => el.value || "");
+            .map(el => ({
+                texto: el.value || "",
+                estilos: obtenerEstilos(el)
+            }));
         const imagenesData = Array.from(editor.querySelectorAll(".imagen img"))
-            .map(img => img.src || "");
+            .map(img => img ? img.src : "");
         const data = {
             destino,
-            titulo,
+            titulo: {
+                texto: tituloInput ? tituloInput.value : "",
+                estilos: tituloInput ? obtenerEstilos(tituloInput) : {}
+            },
             tarjetas: [
-                { imagen: imagenesData[0] || "", subtitulo: subtitulos[0] || "" },
-                { imagen: imagenesData[1] || "", subtitulo: subtitulos[1] || "" },
-                { imagen: imagenesData[2] || "", subtitulo: subtitulos[2] || "" }
+                {
+                    imagen: imagenesData[0] || "",
+                    subtitulo: subtitulos[0] || {
+                        texto: "",
+                        estilos: {}
+                    }
+                },
+                {
+                    imagen: imagenesData[1] || "",
+                    subtitulo: subtitulos[1] || {
+                        texto: "",
+                        estilos: {}
+                    }
+                },
+                {
+                    imagen: imagenesData[2] || "",
+                    subtitulo: subtitulos[2] || {
+                        texto: "",
+                        estilos: {}
+                    }
+                }
             ]
         };
         localStorage.setItem(`contenido1_${destino}`, JSON.stringify(data));
@@ -1440,27 +1475,59 @@ document.getElementById("crearContenido5").addEventListener("click", () => {
     //--|enviando_datos_a_contenido_3|--//
     //----------------------------------//
     if (contenido === "contenido 3") {
+        function obtenerEstilos(el) {
+            return {
+                fontSize: el.style.fontSize,
+                textAlign: el.style.textAlign,
+                fontFamily: el.style.fontFamily,
+                fontWeight: el.style.fontWeight,
+                fontStyle: el.style.fontStyle,
+                textDecoration: el.style.textDecoration
+            };
+        }
+        const tituloInput = editor.querySelector(".titulo-input");
         const imgElement = editor.querySelector(".contenido3-imagen img");
         const imagen = imgElement ? imgElement.src : "";
         const data = {
             destino,
-            titulo,
+            titulo: {
+                texto: tituloInput ? tituloInput.value : "",
+                estilos: tituloInput ? obtenerEstilos(tituloInput) : {}
+            },
             imagen
         };
-        localStorage.setItem(`contenido3_${destino}`, JSON.stringify(data));
+        localStorage.setItem(
+            `contenido3_${destino}`,
+            JSON.stringify(data)
+        );
         alert("Contenido 3 enviado correctamente");
     }
     //----------------------------------//
     //--|enviando_datos_a_contenido_8|--//
     //----------------------------------//
     if (contenido === "contenido 8") {
+        function obtenerEstilos(el) {
+            return {
+                fontSize: el.style.fontSize,
+                textAlign: el.style.textAlign,
+                fontFamily: el.style.fontFamily,
+                fontWeight: el.style.fontWeight,
+                fontStyle: el.style.fontStyle,
+                textDecoration: el.style.textDecoration
+            };
+        }
         const tituloInput = editor.querySelector(".titulo-input");
-        const titulo = tituloInput ? tituloInput.value : "";
-        const imagenesData = Array.from(editor.querySelectorAll(".imagen8 img"))
-            .map(img => img.src || "");
+        const imagenesData = Array.from(
+            editor.querySelectorAll(".imagen8 img")
+        ).map(img => img.src || "");
         const data = {
             destino,
-            titulo,
+            titulo: {
+                texto: tituloInput ? tituloInput.value : "",
+                estilos: tituloInput
+                    ? obtenerEstilos(tituloInput)
+                    : {}
+            },
             imagenes: [
                 imagenesData[0] || "",
                 imagenesData[1] || "",
@@ -1471,24 +1538,53 @@ document.getElementById("crearContenido5").addEventListener("click", () => {
                 imagenesData[6] || ""
             ]
         };
-        localStorage.setItem("contenido8_principal", JSON.stringify(data));
+        localStorage.setItem(
+            "contenido8_principal",
+            JSON.stringify(data)
+        );
         alert("Contenido 8 enviado correctamente");
     }
     //----------------------------------//
     //--|enviando_datos_a_contenido_9|--//
     //----------------------------------//
     if (contenido === "contenido 9") {
-        const tituloInput = editor.querySelector(".titulo-input");
-        const titulo = tituloInput ? tituloInput.value : "";
-        const principalImg = editor.querySelector(".contenido9-imagen-principal img");
-        const principal = principalImg ? principalImg.src : "";
-        const imagenes = Array.from(editor.querySelectorAll(".imagen9 img"))
-            .map(img => img.src || "");
-        const subtitulos = Array.from(editor.querySelectorAll(".subtitulo9"))
-            .map(el => el.value || "");
+        function obtenerEstilos(el) {
+            return {
+                fontSize: el.style.fontSize,
+                textAlign: el.style.textAlign,
+                fontFamily: el.style.fontFamily,
+                fontWeight: el.style.fontWeight,
+                fontStyle: el.style.fontStyle,
+                textDecoration: el.style.textDecoration
+            };
+        }
+        const tituloInput =
+            editor.querySelector(".titulo-input");
+        const principalImg =
+            editor.querySelector(
+                ".contenido9-imagen-principal img"
+            );
+        const principal =
+            principalImg ? principalImg.src : "";
+        const imagenes = Array.from(
+            editor.querySelectorAll(".imagen9 img")
+        ).map(img => img.src || "");
+        const subtitulos = Array.from(
+            editor.querySelectorAll(".subtitulo9")
+        ).map(el => ({
+            texto: el.value || "",
+            estilos: obtenerEstilos(el)
+        }));
         const data = {
             destino,
-            titulo,
+            titulo: {
+                texto: tituloInput
+                    ? tituloInput.value
+                    : "",
+                estilos: tituloInput
+                    ? obtenerEstilos(tituloInput)
+                    : {}
+            },
             principal,
             imagenes: [
                 imagenes[0] || "",
@@ -1496,31 +1592,67 @@ document.getElementById("crearContenido5").addEventListener("click", () => {
                 imagenes[2] || ""
             ],
             subtitulos: [
-                subtitulos[0] || "",
-                subtitulos[1] || "",
-                subtitulos[2] || ""
+                subtitulos[0] || {
+                    texto: "",
+                    estilos: {}
+                },
+                subtitulos[1] || {
+                    texto: "",
+                    estilos: {}
+                },
+                subtitulos[2] || {
+                    texto: "",
+                    estilos: {}
+                }
             ]
         };
-        localStorage.setItem("contenido9_principal", JSON.stringify(data));
+        localStorage.setItem(
+            "contenido9_principal",
+            JSON.stringify(data)
+        );
         alert("Contenido 9 enviado correctamente");
     }
     //-----------------------------------//
     //--|enviando_datos_a_contenido_10|--//
     //-----------------------------------//
     if (contenido === "contenido 10") {
+        function obtenerEstilos(el) {
+            return {
+                fontSize: el.style.fontSize,
+                textAlign: el.style.textAlign,
+                fontFamily: el.style.fontFamily,
+                fontWeight: el.style.fontWeight,
+                fontStyle: el.style.fontStyle,
+                textDecoration: el.style.textDecoration
+            };
+        }
         const tituloInput = editor.querySelector(".titulo-input");
-        const titulo = tituloInput ? tituloInput.value : "";
-        const imagenes = Array.from(editor.querySelectorAll(".imagen10 img"))
-            .map(img => img.src || "");
-        const subtitulos = Array.from(editor.querySelectorAll(".subtitulo10"))
-            .map(el => el.value || "");
+        const imagenes = Array.from(
+            editor.querySelectorAll(".imagen10 img")
+        ).map(img => img.src || "");
+        const subtitulos = Array.from(
+            editor.querySelectorAll(".subtitulo10")
+        ).map(el => ({
+            texto: el.value || "",
+            estilos: obtenerEstilos(el)
+        }));
         const data = {
             destino,
-            titulo,
+            titulo: {
+                texto: tituloInput
+                    ? tituloInput.value
+                    : "",
+                estilos: tituloInput
+                    ? obtenerEstilos(tituloInput)
+                    : {}
+            },
             imagenes: imagenes.slice(0, 6),
             subtitulos: subtitulos.slice(0, 6)
         };
-        localStorage.setItem(`contenido10_${destino}`, JSON.stringify(data));
+        localStorage.setItem(
+            `contenido10_${destino}`,
+            JSON.stringify(data)
+        );
         alert("Contenido 10 enviado correctamente");
     }
 });

@@ -763,36 +763,67 @@ function crearTarjeta1(texto) {
         <div class="imagen1">
             <span>Imagen dinámica</span>
         </div>
-        <div class="subtitulo1">${texto}</div>
+        <div class="subtitulo1">
+            ${texto}
+        </div>
     `;
     contenedorTarjetas1.appendChild(tarjeta);
 }
 cambiarTituloContenido1("Productos destacados");
 window.addEventListener("DOMContentLoaded", () => {
-    const keys = Object.keys(localStorage).filter(k => k.startsWith("contenido1_"));
+    function aplicarEstilos(el, estilos) {
+        if (!estilos) return;
+        el.style.fontSize = estilos.fontSize || "";
+        el.style.textAlign = estilos.textAlign || "";
+        el.style.fontFamily = estilos.fontFamily || "";
+        el.style.fontWeight = estilos.fontWeight || "";
+        el.style.fontStyle = estilos.fontStyle || "";
+        el.style.textDecoration = estilos.textDecoration || "";
+    }
+    const keys = Object.keys(localStorage)
+        .filter(k => k.startsWith("contenido1_"));
     keys.forEach(key => {
         const data = JSON.parse(localStorage.getItem(key));
         if (!data) return;
         if (data.titulo && tituloContenido1) {
-            cambiarTituloContenido1(data.titulo);
+            cambiarTituloContenido1(data.titulo.texto || "");
+            aplicarEstilos(
+                tituloContenido1,
+                data.titulo.estilos
+            );
         }
         if (data.tarjetas && contenedorTarjetas1) {
             contenedorTarjetas1.innerHTML = "";
             data.tarjetas.forEach(item => {
                 const tarjeta = document.createElement("div");
                 tarjeta.classList.add("tarjeta1");
+                const subtituloHTML = document.createElement("div");
+                subtituloHTML.classList.add("subtitulo1");
+                subtituloHTML.textContent =
+                    item.subtitulo?.texto || "Sin subtítulo";
+                aplicarEstilos(
+                    subtituloHTML,
+                    item.subtitulo?.estilos
+                );
                 tarjeta.innerHTML = `
                     <div class="imagen1">
                         ${
                             item.imagen
-                            ? `<img src="${item.imagen}" style="width:100%; height:100%; object-fit:cover;">`
+                            ? `
+                                <img 
+                                    src="${item.imagen}" 
+                                    style="
+                                        width:100%;
+                                        height:100%;
+                                        object-fit:cover;
+                                    "
+                                >
+                            `
                             : `<span>Imagen dinámica</span>`
                         }
                     </div>
-                    <div class="subtitulo1">
-                        ${item.subtitulo || "Sin subtítulo"}
-                    </div>
                 `;
+                tarjeta.appendChild(subtituloHTML);
                 contenedorTarjetas1.appendChild(tarjeta);
             });
         }
@@ -858,20 +889,47 @@ function cambiarImagenTexto3(texto) {
 cambiarTituloContenido3("Producto destacado"); 
 cambiarImagenTexto3("Nueva imagen dinámica");
 window.addEventListener("DOMContentLoaded", () => {
-    const keys = Object.keys(localStorage).filter(k => k.startsWith("contenido3_"));
+    function aplicarEstilos(el, estilos) {
+        if (!estilos) return;
+        el.style.fontSize = estilos.fontSize || "";
+        el.style.textAlign = estilos.textAlign || "";
+        el.style.fontFamily = estilos.fontFamily || "";
+        el.style.fontWeight = estilos.fontWeight || "";
+        el.style.fontStyle = estilos.fontStyle || "";
+        el.style.textDecoration = estilos.textDecoration || "";
+    }
+    const keys = Object.keys(localStorage)
+        .filter(k => k.startsWith("contenido3_"));
     keys.forEach(key => {
         const data = JSON.parse(localStorage.getItem(key));
         if (!data) return;
         if (tituloContenido3 && data.titulo) {
-            cambiarTituloContenido3(data.titulo);
+            cambiarTituloContenido3(
+                data.titulo.texto || ""
+            );
+            aplicarEstilos(
+                tituloContenido3,
+                data.titulo.estilos
+            );
         }
-        const contenedorImagen = document.querySelector(".imagen3");
+        const contenedorImagen =
+            document.querySelector(".imagen3");
         if (contenedorImagen && data.imagen) {
             contenedorImagen.innerHTML = `
-                <img src="${data.imagen}" style="width:100%; height:100%; object-fit:cover;">
+                <img 
+                    src="${data.imagen}" 
+                    style="
+                        width:100%;
+                        height:100%;
+                        object-fit:cover;
+                    "
+                >
             `;
-        } else if (contenedorImagen) {
-            cambiarImagenTexto3("Sin imagen disponible");
+        }
+        else if (contenedorImagen) {
+            cambiarImagenTexto3(
+                "Sin imagen disponible"
+            );
         }
     });
 });
@@ -965,12 +1023,29 @@ document.addEventListener("DOMContentLoaded", () => {
 //----------------------------------------//
 const contenedor8 = document.getElementById("contenido8");
 const imagenes8 = document.querySelectorAll(".imagen8");
+function aplicarEstilos(el, estilos) {
+    if (!estilos) return;
+    el.style.fontSize = estilos.fontSize || "";
+    el.style.textAlign = estilos.textAlign || "";
+    el.style.fontFamily = estilos.fontFamily || "";
+    el.style.fontWeight = estilos.fontWeight || "";
+    el.style.fontStyle = estilos.fontStyle || "";
+    el.style.textDecoration = estilos.textDecoration || "";
+}
 function cargarContenido8() {
-    const data = JSON.parse(localStorage.getItem("contenido8_principal"));
+    const data = JSON.parse(
+        localStorage.getItem("contenido8_principal")
+    );
     if (!data) return;
-    const titulo = document.getElementById("tituloContenido8");
-    if (titulo) {
-        titulo.textContent = data.titulo;
+    const titulo =
+        document.getElementById("tituloContenido8");
+    if (titulo && data.titulo) {
+        titulo.textContent =
+            data.titulo.texto || "";
+        aplicarEstilos(
+            titulo,
+            data.titulo.estilos
+        );
     }
     const imagenes = [
         document.getElementById("img8_1"),
@@ -984,14 +1059,24 @@ function cargarContenido8() {
     data.imagenes.forEach((src, i) => {
         if (imagenes[i] && src) {
             imagenes[i].innerHTML = `
-                <img src="${src}" style="width:100%; height:100%; object-fit:cover;">
+                <img 
+                    src="${src}" 
+                    style="
+                        width:100%;
+                        height:100%;
+                        object-fit:cover;
+                    "
+                >
             `;
         }
     });
 }
 imagenes8.forEach((img, index) => {
     img.addEventListener("click", () => {
-        alert("Hiciste click en la imagen " + (index + 1));
+        alert(
+            "Hiciste click en la imagen " +
+            (index + 1)
+        );
     });
 });
 document.addEventListener("DOMContentLoaded", () => {
@@ -1004,34 +1089,80 @@ const contenedor9 = document.getElementById("contenido9");
 const imagenPrincipal9 = document.querySelector(".contenido9-imagen-principal");
 const imagenes9 = document.querySelectorAll(".imagen9");
 const subtitulos9 = document.querySelectorAll(".subtitulo9");
+function aplicarEstilos(el, estilos) {
+    if (!estilos) return;
+    el.style.fontSize =
+        estilos.fontSize || "";
+    el.style.textAlign =
+        estilos.textAlign || "";
+    el.style.fontFamily =
+        estilos.fontFamily || "";
+    el.style.fontWeight =
+        estilos.fontWeight || "";
+    el.style.fontStyle =
+        estilos.fontStyle || "";
+    el.style.textDecoration =
+        estilos.textDecoration || "";
+}
 function cargarContenido9() {
-    const data = JSON.parse(localStorage.getItem("contenido9_principal"));
+    const data = JSON.parse(
+        localStorage.getItem(
+            "contenido9_principal"
+        )
+    );
     if (!data) return;
     const titulo = document.querySelector(".titulo-9");
-    if (titulo) {
-        titulo.textContent = data.titulo;
+    if (titulo && data.titulo) {
+        titulo.textContent =
+            data.titulo.texto || "";
+        aplicarEstilos(
+            titulo,
+            data.titulo.estilos
+        );
     }
     if (data.principal) {
         imagenPrincipal9.innerHTML = `
-            <img src="${data.principal}" style="width:100%; height:100%; object-fit:cover;">
+            <img 
+                src="${data.principal}" 
+                style="
+                    width:100%;
+                    height:100%;
+                    object-fit:cover;
+                "
+            >
         `;
     }
     data.imagenes.forEach((src, i) => {
         if (imagenes9[i] && src) {
             imagenes9[i].innerHTML = `
-                <img src="${src}" style="width:100%; height:100%; object-fit:cover;">
+                <img 
+                    src="${src}" 
+                    style="
+                        width:100%;
+                        height:100%;
+                        object-fit:cover;
+                    "
+                >
             `;
         }
     });
-    data.subtitulos.forEach((txt, i) => {
+    data.subtitulos.forEach((item, i) => {
         if (subtitulos9[i]) {
-            subtitulos9[i].textContent = txt;
+            subtitulos9[i].textContent =
+                item.texto || "";
+            aplicarEstilos(
+                subtitulos9[i],
+                item.estilos
+            );
         }
     });
 }
 imagenes9.forEach((img, index) => {
     img.addEventListener("click", () => {
-        alert("Click en imagen secundaria " + (index + 1));
+        alert(
+            "Click en imagen secundaria " +
+            (index + 1)
+        );
     });
 });
 imagenPrincipal9.addEventListener("click", () => {
@@ -1050,20 +1181,46 @@ if (tituloContenido10) {
     });
 }
 for (let i = 1; i <= 6; i++) {
-    const card = document.getElementById("card" + i + "10");
+    const card = document.getElementById(
+        "card" + i + "10"
+    );
     if (card) {
         card.addEventListener("click", () => { 
-            alert("Hiciste click en la card " + i);
+            alert(
+                "Hiciste click en la card " + i
+            );
         });
     }
 }
+function aplicarEstilos(el, estilos) {
+    if (!estilos) return;
+    el.style.fontSize = estilos.fontSize || "";
+    el.style.textAlign = estilos.textAlign || "";
+    el.style.fontFamily = estilos.fontFamily || "";
+    el.style.fontWeight = estilos.fontWeight || "";
+    el.style.fontStyle = estilos.fontStyle || "";
+    el.style.textDecoration =
+        estilos.textDecoration || "";
+}
 function cargarContenido10() {
-    const destino = localStorage.getItem("destino5_valor") || "default";
-    const data = JSON.parse(localStorage.getItem(`contenido10_${destino}`));
+    const destino =
+        localStorage.getItem("destino5_valor")
+        || "default";
+    const data = JSON.parse(
+        localStorage.getItem(
+            `contenido10_${destino}`
+        )
+    );
     if (!data) return;
-    const titulo = document.getElementById("titulo10");
+    const titulo =
+        document.getElementById("titulo10");
     if (titulo && data.titulo) {
-        titulo.textContent = data.titulo;
+        titulo.textContent =
+            data.titulo.texto || "";
+        aplicarEstilos(
+            titulo,
+            data.titulo.estilos
+        );
     }
     const cards = [
         "card110","card210","card310",
@@ -1071,11 +1228,19 @@ function cargarContenido10() {
     ];
     if (data.imagenes) {
         data.imagenes.forEach((src, i) => {
-            const card = document.getElementById(cards[i]);
+            const card =
+                document.getElementById(cards[i]);
             if (card && src) {
                 card.innerHTML = `
                     <div class="imagen1010">
-                        <img src="${src}" style="width:100%; height:100%; object-fit:cover;">
+                        <img 
+                            src="${src}" 
+                            style="
+                                width:100%;
+                                height:100%;
+                                object-fit:cover;
+                            "
+                        >
                     </div>
                 `;
             }
@@ -1087,16 +1252,27 @@ function cargarContenido10() {
     ];
     if (data.subtitulos) {
         data.subtitulos.forEach((txt, i) => {
-            const sub = document.getElementById(subtitulos[i]);
+            const sub =
+                document.getElementById(
+                    subtitulos[i]
+                );
             if (sub) {
-                sub.textContent = txt;
+                sub.textContent =
+                    txt.texto || "";
+                aplicarEstilos(
+                    sub,
+                    txt.estilos
+                );
             }
         });
     }
 }
-document.addEventListener("DOMContentLoaded", () => {
-    cargarContenido10();
-});
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+        cargarContenido10();
+    }
+);
 //-----------------------------------------//
 //--|funcionalidad_contenido_11_dinamica|--//
 //-----------------------------------------//
