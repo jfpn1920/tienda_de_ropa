@@ -21,6 +21,8 @@ const preview = document.getElementById("preview");
 const placeholder = document.getElementById("placeholder");
 let tiendas = JSON.parse(localStorage.getItem("tiendas")) || [];
 const lista = document.getElementById("contenedor-sitios");
+document.getElementById("nombre").addEventListener("input", guardarFormulario);
+document.getElementById("pestanas").addEventListener("change", guardarFormulario);
 uploadBox.addEventListener("click", () => {
     inputFile.click();
 });
@@ -32,14 +34,34 @@ inputFile.addEventListener("change", () => {
             preview.src = e.target.result;
             preview.style.display = "block";
             placeholder.style.display = "none";
+            guardarFormulario();
         };
         reader.readAsDataURL(file);
     }
 });
+function guardarFormulario() {
+    const datosFormulario = {
+        nombre: document.getElementById("nombre").value,
+        pestanas: document.getElementById("pestanas").value,
+        imagen: preview.style.display === "block" ? preview.src : ""
+    };
+    localStorage.setItem("formularioTienda", JSON.stringify(datosFormulario));
+}
+function cargarFormulario() {
+    const datos = JSON.parse(localStorage.getItem("formularioTienda"));
+    if (!datos) return;
+    document.getElementById("nombre").value = datos.nombre || "";
+    document.getElementById("pestanas").value = datos.pestanas || "0";
+    if (datos.imagen) {
+        preview.src = datos.imagen;
+        preview.style.display = "block";
+        placeholder.style.display = "none";
+    }
+}
 document.getElementById("crear").addEventListener("click", () => {
     const nombre = document.getElementById("nombre").value.trim();
     const pestanas = document.getElementById("pestanas").value;
-    const imagen = preview.src;
+    const imagen = preview.style.display === "block" ? preview.src : "";
     if (nombre === "" || pestanas === "0") {
         alert("Completa todos los campos para crear la tienda.");
         return;
@@ -53,9 +75,15 @@ document.getElementById("crear").addEventListener("click", () => {
     tiendas.push(nuevaTienda);
     localStorage.setItem("tiendas", JSON.stringify(tiendas));
     alert(`Has creado la tienda "${nombre}" con éxito.`);
+    document.getElementById("nombre").value = "";
+    document.getElementById("pestanas").value = "0";
+    preview.style.display = "none";
+    placeholder.style.display = "block";
+    localStorage.removeItem("formularioTienda");
     renderTiendas();
 });
 function renderTiendas() {
+    if (!lista) return;
     lista.innerHTML = "";
     tiendas.forEach(tienda => {
         const card = document.createElement("div");
@@ -89,6 +117,10 @@ function editarTienda(id) {
     const tienda = tiendas.find(t => t.id === id);
     alert("Editar: " + tienda.nombre);
 }
+document.addEventListener("DOMContentLoaded", () => {
+    renderTiendas();
+    cargarFormulario();
+});
 //----------------------------------------------------//
 //--|funcionalidad_formulario_de_menu_de_navegacion|--//
 //----------------------------------------------------//
@@ -107,6 +139,7 @@ inputMenu2.addEventListener("change", () => {
             previewMenu2.src = imagenBase64;
             previewMenu2.style.display = "block";
             placeholderMenu2.style.display = "none";
+            guardarAutomatico(); 
         };
         reader.readAsDataURL(file);
     }
@@ -115,6 +148,10 @@ const btnAdd2 = document.getElementById("addOption2");
 const inputOption2 = document.getElementById("opcionInput2");
 const lista2 = document.getElementById("listaOpciones2");
 let opciones2 = [];
+document.getElementById("nombreMenu2").addEventListener("input", guardarAutomatico);
+["busqueda2", "perfil2", "notificaciones2", "carrito2"].forEach(id => {
+    document.getElementById(id).addEventListener("change", guardarAutomatico);
+});
 btnAdd2.addEventListener("click", () => {
     const valor = inputOption2.value.trim();
     if (!valor) return;
@@ -130,6 +167,7 @@ btnAdd2.addEventListener("click", () => {
     });
     inputOption2.value = "";
     renderLista2();
+    guardarAutomatico();
 });
 function renderLista2() {
     lista2.innerHTML = "";
@@ -150,6 +188,60 @@ function renderLista2() {
 function eliminar2(index) {
     opciones2.splice(index, 1);
     renderLista2();
+    guardarAutomatico();
+}
+function guardarAutomatico() {
+    const nombre = document.getElementById("nombreMenu2").value;
+    const menuData = {
+        nombre,
+        opciones: opciones2,
+        logo: imagenBase64,
+        elementos: {
+            busqueda: document.getElementById("busqueda2").checked,
+            perfil: document.getElementById("perfil2").checked,
+            notificaciones: document.getElementById("notificaciones2").checked,
+            carrito: document.getElementById("carrito2").checked
+        }
+    };
+    localStorage.setItem("menuNavegacion", JSON.stringify(menuData));
+}
+function guardarSelectDestino() {
+    const select = document.getElementById("destino5");
+    if (!select) return;
+    localStorage.setItem("destino5_opciones", select.innerHTML);
+    localStorage.setItem("destino5_valor", select.value);
+}
+document.addEventListener("DOMContentLoaded", () => {
+    const dataGuardada = localStorage.getItem("menuNavegacion");
+    if (dataGuardada) {
+        const menuData = JSON.parse(dataGuardada);
+        document.getElementById("nombreMenu2").value = menuData.nombre;
+        document.getElementById("busqueda2").checked = menuData.elementos.busqueda;
+        document.getElementById("perfil2").checked = menuData.elementos.perfil;
+        document.getElementById("notificaciones2").checked = menuData.elementos.notificaciones;
+        document.getElementById("carrito2").checked = menuData.elementos.carrito;
+        if (menuData.logo) {
+            imagenBase64 = menuData.logo;
+            previewMenu2.src = imagenBase64;
+            previewMenu2.style.display = "block";
+            placeholderMenu2.style.display = "none";
+        }
+        opciones2 = menuData.opciones || [];
+        renderLista2();
+    }
+    const select = document.getElementById("destino5");
+    const opcionesGuardadas = localStorage.getItem("destino5_opciones");
+    const valorGuardado = localStorage.getItem("destino5_valor");
+    if (select && opcionesGuardadas) {
+        select.innerHTML = opcionesGuardadas;
+    }
+    if (select && valorGuardado) {
+        select.value = valorGuardado;
+    }
+});
+const selectDestinoListener = document.getElementById("destino5");
+if (selectDestinoListener) {
+    selectDestinoListener.addEventListener("change", guardarSelectDestino);
 }
 document.getElementById("crearMenu2").addEventListener("click", () => {
     const nombre = document.getElementById("nombreMenu2").value;
@@ -174,6 +266,17 @@ document.getElementById("crearMenu2").addEventListener("click", () => {
     };
     console.log(menuData);
     localStorage.setItem("menuNavegacion", JSON.stringify(menuData));
+    const selectDestino = document.getElementById("destino5");
+    if (selectDestino) {
+        selectDestino.innerHTML = `<option>Ningun destino</option>`;
+        menuData.opciones.forEach(op => {
+            const option = document.createElement("option");
+            option.value = op.clave;
+            option.textContent = op.nombre;
+            selectDestino.appendChild(option);
+        });
+        guardarSelectDestino();
+    }
     alert("Menú guardado correctamente ✅");
 });
 //-------------------------------------------//
@@ -231,6 +334,7 @@ document.getElementById("crearCarrusel3").addEventListener("click", () => {
                     tiempo
                 };
                 localStorage.setItem("carruselData", JSON.stringify(datosCarrusel));
+                guardarCarrusel(); 
                 console.log("Datos guardados:", datosCarrusel);
                 alert("Carrusel guardado correctamente.");
                 input3.value = "";
@@ -240,6 +344,39 @@ document.getElementById("crearCarrusel3").addEventListener("click", () => {
         };
         reader.readAsDataURL(file);
     });
+});
+["controladores3", "indicadores3", "automatico3", "tiempo3"].forEach(id => {
+    document.getElementById(id).addEventListener("change", guardarCarrusel);
+});
+function guardarCarrusel() {
+    const imagenes = Array.from(previewContainer3.querySelectorAll("img"))
+        .map(img => img.src);
+    const datosCarrusel = {
+        imagenes,
+        controladores: document.getElementById("controladores3").checked,
+        indicadores: document.getElementById("indicadores3").checked,
+        automatico: document.getElementById("automatico3").checked,
+        tiempo: document.getElementById("tiempo3").value
+    };
+    localStorage.setItem("carruselData", JSON.stringify(datosCarrusel));
+}
+function cargarCarrusel() {
+    const data = JSON.parse(localStorage.getItem("carruselData"));
+    if (!data) return;
+    previewContainer3.innerHTML = "";
+    placeholder3.style.display = "none";
+    data.imagenes.forEach(src => {
+        const img = document.createElement("img");
+        img.src = src;
+        previewContainer3.appendChild(img);
+    });
+    document.getElementById("controladores3").checked = data.controladores;
+    document.getElementById("indicadores3").checked = data.indicadores;
+    document.getElementById("automatico3").checked = data.automatico;
+    document.getElementById("tiempo3").value = data.tiempo;
+}
+document.addEventListener("DOMContentLoaded", () => {
+    cargarCarrusel();
 });
 //-----------------------------------------//
 //--|funcionalidad_formulario_de_chatbot|--//
@@ -362,19 +499,20 @@ input8.addEventListener("change", () => {
             preview8.src = e.target.result;
             preview8.style.display = "block";
             placeholder8.style.display = "none";
+            guardarFooter();
         };
         reader.readAsDataURL(file);
     }
 });
 const listaSubtitulos8 = document.getElementById("listaSubtitulos8");
 const mensajeSubtitulos8 = document.getElementById("mensajeSubtitulos8");
+const listaOpciones8 = document.getElementById("listaOpciones8");
+const mensajeOpciones8 = document.getElementById("mensajeOpciones8");
 document.getElementById("addSubtitulo8").addEventListener("click", () => {
     const input = document.getElementById("subtitulo8");
     const valor = input.value.trim();
     if (!valor) return;
-    if (mensajeSubtitulos8) {
-        mensajeSubtitulos8.style.display = "none";
-    }
+    mensajeSubtitulos8.style.display = "none";
     const item = document.createElement("div");
     item.classList.add("subtitulo-item8");
     const texto = document.createElement("span");
@@ -386,25 +524,21 @@ document.getElementById("addSubtitulo8").addEventListener("click", () => {
     btnEliminar.addEventListener("click", () => {
         item.remove();
         if (listaSubtitulos8.querySelectorAll(".subtitulo-item8").length === 0) {
-            if (mensajeSubtitulos8) {
-                mensajeSubtitulos8.style.display = "block";
-            }
+            mensajeSubtitulos8.style.display = "block";
         }
+        guardarFooter();
     });
     item.appendChild(texto);
     item.appendChild(btnEliminar);
     listaSubtitulos8.appendChild(item);
     input.value = "";
+    guardarFooter();
 });
-const listaOpciones8 = document.getElementById("listaOpciones8");
-const mensajeOpciones8 = document.getElementById("mensajeOpciones8");
 document.getElementById("addOpcion8").addEventListener("click", () => {
     const input = document.getElementById("opcion8");
     const valor = input.value.trim();
     if (!valor) return;
-    if (mensajeOpciones8) {
-        mensajeOpciones8.style.display = "none";
-    }
+    mensajeOpciones8.style.display = "none";
     const item = document.createElement("div");
     item.classList.add("opcion-item8");
     const texto = document.createElement("span");
@@ -416,24 +550,24 @@ document.getElementById("addOpcion8").addEventListener("click", () => {
     btnEliminar.addEventListener("click", () => {
         item.remove();
         if (listaOpciones8.querySelectorAll(".opcion-item8").length === 0) {
-            if (mensajeOpciones8) {
-                mensajeOpciones8.style.display = "block";
-            }
+            mensajeOpciones8.style.display = "block";
         }
+        guardarFooter();
     });
     item.appendChild(texto);
     item.appendChild(btnEliminar);
     listaOpciones8.appendChild(item);
     input.value = "";
+    guardarFooter();
 });
-document.getElementById("crearFooter8").addEventListener("click", () => {
+function guardarFooter() {
     const titulo = document.getElementById("titulo8").value;
     const marca = document.getElementById("marca8").value;
     const subtitulos = [...listaSubtitulos8.querySelectorAll(".subtitulo-texto8")]
         .map(el => el.textContent);
     const opciones = [...listaOpciones8.querySelectorAll(".opcion-texto8")]
         .map(el => el.textContent);
-    const imagen = preview8.src || "";
+    const imagen = preview8.style.display === "block" ? preview8.src : "";
     const data = {
         titulo,
         subtitulos,
@@ -442,7 +576,64 @@ document.getElementById("crearFooter8").addEventListener("click", () => {
         imagen
     };
     localStorage.setItem("footerData", JSON.stringify(data));
-    console.log("Footer guardado:", data);
+}
+document.getElementById("titulo8").addEventListener("input", guardarFooter);
+document.getElementById("marca8").addEventListener("input", guardarFooter);
+function cargarFooter() {
+    const data = JSON.parse(localStorage.getItem("footerData"));
+    if (!data) return;
+    document.getElementById("titulo8").value = data.titulo || "";
+    document.getElementById("marca8").value = data.marca || "";
+    if (data.imagen) {
+        preview8.src = data.imagen;
+        preview8.style.display = "block";
+        placeholder8.style.display = "none";
+    }
+    listaSubtitulos8.innerHTML = "";
+    if (data.subtitulos.length === 0) {
+        mensajeSubtitulos8.style.display = "block";
+    } else {
+        mensajeSubtitulos8.style.display = "none";
+        data.subtitulos.forEach(texto => {
+            const item = document.createElement("div");
+            item.classList.add("subtitulo-item8");
+            item.innerHTML = `
+                <span class="subtitulo-texto8">${texto}</span>
+                <button class="subtitulo-eliminar8">x</button>
+            `;
+            item.querySelector("button").addEventListener("click", () => {
+                item.remove();
+                guardarFooter();
+            });
+            listaSubtitulos8.appendChild(item);
+        });
+    }
+    listaOpciones8.innerHTML = "";
+    if (data.opciones.length === 0) {
+        mensajeOpciones8.style.display = "block";
+    } else {
+        mensajeOpciones8.style.display = "none";
+        data.opciones.forEach(texto => {
+            const item = document.createElement("div");
+            item.classList.add("opcion-item8");
+            item.innerHTML = `
+                <span class="opcion-texto8">${texto}</span>
+                <button class="opcion-eliminar8">x</button>
+            `;
+            item.querySelector("button").addEventListener("click", () => {
+                item.remove();
+                guardarFooter();
+            });
+            listaOpciones8.appendChild(item);
+        });
+    }
+}
+document.addEventListener("DOMContentLoaded", () => {
+    cargarFooter();
+});
+document.getElementById("crearFooter8").addEventListener("click", () => {
+    guardarFooter();
+    console.log("Footer guardado:", JSON.parse(localStorage.getItem("footerData")));
     alert("Pie de página creado correctamente");
 });
 //-------------------------------------------//
@@ -451,6 +642,48 @@ document.getElementById("crearFooter8").addEventListener("click", () => {
 const editor5 = document.getElementById("editor5");
 let empty5 = editor5.querySelector(".empty5");
 let elementoActivo = null;
+function guardarSelectDestino() {
+    const select = document.getElementById("destino5");
+    localStorage.setItem("destino5_opciones", select.innerHTML);
+    localStorage.setItem("destino5_valor", select.value);
+}
+function agregarOpcionDestino(texto) {
+    const select = document.getElementById("destino5");
+    const option = document.createElement("option");
+    option.textContent = texto;
+    select.appendChild(option);
+}
+function guardarEditor() {
+    localStorage.setItem("contenidoEditor5", editor5.innerHTML);
+}
+let timeout;
+function guardarEditorDebounce() {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+        guardarEditor();
+    }, 500);
+}
+document.addEventListener("DOMContentLoaded", () => {
+    const data = localStorage.getItem("contenidoEditor5");
+    if (data) {
+        editor5.innerHTML = data;
+    }
+    const select = document.getElementById("destino5");
+    const opcionesGuardadas = localStorage.getItem("destino5_opciones");
+    const valorGuardado = localStorage.getItem("destino5_valor");
+    if (opcionesGuardadas && opcionesGuardadas.trim() !== "") {
+        select.innerHTML = opcionesGuardadas;
+    }
+    if (valorGuardado) {
+        select.value = valorGuardado;
+    }
+});
+document.getElementById("destino5").addEventListener("change", () => {
+    guardarSelectDestino();
+});
+//-------------------------------//
+//--|deteccion_elemento_activo|--//
+//-------------------------------//
 editor5.addEventListener("focusin", (e) => {
     if (e.target.matches("input, textarea")) {
         elementoActivo = e.target;
@@ -463,6 +696,10 @@ editor5.addEventListener("input", () => {
     } else {
         if (empty5) empty5.style.display = "none";
     }
+    guardarEditorDebounce();
+});
+editor5.addEventListener("click", () => {
+    setTimeout(guardarEditor, 100);
 });
 //----------------------//
 //--|cambiar_posicion|--//
@@ -486,6 +723,7 @@ document.getElementById("posicion5").addEventListener("change", (e) => {
         default:
             elementoActivo.style.textAlign = "left";
     }
+    guardarEditor();
 });
 //-------------------//
 //--|tipo_de_texto|--//
@@ -506,10 +744,8 @@ document.getElementById("tipo5").addEventListener("change", (e) => {
             elementoActivo.style.fontSize = "14px";
             elementoActivo.style.fontWeight = "normal";
             break;
-        default:
-            elementoActivo.style.fontSize = "";
-            elementoActivo.style.fontWeight = "";
     }
+    guardarEditor();
 });
 //-----------------------//
 //--|formato_del_texto|--//
@@ -1042,6 +1278,7 @@ document.getElementById("contenido5").addEventListener("change", (e) => {
     if (empty5) {
         empty5.style.display = editor5.innerText.trim() === "" ? "block" : "none";
     }
+    guardarEditor();
 });
 //--------------------------------//
 //--|sistema_global_de_imagenes|--//
@@ -1059,6 +1296,7 @@ function activarSelectorImagen(contenedor) {
                 contenedor.innerHTML = `
                     <img src="${event.target.result}" class="img-preview">
                 `;
+                guardarEditor();
             };
             reader.readAsDataURL(file);
         }
@@ -1171,7 +1409,120 @@ document.getElementById("crearContenido5").addEventListener("click", () => {
         alert("Ningún dato agregado en contenido.");
         return;
     }
-    alert("Se ha creado el contenido correctamente.");
+    //----------------------//
+    //--|sistema_de_envio|--//
+    //----------------------//
+    const contenido = document.getElementById("contenido5").value;
+    const destino = document.getElementById("destino5").value;
+    const tituloInput = editor.querySelector(".titulo-input");
+    const titulo = tituloInput ? tituloInput.value : "";
+    //----------------------------------//
+    //--|enviando_datos_a_contenido_1|--//
+    //----------------------------------//
+    if (contenido === "contenido 1") {
+        const subtitulos = Array.from(editor.querySelectorAll(".subtitulo"))
+            .map(el => el.value || "");
+        const imagenesData = Array.from(editor.querySelectorAll(".imagen img"))
+            .map(img => img.src || "");
+        const data = {
+            destino,
+            titulo,
+            tarjetas: [
+                { imagen: imagenesData[0] || "", subtitulo: subtitulos[0] || "" },
+                { imagen: imagenesData[1] || "", subtitulo: subtitulos[1] || "" },
+                { imagen: imagenesData[2] || "", subtitulo: subtitulos[2] || "" }
+            ]
+        };
+        localStorage.setItem(`contenido1_${destino}`, JSON.stringify(data));
+        alert("Contenido 1 enviado correctamente");
+    }
+    //----------------------------------//
+    //--|enviando_datos_a_contenido_3|--//
+    //----------------------------------//
+    if (contenido === "contenido 3") {
+        const imgElement = editor.querySelector(".contenido3-imagen img");
+        const imagen = imgElement ? imgElement.src : "";
+        const data = {
+            destino,
+            titulo,
+            imagen
+        };
+        localStorage.setItem(`contenido3_${destino}`, JSON.stringify(data));
+        alert("Contenido 3 enviado correctamente");
+    }
+    //----------------------------------//
+    //--|enviando_datos_a_contenido_8|--//
+    //----------------------------------//
+    if (contenido === "contenido 8") {
+        const tituloInput = editor.querySelector(".titulo-input");
+        const titulo = tituloInput ? tituloInput.value : "";
+        const imagenesData = Array.from(editor.querySelectorAll(".imagen8 img"))
+            .map(img => img.src || "");
+        const data = {
+            destino,
+            titulo,
+            imagenes: [
+                imagenesData[0] || "",
+                imagenesData[1] || "",
+                imagenesData[2] || "",
+                imagenesData[3] || "",
+                imagenesData[4] || "",
+                imagenesData[5] || "",
+                imagenesData[6] || ""
+            ]
+        };
+        localStorage.setItem("contenido8_principal", JSON.stringify(data));
+        alert("Contenido 8 enviado correctamente");
+    }
+    //----------------------------------//
+    //--|enviando_datos_a_contenido_9|--//
+    //----------------------------------//
+    if (contenido === "contenido 9") {
+        const tituloInput = editor.querySelector(".titulo-input");
+        const titulo = tituloInput ? tituloInput.value : "";
+        const principalImg = editor.querySelector(".contenido9-imagen-principal img");
+        const principal = principalImg ? principalImg.src : "";
+        const imagenes = Array.from(editor.querySelectorAll(".imagen9 img"))
+            .map(img => img.src || "");
+        const subtitulos = Array.from(editor.querySelectorAll(".subtitulo9"))
+            .map(el => el.value || "");
+        const data = {
+            destino,
+            titulo,
+            principal,
+            imagenes: [
+                imagenes[0] || "",
+                imagenes[1] || "",
+                imagenes[2] || ""
+            ],
+            subtitulos: [
+                subtitulos[0] || "",
+                subtitulos[1] || "",
+                subtitulos[2] || ""
+            ]
+        };
+        localStorage.setItem("contenido9_principal", JSON.stringify(data));
+        alert("Contenido 9 enviado correctamente");
+    }
+    //-----------------------------------//
+    //--|enviando_datos_a_contenido_10|--//
+    //-----------------------------------//
+    if (contenido === "contenido 10") {
+        const tituloInput = editor.querySelector(".titulo-input");
+        const titulo = tituloInput ? tituloInput.value : "";
+        const imagenes = Array.from(editor.querySelectorAll(".imagen10 img"))
+            .map(img => img.src || "");
+        const subtitulos = Array.from(editor.querySelectorAll(".subtitulo10"))
+            .map(el => el.value || "");
+        const data = {
+            destino,
+            titulo,
+            imagenes: imagenes.slice(0, 6),
+            subtitulos: subtitulos.slice(0, 6)
+        };
+        localStorage.setItem(`contenido10_${destino}`, JSON.stringify(data));
+        alert("Contenido 10 enviado correctamente");
+    }
 });
 //------------------------------------------//
 //--|funcionalidad_versiones_de_la_tienda|--//

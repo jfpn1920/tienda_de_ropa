@@ -768,6 +768,36 @@ function crearTarjeta1(texto) {
     contenedorTarjetas1.appendChild(tarjeta);
 }
 cambiarTituloContenido1("Productos destacados");
+window.addEventListener("DOMContentLoaded", () => {
+    const keys = Object.keys(localStorage).filter(k => k.startsWith("contenido1_"));
+    keys.forEach(key => {
+        const data = JSON.parse(localStorage.getItem(key));
+        if (!data) return;
+        if (data.titulo && tituloContenido1) {
+            cambiarTituloContenido1(data.titulo);
+        }
+        if (data.tarjetas && contenedorTarjetas1) {
+            contenedorTarjetas1.innerHTML = "";
+            data.tarjetas.forEach(item => {
+                const tarjeta = document.createElement("div");
+                tarjeta.classList.add("tarjeta1");
+                tarjeta.innerHTML = `
+                    <div class="imagen1">
+                        ${
+                            item.imagen
+                            ? `<img src="${item.imagen}" style="width:100%; height:100%; object-fit:cover;">`
+                            : `<span>Imagen dinámica</span>`
+                        }
+                    </div>
+                    <div class="subtitulo1">
+                        ${item.subtitulo || "Sin subtítulo"}
+                    </div>
+                `;
+                contenedorTarjetas1.appendChild(tarjeta);
+            });
+        }
+    });
+});
 //----------------------------------------//
 //--|funcionalidad_contenido_2_dinamica|--//
 //----------------------------------------//
@@ -827,6 +857,24 @@ function cambiarImagenTexto3(texto) {
 }
 cambiarTituloContenido3("Producto destacado"); 
 cambiarImagenTexto3("Nueva imagen dinámica");
+window.addEventListener("DOMContentLoaded", () => {
+    const keys = Object.keys(localStorage).filter(k => k.startsWith("contenido3_"));
+    keys.forEach(key => {
+        const data = JSON.parse(localStorage.getItem(key));
+        if (!data) return;
+        if (tituloContenido3 && data.titulo) {
+            cambiarTituloContenido3(data.titulo);
+        }
+        const contenedorImagen = document.querySelector(".imagen3");
+        if (contenedorImagen && data.imagen) {
+            contenedorImagen.innerHTML = `
+                <img src="${data.imagen}" style="width:100%; height:100%; object-fit:cover;">
+            `;
+        } else if (contenedorImagen) {
+            cambiarImagenTexto3("Sin imagen disponible");
+        }
+    });
+});
 //----------------------------------------//
 //--|funcionalidad_contenido_4_dinamica|--//
 //----------------------------------------//
@@ -917,17 +965,28 @@ document.addEventListener("DOMContentLoaded", () => {
 //----------------------------------------//
 const contenedor8 = document.getElementById("contenido8");
 const imagenes8 = document.querySelectorAll(".imagen8");
-function cambiarTextoImagen8(index, texto) {
-    if (imagenes8[index]) {
-        imagenes8[index].innerHTML = `
-            <i class="fas fa-image"></i>
-            <p>${texto}</p>
-        `;
+function cargarContenido8() {
+    const data = JSON.parse(localStorage.getItem("contenido8_principal"));
+    if (!data) return;
+    const titulo = document.getElementById("tituloContenido8");
+    if (titulo) {
+        titulo.textContent = data.titulo;
     }
-}
-function cargarContenido8(datos) {
-    datos.forEach((texto, i) => {
-        cambiarTextoImagen8(i, texto);
+    const imagenes = [
+        document.getElementById("img8_1"),
+        document.getElementById("img8_2"),
+        document.getElementById("img8_3"),
+        document.getElementById("img8_4"),
+        document.getElementById("img8_5"),
+        document.getElementById("img8_6"),
+        document.getElementById("img8_7")
+    ];
+    data.imagenes.forEach((src, i) => {
+        if (imagenes[i] && src) {
+            imagenes[i].innerHTML = `
+                <img src="${src}" style="width:100%; height:100%; object-fit:cover;">
+            `;
+        }
     });
 }
 imagenes8.forEach((img, index) => {
@@ -935,15 +994,9 @@ imagenes8.forEach((img, index) => {
         alert("Hiciste click en la imagen " + (index + 1));
     });
 });
-cargarContenido8([
-    "Imagen 1 dinámica",
-    "Imagen 2 dinámica",
-    "Imagen 3 dinámica",
-    "Imagen 4 dinámica",
-    "Imagen 5 dinámica",
-    "Imagen 6 dinámica",
-    "Imagen 7 dinámica"
-]);
+document.addEventListener("DOMContentLoaded", () => {
+    cargarContenido8();
+});
 //----------------------------------------//
 //--|funcionalidad_contenido_9_dinamica|--//
 //----------------------------------------//
@@ -951,26 +1004,28 @@ const contenedor9 = document.getElementById("contenido9");
 const imagenPrincipal9 = document.querySelector(".contenido9-imagen-principal");
 const imagenes9 = document.querySelectorAll(".imagen9");
 const subtitulos9 = document.querySelectorAll(".subtitulo9");
-function cambiarImagenPrincipal9(texto) {
-    imagenPrincipal9.innerHTML = `
-        <i class="fas fa-image"></i>
-        <p>${texto}</p>
-    `;
-}
-function cambiarImagenes9(datos) {
-    datos.forEach((texto, i) => {
-        if (imagenes9[i]) {
+function cargarContenido9() {
+    const data = JSON.parse(localStorage.getItem("contenido9_principal"));
+    if (!data) return;
+    const titulo = document.querySelector(".titulo-9");
+    if (titulo) {
+        titulo.textContent = data.titulo;
+    }
+    if (data.principal) {
+        imagenPrincipal9.innerHTML = `
+            <img src="${data.principal}" style="width:100%; height:100%; object-fit:cover;">
+        `;
+    }
+    data.imagenes.forEach((src, i) => {
+        if (imagenes9[i] && src) {
             imagenes9[i].innerHTML = `
-                <i class="fas fa-image"></i>
-                <p>${texto}</p>
+                <img src="${src}" style="width:100%; height:100%; object-fit:cover;">
             `;
         }
     });
-}
-function cambiarSubtitulos9(datos) {
-    datos.forEach((texto, i) => {
+    data.subtitulos.forEach((txt, i) => {
         if (subtitulos9[i]) {
-            subtitulos9[i].textContent = texto;
+            subtitulos9[i].textContent = txt;
         }
     });
 }
@@ -982,39 +1037,66 @@ imagenes9.forEach((img, index) => {
 imagenPrincipal9.addEventListener("click", () => {
     alert("Click en imagen principal");
 });
-function cargarContenido9(data) {
-    if (!data) return;
-    cambiarImagenPrincipal9(data.principal);
-    cambiarImagenes9(data.imagenes);
-    cambiarSubtitulos9(data.subtitulos);
-}
-const dataEjemplo9 = {
-    principal: "Imagen principal dinámica",
-    imagenes: [
-        "Imagen 1",
-        "Imagen 2",
-        "Imagen 3"
-    ],
-    subtitulos: [
-        "Subtítulo 1",
-        "Subtítulo 2",
-        "Subtítulo 3"
-    ]
-};
-cargarContenido9(dataEjemplo9);
+document.addEventListener("DOMContentLoaded", () => {
+    cargarContenido9();
+});
 //-----------------------------------------//
 //--|funcionalidad_contenido_10_dinamica|--//
 //-----------------------------------------//
 const tituloContenido10 = document.getElementById("titulo10");
-tituloContenido10.addEventListener("input", () => { 
-    console.log("Título:", tituloContenido10.value);
-});
-for (let i = 1; i <= 6; i++) {
-    const card = document.getElementById("card" + i + "10");
-    card.addEventListener("click", () => { 
-        alert("Hiciste click en la card " + i);
+if (tituloContenido10) {
+    tituloContenido10.addEventListener("click", () => { 
+        alert("Título clickeado");
     });
 }
+for (let i = 1; i <= 6; i++) {
+    const card = document.getElementById("card" + i + "10");
+    if (card) {
+        card.addEventListener("click", () => { 
+            alert("Hiciste click en la card " + i);
+        });
+    }
+}
+function cargarContenido10() {
+    const destino = localStorage.getItem("destino5_valor") || "default";
+    const data = JSON.parse(localStorage.getItem(`contenido10_${destino}`));
+    if (!data) return;
+    const titulo = document.getElementById("titulo10");
+    if (titulo && data.titulo) {
+        titulo.textContent = data.titulo;
+    }
+    const cards = [
+        "card110","card210","card310",
+        "card410","card510","card610"
+    ];
+    if (data.imagenes) {
+        data.imagenes.forEach((src, i) => {
+            const card = document.getElementById(cards[i]);
+            if (card && src) {
+                card.innerHTML = `
+                    <div class="imagen1010">
+                        <img src="${src}" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                `;
+            }
+        });
+    }
+    const subtitulos = [
+        "sub110","sub210","sub310",
+        "sub410","sub510","sub610"
+    ];
+    if (data.subtitulos) {
+        data.subtitulos.forEach((txt, i) => {
+            const sub = document.getElementById(subtitulos[i]);
+            if (sub) {
+                sub.textContent = txt;
+            }
+        });
+    }
+}
+document.addEventListener("DOMContentLoaded", () => {
+    cargarContenido10();
+});
 //-----------------------------------------//
 //--|funcionalidad_contenido_11_dinamica|--//
 //-----------------------------------------//
