@@ -1472,6 +1472,165 @@ document.getElementById("crearContenido5").addEventListener("click", () => {
         alert("Contenido 1 enviado correctamente");
     }
     //----------------------------------//
+    //--|enviando_datos_a_contenido_2|--//
+    //----------------------------------//
+    if (contenido === "contenido 2") {
+        function obtenerEstilos(elemento) {
+            if (!elemento) {
+                return {};
+            }
+            return {
+                fontSize:
+                    elemento.style.fontSize || "",
+                textAlign:
+                    elemento.style.textAlign || "",
+                fontFamily:
+                    elemento.style.fontFamily || "",
+                fontWeight:
+                    elemento.style.fontWeight || "",
+                fontStyle:
+                    elemento.style.fontStyle || "",
+                textDecoration:
+                    elemento.style.textDecoration || ""
+            };
+        }
+        const tituloInput =
+            editor.querySelector(
+                ".titulo-input"
+            );
+        let tarjetas =
+            Array.from(
+                editor.querySelectorAll(
+                    ".tarjeta2"
+                )
+            );
+        if (tarjetas.length === 0) {
+            tarjetas =
+                Array.from(
+                    editor.querySelectorAll(
+                        "div"
+                    )
+                ).filter((elemento) => {
+                    const tieneImagen =
+                        elemento.querySelector(
+                            "img"
+                        );
+                    const tieneInput =
+                        elemento.querySelector(
+                            "input[type='text']"
+                        );
+                    const tieneTextarea =
+                        elemento.querySelector(
+                            "textarea"
+                        );
+                    return (
+                        tieneImagen &&
+                        tieneInput &&
+                        tieneTextarea
+                    );
+                });
+        }
+        console.log(
+            "Tarjetas reales:",
+            tarjetas
+        );
+        const tarjetasData = [];
+        tarjetas.forEach(
+            (tarjeta, index) => {
+                console.log(
+                    "Analizando tarjeta:",
+                    index + 1
+                );
+                const imagen =
+                    tarjeta.querySelector(
+                        "img"
+                    );
+                const subtitulo =
+                    tarjeta.querySelector(
+                        "input[type='text']"
+                    );
+                const descripcion =
+                    tarjeta.querySelector(
+                        "textarea"
+                    );
+                let imagenFinal = "";
+                if (
+                    imagen &&
+                    imagen.src &&
+                    !imagen.src.includes(
+                        "data:image/gif"
+                    )
+                ) {
+                    imagenFinal =
+                        imagen.src;
+                }
+                console.log(
+                    "Imagen:",
+                    imagenFinal
+                );
+                console.log(
+                    "Subtitulo:",
+                    subtitulo?.value
+                );
+                console.log(
+                    "Descripcion:",
+                    descripcion?.value
+                );
+                tarjetasData.push({
+                    imagen:
+                        imagenFinal,
+                    subtitulo: {
+                        texto:
+                            subtitulo?.value || "",
+                        estilos:
+                            obtenerEstilos(
+                                subtitulo
+                            )
+                    },
+                    descripcion: {
+                        texto:
+                            descripcion?.value || "",
+                        estilos:
+                            obtenerEstilos(
+                                descripcion
+                            )
+                    }
+                });
+            }
+        );
+        const data = {
+            destino,
+            titulo: {
+                texto:
+                    tituloInput?.value || "",
+                estilos:
+                    obtenerEstilos(
+                        tituloInput
+                    )
+            },
+            tarjetas:
+                tarjetasData
+        };
+        console.log(
+            "DATA FINAL:",
+            data
+        );
+        localStorage.setItem(
+            "contenido2_nosotros",
+            JSON.stringify(data)
+        );
+        console.log(
+            JSON.parse(
+                localStorage.getItem(
+                    "contenido2_nosotros"
+                )
+            )
+        );
+        alert(
+            "Contenido 2 enviado correctamente"
+        );
+    }
+    //----------------------------------//
     //--|enviando_datos_a_contenido_3|--//
     //----------------------------------//
     if (contenido === "contenido 3") {
@@ -1654,6 +1813,200 @@ document.getElementById("crearContenido5").addEventListener("click", () => {
             JSON.stringify(data)
         );
         alert("Contenido 10 enviado correctamente");
+    }
+    //-----------------------------------//
+    //--|enviando_datos_a_contenido_11|--//
+    //-----------------------------------//
+    if (contenido === "contenido 11") {
+        function obtenerEstilos(el) {
+            return {
+                fontSize: el?.style?.fontSize || "",
+                textAlign: el?.style?.textAlign || "",
+                fontFamily: el?.style?.fontFamily || "",
+                fontWeight: el?.style?.fontWeight || "",
+                fontStyle: el?.style?.fontStyle || "",
+                textDecoration: el?.style?.textDecoration || ""
+            };
+        }
+        const tituloInput =
+            editor.querySelector(".titulo-input");
+        const descripcionInput =
+            editor.querySelector(".descripcion11");
+        const imagenElement =
+            editor.querySelector(".imagen11 img");
+        const imagen =
+            imagenElement
+                ? imagenElement.src
+                : "";
+        const data = {
+            destino,
+            titulo: {
+                texto: tituloInput
+                    ? tituloInput.value
+                    : "",
+                estilos: tituloInput
+                    ? obtenerEstilos(tituloInput)
+                    : {}
+            },
+            descripcion: {
+                texto: descripcionInput
+                    ? descripcionInput.value
+                    : "",
+                estilos: descripcionInput
+                    ? obtenerEstilos(descripcionInput)
+                    : {}
+            },
+            imagen
+        };
+        localStorage.setItem(
+            "contenido11_nosotros",
+            JSON.stringify(data)
+        );
+        console.log(
+            JSON.parse(
+                localStorage.getItem(
+                    "contenido11_nosotros"
+                )
+            )
+        );
+        alert(
+            "Contenido 11 enviado correctamente"
+        );
+    }
+    //-----------------------------------//
+    //--|enviando_datos_a_contenido_12|--//
+    //-----------------------------------//
+    if (contenido === "contenido 12") {
+        function obtenerEstilos(el) {
+            return {
+                fontSize: el?.style?.fontSize || "",
+                textAlign: el?.style?.textAlign || "",
+                fontFamily: el?.style?.fontFamily || "",
+                fontWeight: el?.style?.fontWeight || "",
+                fontStyle: el?.style?.fontStyle || "",
+                textDecoration: el?.style?.textDecoration || ""
+            };
+        }
+        const tituloInput =
+            editor.querySelector(".titulo-input");
+        const descripcionInput =
+            editor.querySelector(".descripcion12");
+        const imagenPrincipalElement =
+            editor.querySelector(
+                ".contenido12-izquierda img"
+            );
+        const imagenPrincipal =
+            imagenPrincipalElement
+                ? imagenPrincipalElement.src
+                : "";
+        const imagenesSecundarias =
+            Array.from(
+                editor.querySelectorAll(
+                    ".card12 .imagen12 img"
+                )
+            ).map(img =>
+                img ? img.src : ""
+            );
+        const subtitulos =
+            Array.from(
+                editor.querySelectorAll(
+                    ".subtitulo12"
+                )
+            ).map(el => ({
+                texto: el.value || "",
+                estilos: obtenerEstilos(el)
+            }));
+        const descripcionesSecundarias =
+            Array.from(
+                editor.querySelectorAll(
+                    ".descripcion-card12"
+                )
+            ).map(el => ({
+                texto: el.value || "",
+                estilos: obtenerEstilos(el)
+            }));
+        const data = {
+            destino,
+            titulo: {
+                texto: tituloInput
+                    ? tituloInput.value
+                    : "",
+                estilos: tituloInput
+                    ? obtenerEstilos(
+                        tituloInput
+                    )
+                    : {}
+            },
+            descripcion: {
+                texto: descripcionInput
+                    ? descripcionInput.value
+                    : "",
+                estilos: descripcionInput
+                    ? obtenerEstilos(
+                        descripcionInput
+                    )
+                    : {}
+            },
+            imagenPrincipal,
+            tarjetas: [
+                {
+                    imagen:
+                        imagenesSecundarias[0] || "",
+                    subtitulo:
+                        subtitulos[0] || {
+                            texto: "",
+                            estilos: {}
+                        },
+                    descripcion:
+                        descripcionesSecundarias[0] || {
+                            texto: "",
+                            estilos: {}
+                        }
+                },
+                {
+                    imagen:
+                        imagenesSecundarias[1] || "",
+                    subtitulo:
+                        subtitulos[1] || {
+                            texto: "",
+                            estilos: {}
+                        },
+                    descripcion:
+                        descripcionesSecundarias[1] || {
+                            texto: "",
+                            estilos: {}
+                        }
+                },
+                {
+                    imagen:
+                        imagenesSecundarias[2] || "",
+                    subtitulo:
+                        subtitulos[2] || {
+                            texto: "",
+                            estilos: {}
+                        },
+                    descripcion:
+                        descripcionesSecundarias[2] || {
+                            texto: "",
+                            estilos: {}
+                        }
+                }
+            ]
+        };
+        localStorage.setItem(
+            "contenido12_nosotros",
+            JSON.stringify(data)
+        );
+        console.log(
+            JSON.parse(
+                localStorage.getItem(
+                    "contenido12_nosotros"
+                )
+            )
+        );
+        alert(
+            "Contenido 12 enviado correctamente"
+        );
     }
 });
 //------------------------------------------//
