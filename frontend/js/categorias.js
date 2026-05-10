@@ -71,52 +71,307 @@ if (data) {
 document.addEventListener("DOMContentLoaded", () => {
     function activarEditable(el) {
         el.addEventListener("click", () => {
-            el.setAttribute("contenteditable", "true");
+            el.setAttribute(
+                "contenteditable",
+                "true"
+            );
             el.focus();
         });
         el.addEventListener("blur", () => {
-            el.removeAttribute("contenteditable");
+            el.removeAttribute(
+                "contenteditable"
+            );
         });
     }
-    document.querySelectorAll(".contenido_4-editable").forEach(activarEditable);
-    const box = document.getElementById("contenido_4_imagen_box");
-    const input = document.getElementById("contenido_4_input_imagen");
+    document
+        .querySelectorAll(
+            ".contenido_4-editable"
+        )
+        .forEach(
+            activarEditable
+        );
+    const box =
+        document.getElementById(
+            "contenido_4_imagen_box"
+        );
+    const input =
+        document.getElementById(
+            "contenido_4_input_imagen"
+        );
     if (!box || !input) return;
-    box.addEventListener("click", () => input.click());
-    input.addEventListener("change", (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            box.innerHTML = `
-                <img src="${e.target.result}" 
-                    style="width:100%;height:100%;object-fit:cover;">
-            `;
-        };
-        reader.readAsDataURL(file);
-    });
+    box.addEventListener(
+        "click",
+        () => input.click()
+    );
+    input.addEventListener(
+        "change",
+        (e) => {
+            const file =
+                e.target.files[0];
+            if (!file) return;
+            const reader =
+                new FileReader();
+            reader.onload = (e) => {
+                box.innerHTML = `
+                    <img 
+                        src="${e.target.result}" 
+                        style="
+                            width:100%;
+                            height:100%;
+                            object-fit:cover;
+                        "
+                    >
+                `;
+            };
+            reader.readAsDataURL(file);
+        }
+    );
+    const contenido =
+        JSON.parse(
+            localStorage.getItem(
+                "contenido4_categorias"
+            )
+        );
+    if (!contenido) {
+        return;
+    }
+    const titulo =
+        document.querySelector(
+            ".contenido_4-titulo"
+        );
+    const descripcion =
+        document.querySelector(
+            ".contenido_4-descripcion"
+        );
+    if (titulo) {
+        titulo.textContent =
+            contenido.titulo.texto || "";
+        Object.assign(
+            titulo.style,
+            contenido.titulo.estilos
+        );
+    }
+    if (descripcion) {
+        descripcion.textContent =
+            contenido.descripcion.texto || "";
+        Object.assign(
+            descripcion.style,
+            contenido.descripcion.estilos
+        );
+    }
+    if (
+        box &&
+        contenido.imagen
+    ) {
+        box.innerHTML = `
+            <img
+                src="${contenido.imagen}"
+                style="
+                    width:100%;
+                    height:100%;
+                    object-fit:cover;
+                "
+            >
+        `;
+    }
 });
 //-----------------------------------------//
 //--|funcionalidad_contenido_16_dinamica|--//
 //-----------------------------------------//
-document.querySelectorAll(".contenido_16-imagen").forEach((imgBox) => {
-    imgBox.addEventListener("click", () => {
-        const url = prompt("Ingresa la URL de la imagen:");
-        if (url) {
-            imgBox.style.backgroundImage = `url(${url})`;
-            imgBox.style.backgroundSize = "cover";
-            imgBox.style.backgroundPosition = "center";
-            imgBox.innerHTML = "";
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+        document
+            .querySelectorAll(
+                ".contenido_16-imagen"
+            )
+            .forEach((imgBox) => {
+                imgBox.addEventListener(
+                    "click",
+                    () => {
+                        const url =
+                            prompt(
+                                "Ingresa la URL de la imagen:"
+                            );
+                        if (url) {
+                            imgBox.style.backgroundImage =
+                                `url(${url})`;
+                            imgBox.style.backgroundSize =
+                                "cover";
+                            imgBox.style.backgroundPosition =
+                                "center";
+                            imgBox.innerHTML = "";
+                        }
+                    }
+                );
+            });
+        const items =
+            document.querySelectorAll(
+                ".contenido_16-item"
+            );
+        const contenido =
+            JSON.parse(
+                localStorage.getItem(
+                    "contenido16_categorias"
+                )
+            );
+        if (!contenido) {
+            return;
         }
-    });
-});
+        items.forEach(
+            (item, index) => {
+                const data =
+                    contenido.tarjetas[index];
+                if (!data) {
+                    return;
+                }
+                const imagenBox =
+                    item.querySelector(
+                        ".contenido_16-imagen"
+                    );
+                const subtitulo =
+                    item.querySelector(
+                        ".contenido_16-subtitulo, .contenido_16-input"
+                    );
+                const boton =
+                    item.querySelector(
+                        ".contenido_16-btn"
+                    );
+                if (
+                    imagenBox &&
+                    data.imagen
+                ) {
+                    imagenBox.innerHTML = `
+                        <img
+                            src="${data.imagen}"
+                            style="
+                                width:100%;
+                                height:100%;
+                                object-fit:cover;
+                            "
+                        >
+                    `;
+                }
+                if (subtitulo) {
+                    if (
+                        subtitulo.tagName ===
+                        "INPUT"
+                    ) {
+                        subtitulo.value =
+                            data.subtitulo.texto || "";
+                    } else {
+                        subtitulo.textContent =
+                            data.subtitulo.texto || "";
+                    }
+                    Object.assign(
+                        subtitulo.style,
+                        data.subtitulo.estilos
+                    );
+                }
+                if (boton) {
+                    boton.textContent =
+                        data.boton.texto || "";
+                    Object.assign(
+                        boton.style,
+                        data.boton.estilos
+                    );
+                }
+            }
+        );
+    }
+);
 //-----------------------------------------//
 //--|funcionalidad_contenido_17_dinamica|--//
 //-----------------------------------------//
-document.querySelectorAll(".btn_categoria_contenido_17").forEach((boton, index) => {
+document.querySelectorAll(
+    ".btn_contenido_17"
+).forEach((boton, index) => {
     boton.addEventListener("click", () => {
-        alert("Has hecho clic en la categoría " + (index + 1));
+        alert(
+            "Has hecho clic en la categoría " +
+            (index + 1)
+        );
     });
+});
+window.addEventListener("load", () => {
+    const raw =
+        localStorage.getItem(
+            "contenido17_categorias"
+        );
+    console.log("RAW:", raw);
+    if (!raw) {
+        console.log(
+            "No existe contenido17_categorias"
+        );
+        return;
+    }
+    const contenido =
+        JSON.parse(raw);
+    console.log(
+        "CONTENIDO:",
+        contenido
+    );
+    const titulo =
+        document.getElementById(
+            "titulo_contenido_17"
+        );
+    if (
+        titulo &&
+        contenido.titulo
+    ) {
+        titulo.textContent =
+            contenido.titulo.texto || "";
+        Object.assign(
+            titulo.style,
+            contenido.titulo.estilos
+        );
+    }
+    const cards =
+        document.querySelectorAll(
+            ".card_contenido_17"
+        );
+    cards.forEach((card, index) => {
+        const data =
+            contenido.tarjetas[index];
+        if (!data) return;
+        const imagenBox =
+            card.querySelector(
+                ".marco_imagen_contenido_17"
+            );
+        if (
+            imagenBox &&
+            data.imagen
+        ) {
+            imagenBox.innerHTML = `
+                <img
+                    src="${data.imagen}"
+                    style="
+                        width:100%;
+                        height:100%;
+                        object-fit:cover;
+                    "
+                >
+            `;
+        }
+        const subtitulo =
+            card.querySelector(
+                ".subtitulo_contenido_17"
+            );
+        if (
+            subtitulo &&
+            data.subtitulo
+        ) {
+            subtitulo.textContent =
+                data.subtitulo.texto || "";
+            Object.assign(
+                subtitulo.style,
+                data.subtitulo.estilos
+            );
+        }
+    });
+    console.log(
+        "CONTENIDO 17 RENDERIZADO"
+    );
 });
 //------------------------------------//
 //--|funcionalidad_chatbot_dinamica|--//

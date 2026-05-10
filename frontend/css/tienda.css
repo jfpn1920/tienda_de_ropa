@@ -1082,27 +1082,47 @@ input {
     display: flex;
     align-items: center;
     margin-top: -4.7px;
-    gap: 8px;
+    gap: 10px;
 }
-.btn-mas {
-    width: 35px;
-    height: 35px;
-    background: #cfcfcf;
-    border: 1px solid #999;
-    cursor: pointer;
-    font-size: 15px;
+.icono-social {
+    width: 40px;
+    height: 40px;
+    padding: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 18px;
+    color: white;
+    flex-shrink: 0;
+}
+.icono-social::before {
+    position: relative;
+    top: 2px;
+}
+.facebook {
+    background: #1877f2;
+    padding-left: 15px;
+}
+.twitter {
+    padding-left: 11px;
+    background: #000000;
+}
+.instagram {
+    background: #e4405f;
+    padding-left: 12px;
+}
+.tiktok {
+    background: #111111;
+    padding-left: 12px;
 }
 .input-lista6 {
     flex: 1;
     padding: 6px;
-    height: 35px;
-    margin-top: 15px;
+    height: 40px;
     border: 1px solid #999;
     background: #dcdcdc;
 }
-/*----------------*/
-/*--|contenid_7|--*/
-/*----------------*/
 .contenido7 {
     width: 100%;
 }

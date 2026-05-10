@@ -69,54 +69,123 @@ if (data) {
 //--|funcionalidad_contenido_13_dinamica|--//
 //-----------------------------------------//
 document.addEventListener("DOMContentLoaded", () => {
-    const zonaImagenPrincipal_contenido_13 = document.getElementById("zona_imagen_principal_contenido_13");
-    const inputImagenPrincipal_contenido_13 = document.getElementById("input_imagen_principal_contenido_13");
-    const iconoImagenPrincipal_contenido_13 = document.getElementById("icono_imagen_principal_contenido_13");
-    const textoImagenPrincipal_contenido_13 = document.getElementById("texto_imagen_principal_contenido_13");
-    const previewImagenPrincipal_contenido_13 = document.getElementById("preview_imagen_principal_contenido_13");
-    if(zonaImagenPrincipal_contenido_13 && inputImagenPrincipal_contenido_13){
-        zonaImagenPrincipal_contenido_13.addEventListener("click", () => {
-            inputImagenPrincipal_contenido_13.click();
-        });
-        inputImagenPrincipal_contenido_13.addEventListener("change", (e) => {
-            const archivo_contenido_13 = e.target.files[0];
-            if(!archivo_contenido_13) return;
-            const lector_contenido_13 = new FileReader();
-            lector_contenido_13.onload = function(event){
-                previewImagenPrincipal_contenido_13.src = event.target.result;
-                previewImagenPrincipal_contenido_13.style.display = "block";
-                iconoImagenPrincipal_contenido_13.style.display = "none";
-                textoImagenPrincipal_contenido_13.style.display = "none";
-            };
-            lector_contenido_13.readAsDataURL(archivo_contenido_13);
-        });
+    const zonaImagenPrincipal_contenido_13 =
+        document.getElementById(
+            "zona_imagen_principal_contenido_13"
+        );
+    const inputImagenPrincipal_contenido_13 =
+        document.getElementById(
+            "input_imagen_principal_contenido_13"
+        );
+    const iconoImagenPrincipal_contenido_13 =
+        document.getElementById(
+            "icono_imagen_principal_contenido_13"
+        );
+    const textoImagenPrincipal_contenido_13 =
+        document.getElementById(
+            "texto_imagen_principal_contenido_13"
+        );
+    const previewImagenPrincipal_contenido_13 =
+        document.getElementById(
+            "preview_imagen_principal_contenido_13"
+        );
+    if (
+        zonaImagenPrincipal_contenido_13 &&
+        inputImagenPrincipal_contenido_13
+    ) {
+        zonaImagenPrincipal_contenido_13
+        .addEventListener(
+            "click",
+            () => {
+                inputImagenPrincipal_contenido_13.click();
+            }
+        );
+        inputImagenPrincipal_contenido_13
+        .addEventListener(
+            "change",
+            (e) => {
+                const archivo_contenido_13 =
+                    e.target.files[0];
+                if (!archivo_contenido_13) return;
+                const lector_contenido_13 =
+                    new FileReader();
+                lector_contenido_13.onload =
+                    function(event){
+                    previewImagenPrincipal_contenido_13.src =
+                        event.target.result;
+                    previewImagenPrincipal_contenido_13.style.display =
+                        "block";
+                    iconoImagenPrincipal_contenido_13.style.display =
+                        "none";
+                    textoImagenPrincipal_contenido_13.style.display =
+                        "none";
+                };
+                lector_contenido_13.readAsDataURL(
+                    archivo_contenido_13
+                );
+            }
+        );
     }
     function activarImagen_contenido_13(
         zonaId,
         inputId,
         previewId
     ){
-        const zona_contenido_13 = document.getElementById(zonaId);
-        const input_contenido_13 = document.getElementById(inputId);
-        const preview_contenido_13 = document.getElementById(previewId);
-        if(!zona_contenido_13 || !input_contenido_13 || !preview_contenido_13) return;
-        const icono_contenido_13 = zona_contenido_13.querySelector("i");
-        const texto_contenido_13 = zona_contenido_13.querySelector("p");
-        zona_contenido_13.addEventListener("click", () => {
-            input_contenido_13.click();
-        });
-        input_contenido_13.addEventListener("change", (e) => {
-            const archivo_contenido_13 = e.target.files[0];
-            if(!archivo_contenido_13) return;
-            const lector_contenido_13 = new FileReader();
-            lector_contenido_13.onload = function(event){
-                preview_contenido_13.src = event.target.result;
-                preview_contenido_13.style.display = "block";
-                icono_contenido_13.style.display = "none";
-                texto_contenido_13.style.display = "none";
-            };
-            lector_contenido_13.readAsDataURL(archivo_contenido_13);
-        });
+        const zona_contenido_13 =
+            document.getElementById(
+                zonaId
+            );
+        const input_contenido_13 =
+            document.getElementById(
+                inputId
+            );
+        const preview_contenido_13 =
+            document.getElementById(
+                previewId
+            );
+        if (
+            !zona_contenido_13 ||
+            !input_contenido_13 ||
+            !preview_contenido_13
+        ) return;
+        const icono_contenido_13 =
+            zona_contenido_13.querySelector(
+                "i"
+            );
+        const texto_contenido_13 =
+            zona_contenido_13.querySelector(
+                "p"
+            );
+        zona_contenido_13.addEventListener(
+            "click",
+            () => {
+                input_contenido_13.click();
+            }
+        );
+        input_contenido_13.addEventListener(
+            "change",
+            (e) => {
+                const archivo_contenido_13 =
+                    e.target.files[0];
+                if (!archivo_contenido_13) return;
+                const lector_contenido_13 =
+                    new FileReader();
+                lector_contenido_13.onload =
+                    function(event){
+                    preview_contenido_13.src =
+                        event.target.result;
+                    preview_contenido_13.style.display =
+                        "block";
+                    icono_contenido_13.style.display =
+                        "none";
+                    texto_contenido_13.style.display =
+                        "none";
+                };
+                lector_contenido_13.readAsDataURL(
+                    archivo_contenido_13
+                );
+            }
+        );
     }
     activarImagen_contenido_13(
         "zona_imagen_1_contenido_13",
@@ -133,6 +202,136 @@ document.addEventListener("DOMContentLoaded", () => {
         "input_imagen_3_contenido_13",
         "preview_imagen_3_contenido_13"
     );
+    const data_contenido_13 =
+        localStorage.getItem(
+            "contenido13_contactanos"
+        );
+    console.log(
+        "Datos contenido 13:",
+        data_contenido_13
+    );
+    if (data_contenido_13) {
+        const contenido13 =
+            JSON.parse(
+                data_contenido_13
+            );
+        console.log(
+            "Contenido 13 parseado:",
+            contenido13
+        );
+        const titulo_contenido_13 =
+            document.getElementById(
+                "titulo_contenido_13"
+            );
+        if (
+            titulo_contenido_13 &&
+            contenido13.titulo
+        ) {
+            titulo_contenido_13.textContent =
+                contenido13.titulo.texto || "";
+            Object.assign(
+                titulo_contenido_13.style,
+                contenido13.titulo.estilos
+            );
+        }
+        const descripcionPrincipal_contenido_13 =
+            document.getElementById(
+                "descripcion_principal_contenido_13"
+            );
+        if (
+            descripcionPrincipal_contenido_13 &&
+            contenido13.descripcionPrincipal
+        ) {
+            descripcionPrincipal_contenido_13.textContent =
+                contenido13.descripcionPrincipal.texto || "";
+            Object.assign(
+                descripcionPrincipal_contenido_13.style,
+                contenido13.descripcionPrincipal.estilos
+            );
+        }
+        if (
+            contenido13.imagenPrincipal
+        ) {
+            previewImagenPrincipal_contenido_13.src =
+                contenido13.imagenPrincipal;
+            previewImagenPrincipal_contenido_13.style.display =
+                "block";
+            iconoImagenPrincipal_contenido_13.style.display =
+                "none";
+            textoImagenPrincipal_contenido_13.style.display =
+                "none";
+        }
+        const tarjetasHTML =
+            document.querySelectorAll(
+                ".tarjeta_contenido_13"
+            );
+        contenido13.tarjetas.forEach(
+            (tarjeta, index) => {
+                const tarjetaHTML =
+                    tarjetasHTML[index];
+                if (!tarjetaHTML) return;
+                const preview =
+                    tarjetaHTML.querySelector(
+                        ".preview_imagen_contenido_13"
+                    );
+                const icono =
+                    tarjetaHTML.querySelector(
+                        ".icono_imagen_contenido_13"
+                    );
+                const texto =
+                    tarjetaHTML.querySelector(
+                        ".texto_imagen_contenido_13"
+                    );
+                if (
+                    preview &&
+                    tarjeta.imagen
+                ) {
+                    preview.src =
+                        tarjeta.imagen;
+                    preview.style.display =
+                        "block";
+                    if (icono) {
+                        icono.style.display =
+                            "none";
+                    }
+                    if (texto) {
+                        texto.style.display =
+                            "none";
+                    }
+                }
+                const subtitulo =
+                    tarjetaHTML.querySelector(
+                        ".subtitulo_contenido_13"
+                    );
+                if (
+                    subtitulo &&
+                    tarjeta.subtitulo
+                ) {
+                    subtitulo.textContent =
+                        tarjeta.subtitulo.texto || "";
+                    Object.assign(
+                        subtitulo.style,
+                        tarjeta.subtitulo.estilos
+                    );
+                }
+                const descripcion =
+                    tarjetaHTML.querySelector(
+                        ".descripcion_secundaria_contenido_13"
+                    );
+                if (
+                    descripcion &&
+                    tarjeta.descripcion
+                ) {
+                    descripcion.textContent =
+                        tarjeta.descripcion.texto || "";
+                    Object.assign(
+                        descripcion.style,
+                        tarjeta.descripcion.estilos
+                    );
+                }
+            }
+        );
+    }
 });
 //-----------------------------------------//
 //--|funcionalidad_contenido_14_dinamica|--//
@@ -143,23 +342,52 @@ function activarImagen_contenido_14(
 ){
     const zona_contenido_14 = document.getElementById(zonaId);
     const input_contenido_14 = document.getElementById(inputId);
-    if(!zona_contenido_14 || !input_contenido_14) return;
-    const icono_contenido_14 = zona_contenido_14.querySelector("i");
-    const texto_contenido_14 = zona_contenido_14.querySelector("p");
-    zona_contenido_14.addEventListener("click", () => {
-        input_contenido_14.click();
-    });
-    input_contenido_14.addEventListener("change", (e) => {
-        const archivo_contenido_14 = e.target.files[0];
-        if(!archivo_contenido_14) return;
-        const lector_contenido_14 = new FileReader();
-        lector_contenido_14.onload = function(event){
-            zona_contenido_14.style.backgroundImage = `url(${event.target.result})`;
-            if(icono_contenido_14) icono_contenido_14.style.display = "none";
-            if(texto_contenido_14) texto_contenido_14.style.display = "none";
-        };
-        lector_contenido_14.readAsDataURL(archivo_contenido_14);
-    });
+    if(
+        !zona_contenido_14 ||
+        !input_contenido_14
+    ) return;
+    const icono_contenido_14 =
+        zona_contenido_14.querySelector("i");
+    const texto_contenido_14 =
+        zona_contenido_14.querySelector("p");
+    zona_contenido_14.addEventListener(
+        "click",
+        () => {
+            input_contenido_14.click();
+        }
+    );
+    input_contenido_14.addEventListener(
+        "change",
+        (e) => {
+            const archivo_contenido_14 =
+                e.target.files[0];
+            if (!archivo_contenido_14) return;
+            const lector_contenido_14 =
+                new FileReader();
+            lector_contenido_14.onload =
+                function(event){
+                zona_contenido_14.style.backgroundImage =
+                    `url(${event.target.result})`;
+                zona_contenido_14.style.backgroundSize =
+                    "cover";
+                zona_contenido_14.style.backgroundPosition =
+                    "center";
+                zona_contenido_14.style.backgroundRepeat =
+                    "no-repeat";
+                if (icono_contenido_14) {
+                    icono_contenido_14.style.display =
+                        "none";
+                }
+                if (texto_contenido_14) {
+                    texto_contenido_14.style.display =
+                        "none";
+                }
+            };
+            lector_contenido_14.readAsDataURL(
+                archivo_contenido_14
+            );
+        }
+    );
 }
 activarImagen_contenido_14(
     "zona_imagen_1_contenido_14",
@@ -177,6 +405,113 @@ activarImagen_contenido_14(
     "zona_imagen_4_contenido_14",
     "input_imagen_4_contenido_14"
 );
+const data_contenido_14 =
+    localStorage.getItem(
+        "contenido14_contactanos"
+    );
+console.log(
+    "Datos contenido 14:",
+    data_contenido_14
+);
+if (data_contenido_14) {
+    const contenido14 =
+        JSON.parse(
+            data_contenido_14
+        );
+    console.log(
+        "Contenido 14 parseado:",
+        contenido14
+    );
+    const titulo_contenido_14 =
+        document.getElementById(
+            "titulo_contenido_14"
+        );
+    if (
+        titulo_contenido_14 &&
+        contenido14.titulo
+    ) {
+        titulo_contenido_14.textContent =
+            contenido14.titulo.texto || "";
+        Object.assign(
+            titulo_contenido_14.style,
+            contenido14.titulo.estilos
+        );
+    }
+    const tarjetasHTML =
+        document.querySelectorAll(
+            ".tarjeta_contenido_14"
+        );
+    contenido14.tarjetas.forEach(
+        (tarjeta, index) => {
+            const tarjetaHTML =
+                tarjetasHTML[index];
+            if (!tarjetaHTML) return;
+            const zonaImagen =
+                tarjetaHTML.querySelector(
+                    ".zona_imagen_contenido_14"
+                );
+            const icono =
+                tarjetaHTML.querySelector(
+                    ".icono_imagen_contenido_14"
+                );
+            const texto =
+                tarjetaHTML.querySelector(
+                    ".texto_imagen_contenido_14"
+                );
+            if (
+                zonaImagen &&
+                tarjeta.imagen
+            ) {
+                zonaImagen.style.backgroundImage =
+                    `url(${tarjeta.imagen})`;
+                zonaImagen.style.backgroundSize =
+                    "cover";
+                zonaImagen.style.backgroundPosition =
+                    "center";
+                zonaImagen.style.backgroundRepeat =
+                    "no-repeat";
+                if (icono) {
+                    icono.style.display =
+                        "none";
+                }
+                if (texto) {
+                    texto.style.display =
+                        "none";
+                }
+            }
+            const descripcion =
+                tarjetaHTML.querySelector(
+                    ".descripcion_contenido_14"
+                );
+            if (
+                descripcion &&
+                tarjeta.descripcion
+            ) {
+                descripcion.textContent =
+                    tarjeta.descripcion.texto || "";
+                Object.assign(
+                    descripcion.style,
+                    tarjeta.descripcion.estilos
+                );
+            }
+            const subtitulo =
+                tarjetaHTML.querySelector(
+                    ".subtitulo_contenido_14"
+                );
+            if (
+                subtitulo &&
+                tarjeta.subtitulo
+            ) {
+                subtitulo.textContent =
+                    tarjeta.subtitulo.texto || "";
+                Object.assign(
+                    subtitulo.style,
+                    tarjeta.subtitulo.estilos
+                );
+            }
+        }
+    );
+}
 //---------------------------------------//
 //--|funcionalidad_envianos_un_mensaje|--//
 //---------------------------------------//
@@ -205,55 +540,138 @@ if(formulario_contacto){
 //--|funcionalidad_contenido_6_dinamica|--//
 //----------------------------------------//
 document.addEventListener("DOMContentLoaded", () => {
-    function activarEditable(el) {
-        el.addEventListener("click", () => {
-            el.setAttribute("contenteditable", "true");
-            el.focus();
-        });
-        el.addEventListener("blur", () => {
-            el.removeAttribute("contenteditable");
-        });
+    const data =
+        localStorage.getItem(
+            "contenido6_contactanos"
+        );
+    if (!data) {
+        return;
     }
-    function crearItem() {
-        const item = document.createElement("div");
-        item.classList.add("contenido_6-item");
-        item.innerHTML = `
-            <button class="contenido_6-btn">+</button>
-            <div class="contenido_6-campo contenido_6-editable" data-placeholder="aqui ira el subtitulo"></div>
+    const contenido =
+        JSON.parse(data);
+    const titulo =
+        document.querySelector(
+            ".contenido_6-titulo"
+        );
+    if (
+        titulo &&
+        contenido.titulo
+    ) {
+        titulo.textContent =
+            contenido.titulo.texto;
+        Object.assign(
+            titulo.style,
+            contenido.titulo.estilos
+        );
+    }
+    const boxImagen =
+        document.getElementById(
+            "contenido_6_imagen_box"
+        );
+    if (
+        boxImagen &&
+        contenido.imagen
+    ) {
+        boxImagen.innerHTML = `
+            <img
+                src="${contenido.imagen}"
+                style="
+                    width:100%;
+                    height:100%;
+                    object-fit:cover;
+                "
+            >
         `;
-        const btn = item.querySelector(".contenido_6-btn");
-        const campo = item.querySelector(".contenido_6-editable");
-        activarEditable(campo);
-        btn.addEventListener("click", manejarClickBoton);
-        return item;
     }
-    function manejarClickBoton(e) {
-        const itemActual = e.target.closest(".contenido_6-item");
-        const nuevoItem = crearItem();
-        itemActual.after(nuevoItem);
+    const subtituloIzq =
+        document.querySelector(
+            ".contenido_6-campo-parte-2"
+        );
+    if (
+        subtituloIzq &&
+        contenido.subtituloIzquierdo
+    ) {
+        subtituloIzq.textContent =
+            contenido
+            .subtituloIzquierdo
+            .texto;
+        Object.assign(
+            subtituloIzq.style,
+            contenido
+            .subtituloIzquierdo
+            .estilos
+        );
     }
-    document.querySelectorAll(".contenido_6-btn").forEach(btn => {
-        btn.addEventListener("click", manejarClickBoton);
-    });
-    const box = document.getElementById("contenido_6_imagen_box");
-    const input = document.getElementById("contenido_6_input_imagen");
-    if (!box || !input) return;
-    box.addEventListener("click", () => input.click());
-    input.addEventListener("change", (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const img = document.createElement("img");
-            img.src = e.target.result;
-            img.style.width = "100%";
-            img.style.height = "100%";
-            img.style.objectFit = "cover";
-            box.innerHTML = "";
-            box.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-    });
+    const descripcion =
+        document.querySelector(
+            ".contenido_6-descripcion"
+        );
+    if (
+        descripcion &&
+        contenido.descripcion
+    ) {
+        descripcion.textContent =
+            contenido
+            .descripcion
+            .texto;
+        Object.assign(
+            descripcion.style,
+            contenido
+            .descripcion
+            .estilos
+        );
+    }
+    const subtituloDer =
+        document.querySelector(
+            ".contenido_6-subtitulo"
+        );
+    if (
+        subtituloDer &&
+        contenido.subtituloDerecho
+    ) {
+        subtituloDer.textContent =
+            contenido
+            .subtituloDerecho
+            .texto;
+        Object.assign(
+            subtituloDer.style,
+            contenido
+            .subtituloDerecho
+            .estilos
+        );
+    }
+    const items =
+        document.querySelectorAll(
+            "#contenido_6_lista .contenido_6-item"
+        );
+    if (
+        contenido.lista
+    ) {
+        const items =
+            document.querySelectorAll(
+                "#contenido_6_lista .contenido_6-item"
+            );
+        contenido.lista.forEach(
+            (item, index) => {
+                const campo =
+                    items[index]
+                    ?.querySelector(
+                        ".contenido_6-campo"
+                    );
+                if (campo) {
+                    campo.textContent =
+                        item.texto || "";
+                    Object.assign(
+                        campo.style,
+                        item.estilos || {}
+                    );
+                }
+            }
+        );
+    }
+    console.log(
+        "Contenido 6 cargado correctamente"
+    );
 });
 //------------------------------------//
 //--|funcionalidad_chatbot_dinamica|--//

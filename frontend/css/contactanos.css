@@ -381,28 +381,33 @@ body{
     margin-top: -509px;
     margin-left: 640px;
 }
+
 .contenido_6-titulo {
     border: 1px solid #999;
     padding: 8px;
     background: #dcdcdc;
     min-height: 35px;
 }
+
 .contenido_6-linea {
     height: 3px;
     background: #5a8dee;
     margin: 8px 0;
 }
+
 .contenido_6-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5px;
 }
+
 .contenido_6-left,
 .contenido_6-right {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
+
 .contenido_6-imagen {
     height: 407px;
     margin-top: 1px;
@@ -415,6 +420,7 @@ body{
     justify-content: center;
     cursor: pointer;
 }
+
 .icono_img_contenido_6 {
     width: 50px;
     height: 50px;
@@ -423,13 +429,16 @@ body{
     justify-content: center;
     margin-bottom: 10px;
 }
+
 .icono_img_contenido_6 i {
     font-size: 55px;
     color: #333;
 }
+
 .texto_img_contenido_6 {
     color: #333;
 }
+
 .contenido_6-descripcion {
     height: 213px;
     width: 409px;
@@ -438,6 +447,7 @@ body{
     margin-top: 1px;
     padding: 8px;
 }
+
 .contenido_6-subtitulo {
     border: 1px solid #999;
     background: #dcdcdc;
@@ -445,21 +455,79 @@ body{
     padding: 8px;
     min-height: 35px;
 }
+
 #contenido_6_lista{
     margin-top: 5px;
 }
+
 .contenido_6-item {
     display: grid;
     grid-template-columns: 40px 1fr;
     gap: 5px;
     margin-bottom: 13.3px;
 }
-.contenido_6-btn {
-    border: 1px solid #999;
-    background: #cfcfcf;
+
+/*---------------------------*/
+/*--|iconos_redes_sociales|--*/
+/*---------------------------*/
+.contenido_6-icono {
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
     font-size: 18px;
-    cursor: pointer;
+    color: white;
+
+    flex-shrink: 0;
 }
+
+.contenido_6-icono i {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    line-height: 1;
+
+}
+
+/*----------------*/
+/*--|facebook|--*/
+/*----------------*/
+.facebook {
+    background: #1877f2;
+}
+
+/*---------------*/
+/*--|twitter|--*/
+/*---------------*/
+.twitter {
+    background: #000000;
+}
+
+/*-----------------*/
+/*--|instagram|--*/
+/*-----------------*/
+.instagram {
+    background: #e4405f;
+}
+
+/*--------------*/
+/*--|tiktok|--*/
+/*--------------*/
+.tiktok {
+    background: #111111;
+}
+
 .contenido_6-campo {
     border: 1px solid #999;
     background: #dcdcdc;
@@ -467,6 +535,7 @@ body{
     width: 365px;
     min-height: 35px;
 }
+
 .contenido_6-campo-parte-2 {
     border: 1px solid #999;
     background: #dcdcdc;
@@ -475,10 +544,12 @@ body{
     margin-top: 5px;
     min-height: 35px;
 }
+
 .contenido_6-editable:empty::before {
     content: attr(data-placeholder);
     color: #666;
-    max-width: 200px;
+    display: block;
+    pointer-events: none;
 }
 /*-----------------------------*/
 /*--|estilo_chatbot_dinamica|--*/
