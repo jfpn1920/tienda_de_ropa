@@ -158,6 +158,7 @@ btnAdd2.addEventListener("click", () => {
     opciones2.push({
         nombre: valor,
         clave: valor.toLowerCase(),
+        oculto: false,
         contenido: `
             <section class="vista">
                 <h1>${valor}</h1>
@@ -172,21 +173,74 @@ btnAdd2.addEventListener("click", () => {
 function renderLista2() {
     lista2.innerHTML = "";
     if (opciones2.length === 0) {
-        lista2.innerHTML = `<p class="empty2">Ninguna opcion</p>`;
+        lista2.innerHTML =
+            `<p class="empty2">Ninguna opcion</p>`;
         return;
     }
     opciones2.forEach((op, index) => {
-        const div = document.createElement("div");
+        const div =
+            document.createElement("div");
         div.classList.add("item2");
         div.innerHTML = `
-            <span>${op.nombre}</span>
-            <button onclick="eliminar2(${index})" class="eliminar">x</button>
+            <span>
+                ${op.nombre}
+                ${op.oculto
+                    ? " "
+                    : ""
+                }
+            </span>
+            <div class="acciones2">
+                <button 
+                    onclick="editar2(${index})"
+                    class="btn_accion editar2"
+                >
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+                <button 
+                    onclick="ocultar2(${index})"
+                    class="btn_accion ocultar2"
+                >
+                <i class="
+                    fa-solid
+                    ${op.oculto
+                        ? "fa-eye-slash"
+                        : "fa-eye"
+                    }
+                "></i>
+                </button>
+                <button 
+                    onclick="eliminar2(${index})"
+                    class="btn_accion eliminar2"
+                >
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
         `;
         lista2.appendChild(div);
     });
 }
 function eliminar2(index) {
     opciones2.splice(index, 1);
+    renderLista2();
+    guardarAutomatico();
+}
+function editar2(index){
+    const nuevoNombre =
+        prompt(
+            "Editar opcion:",
+            opciones2[index].nombre
+        );
+    if(!nuevoNombre) return;
+    opciones2[index].nombre =
+        nuevoNombre;
+    opciones2[index].clave =
+        nuevoNombre.toLowerCase();
+    renderLista2();
+    guardarAutomatico();
+}
+function ocultar2(index){
+    opciones2[index].oculto =
+        !opciones2[index].oculto;
     renderLista2();
     guardarAutomatico();
 }
@@ -939,7 +993,6 @@ document.getElementById("contenido5").addEventListener("change", (e) => {
         case "contenido 6":
             html = `
                 <div class="contenido6">
-        
                     <div class="contenido6-header">
                         <input 
                             type="text" 
@@ -947,85 +1000,64 @@ document.getElementById("contenido5").addEventListener("change", (e) => {
                             class="titulo-input"
                         >
                     </div>
-        
                     <div class="contenido6-body">
-        
                         <div class="contenido6-izquierda">
-        
                             <div class="imagen6">
                                 <i class="fas fa-image"></i>
                                 <p>Ninguna imagen añadido</p>
                             </div>
-        
                             <input 
                                 type="text" 
                                 placeholder="Escribir el subtitulo..." 
                                 class="subtitulo6"
                             >
-        
                         </div>
-        
                         <div class="contenido6-derecha">
-        
                             <textarea 
                                 placeholder="Añade una descripcion..." 
                                 class="descripcion6"
                             ></textarea>
-        
                             <input 
                                 type="text" 
                                 placeholder="Escribir el subtitulo..." 
                                 class="subtitulo6"
                             >
-        
                             <div class="lista6">
-        
                                 <div class="item6">
                                     <i class="fab fa-facebook-f icono-social facebook"></i>
-        
                                     <input 
                                         type="text" 
                                         placeholder="Facebook..." 
                                         class="input-lista6 facebook-input"
                                     >
                                 </div>
-        
                                 <div class="item6">
                                     <i class="fab fa-twitter icono-social twitter"></i>
-        
                                     <input 
                                         type="text" 
                                         placeholder="Twitter..." 
                                         class="input-lista6 twitter-input"
                                     >
                                 </div>
-        
                                 <div class="item6">
                                     <i class="fab fa-instagram icono-social instagram"></i>
-        
                                     <input 
                                         type="text" 
                                         placeholder="Instagram..." 
                                         class="input-lista6 instagram-input"
                                     >
                                 </div>
-        
                                 <div class="item6">
                                     <i class="fab fa-tiktok icono-social tiktok"></i>
-        
                                     <input 
                                         type="text" 
                                         placeholder="TikTok..." 
                                         class="input-lista6 tiktok-input"
                                     >
                                 </div>
-        
                             </div>
-        
                         </div>
-        
                     </div>
-        
                 </div>
             `;
         break;
@@ -1333,6 +1365,33 @@ document.getElementById("contenido5").addEventListener("change", (e) => {
                 </div>
             `;
         break;
+        //------------------//
+        //--|contenido_18|--//
+        //------------------//
+        case "contenido 18":
+            html = `
+                <div class="contenido18">
+                    <div class="contenido18-principal">
+                        <i class="fas fa-image"></i>
+                        <p>Ninguna imagen añadido</p>
+                    </div>
+                    <div class="contenido18-grid">
+                        <div class="imagen18">
+                            <i class="fas fa-image"></i>
+                            <p>Ninguna imagen añadido</p>
+                        </div>
+                        <div class="imagen18">
+                            <i class="fas fa-image"></i>
+                            <p>Ninguna imagen añadido</p>
+                        </div>
+                        <div class="imagen18">
+                            <i class="fas fa-image"></i>
+                            <p>Ninguna imagen añadido</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        break;
         default:
             html = `<p class="empty5">Ninguna contenido disponible</p>`;
     }
@@ -1385,6 +1444,8 @@ editor5.addEventListener("click", (e) => {
     const img15 = e.target.closest(".imagen15");
     const img16 = e.target.closest(".imagen16");
     const img17 = e.target.closest(".imagen17");
+    const img18 = e.target.closest(".imagen18");
+    const img18Principal = e.target.closest(".contenido18-principal");
     const img7 = e.target.closest(".contenido7-header");
     const img7b = e.target.closest(".contenido7-body");
     const btnMas7 = e.target.closest(".btn-mas7");
@@ -1405,6 +1466,8 @@ editor5.addEventListener("click", (e) => {
     if (img15) activarSelectorImagen(img15);
     if (img16) activarSelectorImagen(img16);
     if (img17) activarSelectorImagen(img17);
+    if (img18) activarSelectorImagen(img18);
+    if (img18Principal) activarSelectorImagen(img18Principal);
     if (img7) activarSelectorImagen(img7);
     if (img7b) activarSelectorImagen(img7b);
     if (btnMas7) {
@@ -2713,6 +2776,10 @@ document.getElementById("crearContenido5").addEventListener("click", () => {
             "Contenido 17 guardado correctamente"
         );
     }
+    //-----------------------------------//
+    //--|enviando_datos_a_contenido_18|--//
+    //-----------------------------------//
+
 });
 //------------------------------------------//
 //--|funcionalidad_versiones_de_la_tienda|--//

@@ -65,6 +65,77 @@ if (data) {
     console.warn("No hay datos del menú, usando menú por defecto");
     crearMenu(opcionesMenu);
 }
+//----------------------------------------------//
+//--|funcionalidad_filtrar_productos_dinamica|--//
+//----------------------------------------------//
+const botonesTalla =
+document.querySelectorAll(
+    ".boton_talla"
+);
+botonesTalla.forEach((boton) => {
+    boton.addEventListener(
+        "click",
+        () => {
+            boton.classList.toggle(
+                "activo"
+            );
+        }
+    );
+});
+const botonLimpiarFiltro =
+document.getElementById(
+    "boton_limpiar_filtro"
+);
+botonLimpiarFiltro.addEventListener(
+    "click",
+    () => {
+        const checkboxes =
+        document.querySelectorAll(
+            "#panel_filtro_productos input[type='checkbox']"
+        );
+        checkboxes.forEach(
+            (checkbox) => {
+                checkbox.checked = false;
+            }
+        );
+        botonesTalla.forEach(
+            (boton) => {
+                boton.classList.remove(
+                    "activo"
+                );
+            }
+        );
+        document.getElementById(
+            "input_precio"
+        ).value = "";
+    }
+);
+//-----------------------------------------//
+//--|funcionalidad_contenido_18_dinamica|--//
+//-----------------------------------------//
+const itemsContenido18 =
+document.querySelectorAll(
+    ".item_imagen_contenido_18"
+);
+const imagenPrincipalContenido18 =
+document.getElementById(
+    "img_principal_contenido_18"
+);
+itemsContenido18.forEach(
+    (item) => {
+        item.addEventListener(
+            "click",
+            () => {
+                const nuevaImagen =
+                item.getAttribute(
+                    "data-imagen"
+                );
+                imagenPrincipalContenido18.src =
+                nuevaImagen;
+            }
+        );
+    }
+);
 //------------------------------------//
 //--|funcionalidad_chatbot_dinamica|--//
 //------------------------------------//

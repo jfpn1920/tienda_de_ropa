@@ -270,11 +270,39 @@ button:hover {
 }
 .lista2 .item2 {
     background: #e6e6e6;
-    padding: 9px;
+    padding: 6px;
     margin-bottom: 5px;
-    height: 35px;
+    height: 28px;
     display: flex;
     justify-content: space-between;
+}
+.acciones2{
+    display: flex;
+    position: relative;
+    top: -21px;
+    left: 6px;
+}
+.btn_accion{
+    width: 28px;
+    height: 28px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.editar2{
+    background: #4a76a8;
+}
+.ocultar2{
+    background: #777;
+}
+.eliminar2{
+    background: #c0392b;
+}
+.btn_accion:hover{
+    opacity: 0.8;
 }
 .lista2 .empty2 {
     position: absolute;
@@ -1694,6 +1722,72 @@ input {
 }
 .btn-ver17:hover {
     background: #bdbdbd;
+}
+/*------------------*/
+/*--|contenido_18|--*/
+/*------------------*/
+.contenido18{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+.contenido18-principal{
+    width:100%;
+    height:320px;
+    border:1px solid #777;
+    background:#dcdcdc;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    overflow:hidden;
+    position:relative;
+}
+.contenido18-principal i{
+    font-size:60px;
+    color:#444;
+    margin-bottom:10px;
+}
+.contenido18-principal p{
+    font-size:16px;
+    color:#444;
+}
+.contenido18-grid{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+}
+.imagen18{
+    height:170px;
+    border:1px solid #777;
+    background:#dcdcdc;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    overflow:hidden;
+    position:relative;
+}
+.imagen18 i{
+    font-size:50px;
+    color:#444;
+    margin-bottom:10px;
+}
+.imagen18 p{
+    font-size:14px;
+    color:#444;
+    text-align:center;
+    padding:0 10px;
+}
+.contenido18-principal img,
+.imagen18 img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 /*-----------------------------------*/
 /*--|estilo_versiones_de_la_tienda|--*/
