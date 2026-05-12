@@ -125,62 +125,124 @@ document.addEventListener("DOMContentLoaded", () => {
 //--|funcionalidad_formulario_de_menu_de_navegacion|--//
 //----------------------------------------------------//
 let imagenBase64 = "";
-const uploadBoxMenu2 = document.getElementById("uploadBoxMenu2");
-const inputMenu2 = document.getElementById("imagenMenu2");
-const previewMenu2 = document.getElementById("previewMenu2");
-const placeholderMenu2 = document.getElementById("placeholderMenu2");
-uploadBoxMenu2.addEventListener("click", () => inputMenu2.click());
-inputMenu2.addEventListener("change", () => {
-    const file = inputMenu2.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            imagenBase64 = e.target.result;
-            previewMenu2.src = imagenBase64;
-            previewMenu2.style.display = "block";
-            placeholderMenu2.style.display = "none";
-            guardarAutomatico(); 
-        };
-        reader.readAsDataURL(file);
+const uploadBoxMenu2 =
+    document.getElementById(
+        "uploadBoxMenu2"
+    );
+const inputMenu2 =
+    document.getElementById(
+        "imagenMenu2"
+    );
+const previewMenu2 =
+    document.getElementById(
+        "previewMenu2"
+    );
+const placeholderMenu2 =
+    document.getElementById(
+        "placeholderMenu2"
+    );
+uploadBoxMenu2.addEventListener(
+    "click",
+    () => inputMenu2.click()
+);
+inputMenu2.addEventListener(
+    "change",
+    () => {
+        const file =
+            inputMenu2.files[0];
+        if (file) {
+            const reader =
+                new FileReader();
+            reader.onload = (e) => {
+                imagenBase64 =
+                    e.target.result;
+                previewMenu2.src =
+                    imagenBase64;
+                previewMenu2.style.display =
+                    "block";
+                placeholderMenu2.style.display =
+                    "none";
+                guardarAutomatico();
+            };
+            reader.readAsDataURL(file);
+        }
     }
-});
-const btnAdd2 = document.getElementById("addOption2");
-const inputOption2 = document.getElementById("opcionInput2");
-const lista2 = document.getElementById("listaOpciones2");
+);
+const btnAdd2 =
+    document.getElementById(
+        "addOption2"
+    );
+const inputOption2 =
+    document.getElementById(
+        "opcionInput2"
+    );
+const lista2 =
+    document.getElementById(
+        "listaOpciones2"
+    );
 let opciones2 = [];
-document.getElementById("nombreMenu2").addEventListener("input", guardarAutomatico);
-["busqueda2", "perfil2", "notificaciones2", "carrito2"].forEach(id => {
-    document.getElementById(id).addEventListener("change", guardarAutomatico);
+document.getElementById(
+    "nombreMenu2"
+).addEventListener(
+    "input",
+    guardarAutomatico
+);
+[
+    "busqueda2",
+    "perfil2",
+    "notificaciones2",
+    "carrito2"
+].forEach(id => {
+    document.getElementById(id)
+    .addEventListener(
+        "change",
+        guardarAutomatico
+    );
 });
-btnAdd2.addEventListener("click", () => {
-    const valor = inputOption2.value.trim();
-    if (!valor) return;
-    opciones2.push({
-        nombre: valor,
-        clave: valor.toLowerCase(),
-        oculto: false,
-        contenido: `
-            <section class="vista">
-                <h1>${valor}</h1>
-                <p>Contenido dinámico de ${valor}</p>
-            </section>
-        `
-    });
-    inputOption2.value = "";
-    renderLista2();
-    guardarAutomatico();
-});
+btnAdd2.addEventListener(
+    "click",
+    () => {
+        const valor =
+            inputOption2.value.trim();
+        if (!valor) return;
+        opciones2.push({
+            nombre: valor,
+            clave:
+                valor.toLowerCase(),
+            oculto: false,
+            contenido: `
+                <section class="vista">
+                    <h1>${valor}</h1>
+                    <p>
+                        Contenido dinámico de
+                        ${valor}
+                    </p>
+                </section>
+            `
+        });
+        inputOption2.value = "";
+        renderLista2();
+        guardarAutomatico();
+    }
+);
 function renderLista2() {
     lista2.innerHTML = "";
     if (opciones2.length === 0) {
-        lista2.innerHTML =
-            `<p class="empty2">Ninguna opcion</p>`;
+        lista2.innerHTML = `
+            <p class="empty2">
+                Ninguna opcion
+            </p>
+        `;
         return;
     }
     opciones2.forEach((op, index) => {
         const div =
-            document.createElement("div");
-        div.classList.add("item2");
+            document.createElement(
+                "div"
+            );
+        div.classList.add(
+            "item2"
+        );
         div.innerHTML = `
             <span>
                 ${op.nombre}
@@ -192,27 +254,42 @@ function renderLista2() {
             <div class="acciones2">
                 <button 
                     onclick="editar2(${index})"
-                    class="btn_accion editar2"
+                    class="
+                        btn_accion
+                        editar2
+                    "
                 >
-                    <i class="fa-solid fa-pen"></i>
+                    <i class="
+                        fa-solid
+                        fa-pen
+                    "></i>
                 </button>
                 <button 
                     onclick="ocultar2(${index})"
-                    class="btn_accion ocultar2"
+                    class="
+                        btn_accion
+                        ocultar2
+                    "
                 >
-                <i class="
-                    fa-solid
-                    ${op.oculto
-                        ? "fa-eye-slash"
-                        : "fa-eye"
-                    }
-                "></i>
+                    <i class="
+                        fa-solid
+                        ${op.oculto
+                            ? "fa-eye-slash"
+                            : "fa-eye"
+                        }
+                    "></i>
                 </button>
                 <button 
                     onclick="eliminar2(${index})"
-                    class="btn_accion eliminar2"
+                    class="
+                        btn_accion
+                        eliminar2
+                    "
                 >
-                    <i class="fa-solid fa-trash"></i>
+                    <i class="
+                        fa-solid
+                        fa-trash
+                    "></i>
                 </button>
             </div>
         `;
@@ -245,94 +322,247 @@ function ocultar2(index){
     guardarAutomatico();
 }
 function guardarAutomatico() {
-    const nombre = document.getElementById("nombreMenu2").value;
+    const nombre =
+        document.getElementById(
+            "nombreMenu2"
+        ).value;
     const menuData = {
         nombre,
         opciones: opciones2,
         logo: imagenBase64,
         elementos: {
-            busqueda: document.getElementById("busqueda2").checked,
-            perfil: document.getElementById("perfil2").checked,
-            notificaciones: document.getElementById("notificaciones2").checked,
-            carrito: document.getElementById("carrito2").checked
+            busqueda:
+                document.getElementById(
+                    "busqueda2"
+                ).checked,
+            perfil:
+                document.getElementById(
+                    "perfil2"
+                ).checked,
+            notificaciones:
+                document.getElementById(
+                    "notificaciones2"
+                ).checked,
+            carrito:
+                document.getElementById(
+                    "carrito2"
+                ).checked
         }
     };
-    localStorage.setItem("menuNavegacion", JSON.stringify(menuData));
+    localStorage.setItem(
+        "menuNavegacion",
+        JSON.stringify(menuData)
+    );
 }
 function guardarSelectDestino() {
-    const select = document.getElementById("destino5");
+    const select =
+        document.getElementById(
+            "destino5"
+        );
     if (!select) return;
-    localStorage.setItem("destino5_opciones", select.innerHTML);
-    localStorage.setItem("destino5_valor", select.value);
+    localStorage.setItem(
+        "destino5_opciones",
+        select.innerHTML
+    );
+    localStorage.setItem(
+        "destino5_valor",
+        select.value
+    );
 }
-document.addEventListener("DOMContentLoaded", () => {
-    const dataGuardada = localStorage.getItem("menuNavegacion");
-    if (dataGuardada) {
-        const menuData = JSON.parse(dataGuardada);
-        document.getElementById("nombreMenu2").value = menuData.nombre;
-        document.getElementById("busqueda2").checked = menuData.elementos.busqueda;
-        document.getElementById("perfil2").checked = menuData.elementos.perfil;
-        document.getElementById("notificaciones2").checked = menuData.elementos.notificaciones;
-        document.getElementById("carrito2").checked = menuData.elementos.carrito;
-        if (menuData.logo) {
-            imagenBase64 = menuData.logo;
-            previewMenu2.src = imagenBase64;
-            previewMenu2.style.display = "block";
-            placeholderMenu2.style.display = "none";
+function actualizarSelectModal16(menuData) {
+    const selectModal =
+        document.querySelector(
+            ".select-modal16"
+        );
+    if (!selectModal) return;
+    selectModal.innerHTML = `
+        <option>
+            Ninguna opcion a vincular...
+        </option>
+    `;
+    menuData.opciones.forEach(op => {
+        if (op.oculto) return;
+        const option =
+            document.createElement(
+                "option"
+            );
+        option.value =
+            op.clave;
+        option.textContent =
+            op.nombre;
+        selectModal.appendChild(
+            option
+        );
+    });
+}
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+        const dataGuardada =
+            localStorage.getItem(
+                "menuNavegacion"
+            );
+        if (dataGuardada) {
+            const menuData =
+                JSON.parse(dataGuardada);
+            document.getElementById(
+                "nombreMenu2"
+            ).value =
+                menuData.nombre;
+            document.getElementById(
+                "busqueda2"
+            ).checked =
+                menuData.elementos.busqueda;
+            document.getElementById(
+                "perfil2"
+            ).checked =
+                menuData.elementos.perfil;
+            document.getElementById(
+                "notificaciones2"
+            ).checked =
+                menuData.elementos.notificaciones;
+            document.getElementById(
+                "carrito2"
+            ).checked =
+                menuData.elementos.carrito;
+            if (menuData.logo) {
+                imagenBase64 =
+                    menuData.logo;
+                previewMenu2.src =
+                    imagenBase64;
+                previewMenu2.style.display =
+                    "block";
+                placeholderMenu2.style.display =
+                    "none";
+            }
+            opciones2 =
+                menuData.opciones || [];
+            renderLista2();
+            actualizarSelectModal16(
+                menuData
+            );
         }
-        opciones2 = menuData.opciones || [];
-        renderLista2();
+        const select =
+            document.getElementById(
+                "destino5"
+            );
+        const opcionesGuardadas =
+            localStorage.getItem(
+                "destino5_opciones"
+            );
+        const valorGuardado =
+            localStorage.getItem(
+                "destino5_valor"
+            );
+        if (
+            select &&
+            opcionesGuardadas
+        ) {
+            select.innerHTML =
+                opcionesGuardadas;
+        }
+        if (
+            select &&
+            valorGuardado
+        ) {
+            select.value =
+                valorGuardado;
+        }
     }
-    const select = document.getElementById("destino5");
-    const opcionesGuardadas = localStorage.getItem("destino5_opciones");
-    const valorGuardado = localStorage.getItem("destino5_valor");
-    if (select && opcionesGuardadas) {
-        select.innerHTML = opcionesGuardadas;
-    }
-    if (select && valorGuardado) {
-        select.value = valorGuardado;
-    }
-});
-const selectDestinoListener = document.getElementById("destino5");
+);
+const selectDestinoListener =
+    document.getElementById(
+        "destino5"
+    );
 if (selectDestinoListener) {
-    selectDestinoListener.addEventListener("change", guardarSelectDestino);
+    selectDestinoListener
+    .addEventListener(
+        "change",
+        guardarSelectDestino
+    );
 }
-document.getElementById("crearMenu2").addEventListener("click", () => {
-    const nombre = document.getElementById("nombreMenu2").value;
-    const busqueda = document.getElementById("busqueda2").checked;
-    const perfil = document.getElementById("perfil2").checked;
-    const notificaciones = document.getElementById("notificaciones2").checked;
-    const carrito = document.getElementById("carrito2").checked;
-    if (!nombre.trim()) {
-        alert("Escribe el nombre del menú");
-        return;
-    }
-    const menuData = {
-        nombre,
-        opciones: opciones2,
-        logo: imagenBase64,
-        elementos: {
-            busqueda,
-            perfil,
-            notificaciones,
-            carrito
+document.getElementById(
+    "crearMenu2"
+).addEventListener(
+    "click",
+    () => {
+        const nombre =
+            document.getElementById(
+                "nombreMenu2"
+            ).value;
+        const busqueda =
+            document.getElementById(
+                "busqueda2"
+            ).checked;
+        const perfil =
+            document.getElementById(
+                "perfil2"
+            ).checked;
+        const notificaciones =
+            document.getElementById(
+                "notificaciones2"
+            ).checked;
+        const carrito =
+            document.getElementById(
+                "carrito2"
+            ).checked;
+        if (!nombre.trim()) {
+            alert(
+                "Escribe el nombre del menú"
+            );
+            return;
         }
-    };
-    console.log(menuData);
-    localStorage.setItem("menuNavegacion", JSON.stringify(menuData));
-    const selectDestino = document.getElementById("destino5");
-    if (selectDestino) {
-        selectDestino.innerHTML = `<option>Ningun destino</option>`;
-        menuData.opciones.forEach(op => {
-            const option = document.createElement("option");
-            option.value = op.clave;
-            option.textContent = op.nombre;
-            selectDestino.appendChild(option);
-        });
-        guardarSelectDestino();
+        const menuData = {
+            nombre,
+            opciones: opciones2,
+            logo: imagenBase64,
+            elementos: {
+                busqueda,
+                perfil,
+                notificaciones,
+                carrito
+            }
+        };
+        console.log(menuData);
+        localStorage.setItem(
+            "menuNavegacion",
+            JSON.stringify(menuData)
+        );
+        const selectDestino =
+            document.getElementById(
+                "destino5"
+            );
+        if (selectDestino) {
+            selectDestino.innerHTML = `
+                <option>
+                    Ningun destino
+                </option>
+            `;
+            menuData.opciones
+            .forEach(op => {
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+                option.value =
+                    op.clave;
+                option.textContent =
+                    op.nombre;
+                selectDestino
+                .appendChild(
+                    option
+                );
+            });
+            guardarSelectDestino();
+            actualizarSelectModal16(
+                menuData
+            );
+        }
+        alert(
+            "Menú guardado correctamente ✅"
+        );
     }
-    alert("Menú guardado correctamente ✅");
-});
+);
 //-------------------------------------------//
 //--|funcionalidad_formulario_del_carrusel|--//
 //-------------------------------------------//
@@ -903,6 +1133,34 @@ document.getElementById("contenido5").addEventListener("change", (e) => {
                         </div>
                     </div>
                 </div>
+                <!----------------------------------->
+                <!--|ventana_emergente_contenido_1|-->
+                <!----------------------------------->
+                <div class="modal-contenido-1" id="modal_contenido_1">
+                    <div class="modal-contenido-1-contenido">
+                        <div class="modal-contenido-1-header">
+                            <h3>
+                                Configuración de botón
+                            </h3>
+                            <button class="cerrar-modal-contenido-1-x">
+                                X
+                            </button>
+                        </div>
+                        <div class="modal-contenido-1-body">
+                            <label>
+                                Selecciona una opción a vincular
+                            </label>
+                            <select class="select-contenido-1">
+                                <option value="">
+                                    Ninguna opción a vincular...
+                                </option>
+                            </select>
+                            <button class="btn-crear-vinculo-contenido-1">
+                                Crear vínculo
+                            </button>
+                        </div>
+                    </div>
+                </div>
             `;
             break;
         //-----------------//
@@ -1327,14 +1585,59 @@ document.getElementById("contenido5").addEventListener("change", (e) => {
             html = `
                 <div class="contenido16">
                     <div class="contenido16-grid">
-                        ${[1,2,3,4].map(() => `
+                        ${[1,2,3,4].map((_, index) => `
                             <div class="card16">
                                 <div class="imagen16">
                                     <i class="fas fa-image"></i>
                                     <p>Ninguna imagen añadida</p>
                                 </div>
                                 <input type="text" placeholder="Escribir el subtitulo..." class="subtitulo16">
-                                <button class="btn-ver16">Ver todo</button>
+                                <button class="btn-ver16" data-modal="modal16-${index}">Ver todo</button>
+                                <!------------------------------------>
+                                <!--|ventana_emergente_contenido_16|-->
+                                <!------------------------------------>
+                                <div 
+                                    class="modal16"
+                                    id="modal16-${index}"
+                                >
+                                    <div class="modal16-contenido">
+                                        <div class="modal16-header">
+                                            <h3>
+                                                Configuracion de boton
+                                            </h3>
+                                            <button 
+                                                class="cerrar-modal16"
+                                            >
+                                                X
+                                            </button>
+                                        </div>
+                                        <div class="modal16-body">
+                                            <label>
+                                                selecciona la opcion a vincular
+                                            </label>
+                                            <select class="select-modal16">
+                                                <option>
+                                                    Ninguna opcion a vincular...
+                                                </option>
+                                                <option>
+                                                    Inicio
+                                                </option>
+                                                <option>
+                                                    Nosotros
+                                                </option>
+                                                <option>
+                                                    Categorias
+                                                </option>
+                                                <option>
+                                                    Contactanos
+                                                </option>
+                                            </select>
+                                            <button class="btn-crear-vinculo16">
+                                                crear vinculo
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         `).join("")}
                     </div>
@@ -1348,19 +1651,59 @@ document.getElementById("contenido5").addEventListener("change", (e) => {
             html = `
                 <div class="contenido17">
                     <div class="contenido17-header">
-                        <input type="text" placeholder="Aqui ira el titulo..." class="titulo-input">
+                        <input 
+                            type="text"
+                            placeholder="Aqui ira el titulo..."
+                            class="titulo-input"
+                        >
                     </div>
                     <div class="contenido17-grid">
                         ${[1,2,3,4,5,6].map(() => `
                             <div class="card17">
                                 <div class="imagen17">
                                     <i class="fas fa-image"></i>
-                                    <p>Ninguna imagen añadida</p>
+                                    <p>
+                                        Ninguna imagen añadida
+                                    </p>
                                 </div>
-                                <input type="text" placeholder="Escribir el subtitulo..." class="subtitulo17">
-                                <button class="btn-ver17">Ver categoria</button>
+                                <input 
+                                    type="text"
+                                    placeholder="Escribir el subtitulo..."
+                                    class="subtitulo17"
+                                >
+                                <button class="btn-ver17">
+                                    Ver categoria
+                                </button>
                             </div>
                         `).join("")}
+                    </div>
+                </div>
+                <!------------------------------------>
+                <!--|ventana_emergente_contenido_17|-->
+                <!------------------------------------>
+                <div class="modal17" id="modal17">
+                    <div class="modal17-contenido">
+                        <div class="modal17-header">
+                            <h3>
+                                Configuración de categoría
+                            </h3>
+                            <button class="cerrar-modal17">
+                                X
+                            </button>
+                        </div>
+                        <div class="modal17-body">
+                            <label>
+                                Selecciona una opción a vincular
+                            </label>
+                            <select class="select-modal17">
+                                <option value="">
+                                    Ninguna opción a vincular...
+                                </option>
+                            </select>
+                            <button class="btn-crear-vinculo17">
+                                Crear vínculo
+                            </button>
+                        </div>
                     </div>
                 </div>
             `;
@@ -2779,8 +3122,271 @@ document.getElementById("crearContenido5").addEventListener("click", () => {
     //-----------------------------------//
     //--|enviando_datos_a_contenido_18|--//
     //-----------------------------------//
-
+    if (contenido === "contenido 18") {
+        const imagenPrincipal =
+            editor.querySelector(
+                ".contenido18-principal img"
+            );
+        const imagenesSecundarias =
+            Array.from(
+                editor.querySelectorAll(
+                    ".imagen18 img"
+                )
+            );
+        const data = {
+            destino,
+            imagenPrincipal:
+                imagenPrincipal
+                    ? imagenPrincipal.src
+                    : "",
+            imagenes: [
+                imagenesSecundarias[0]
+                    ? imagenesSecundarias[0].src
+                    : "",
+                imagenesSecundarias[1]
+                    ? imagenesSecundarias[1].src
+                    : "",
+                imagenesSecundarias[2]
+                    ? imagenesSecundarias[2].src
+                    : ""
+            ]
+        };
+        localStorage.setItem(
+            `contenido18_${destino}`,
+            JSON.stringify(data)
+        );
+        console.log(
+            "Contenido 18 guardado:",
+            data
+        );
+        alert(
+            "Contenido 18 enviado correctamente"
+        );
+    }
 });
+//-----------------------------------//
+//--|ventana_emergente_contenido_1|--//
+//-----------------------------------//
+function actualizarSelectContenido1() {
+    const select =
+        document.querySelector(".select-contenido-1");
+    if (!select) return;
+    select.innerHTML = `
+        <option value="">
+            Ninguna opción a vincular...
+        </option>
+    `;
+    const dataGuardada =
+        localStorage.getItem("menuNavegacion");
+    if (!dataGuardada) return;
+    const menuData =
+        JSON.parse(dataGuardada);
+    menuData.opciones.forEach(op => {
+        const option =
+            document.createElement("option");
+        option.value = op.clave;
+        option.textContent = op.nombre;
+        select.appendChild(option);
+    });
+}
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("btn-ver-mas")) {
+        const modal =
+            document.getElementById("modal_contenido_1");
+        if (modal) {
+            modal.style.display = "flex";
+            actualizarSelectContenido1();
+        }
+    }
+    if (e.target.classList.contains("cerrar-modal-contenido-1") ||
+        e.target.classList.contains("cerrar-modal-contenido-1-x")) {
+        const modal =
+            document.getElementById("modal_contenido_1");
+        if (modal) {
+            modal.style.display = "none";
+        }
+    }
+    if (e.target.id === "modal_contenido_1") {
+        e.target.style.display = "none";
+    }
+    if (e.target.classList.contains("btn-crear-vinculo-contenido-1")) {
+        const select =
+            document.querySelector(".select-contenido-1");
+        if (!select) return;
+        const valor =
+            select.value;
+        const texto =
+            select.options[select.selectedIndex]
+                .textContent.trim();
+        if (!valor) {
+            alert("no hay ninguna opcion a vincular");
+            return;
+        }
+        alert(`este boton a sido vinculado con "${texto}"`);
+    }
+});
+//------------------------------------//
+//--|ventana_emergente_contenido_16|--//
+//------------------------------------//
+function actualizarSelectModal16(modal) {
+    const select =
+        modal.querySelector(".select-modal16");
+    if (!select) return;
+    select.innerHTML = `
+        <option value="">
+            Ninguna opcion a vincular...
+        </option>
+    `;
+    const dataGuardada =
+        localStorage.getItem("menuNavegacion");
+    if (!dataGuardada) return;
+    const menuData =
+        JSON.parse(dataGuardada);
+    menuData.opciones.forEach(op => {
+        const option =
+            document.createElement("option");
+        option.value = op.clave;
+        option.textContent = op.nombre;
+        select.appendChild(option);
+    });
+}
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("btn-ver16")) {
+        const modalID =
+            e.target.dataset.modal;
+        const modal =
+            document.getElementById(modalID);
+        if (modal) {
+            modal.style.display = "flex";
+            actualizarSelectModal16(modal);
+        }
+    }
+    if (e.target.classList.contains("cerrar-modal16")) {
+        const modal =
+            e.target.closest(".modal16");
+        if (modal) {
+            modal.style.display = "none";
+        }
+    }
+    if (e.target.classList.contains("btn-crear-vinculo16")) {
+        const modal =
+            e.target.closest(".modal16");
+        const select =
+            modal.querySelector(".select-modal16");
+        if (!select) return;
+        const valorSeleccionado =
+            select.value;
+        const textoSeleccionado =
+            select.options[
+                select.selectedIndex
+            ].textContent.trim();
+        if (!valorSeleccionado || valorSeleccionado === "") {
+            alert("no hay ninguna opcion a vincular");
+            return;
+        }
+        alert(
+            `este boton a sido vinculado con "${textoSeleccionado}"`
+        );
+    }
+});
+document.addEventListener("DOMContentLoaded", () => {
+    const modales =
+        document.querySelectorAll(".modal16");
+    modales.forEach(modal => {
+        actualizarSelectModal16(modal);
+    });
+});
+//------------------------------------//
+//--|ventana_emergente_contenido_17|--//
+//------------------------------------//
+function actualizarSelectModal17() {
+    const select =
+        document.querySelector(".select-modal17");
+    if (!select) return;
+    select.innerHTML = `
+        <option value="">
+            Ninguna opción a vincular...
+        </option>
+    `;
+    const dataGuardada =
+        localStorage.getItem("menuNavegacion");
+    if (!dataGuardada) return;
+    const menuData =
+        JSON.parse(dataGuardada);
+    menuData.opciones.forEach(op => {
+        const option =
+            document.createElement("option");
+        option.value =
+            op.clave;
+        option.textContent =
+            op.nombre;
+        select.appendChild(option);
+    });
+}
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+        actualizarSelectModal17();
+    }
+);
+document.addEventListener(
+    "click",
+    (e) => {
+        if (
+            e.target.classList.contains(
+                "btn-ver17"
+            )
+        ) {
+            const modal =
+                document.getElementById(
+                    "modal17"
+                );
+            if (modal) {
+                modal.style.display =
+                    "flex";
+                actualizarSelectModal17();
+            }
+        }
+        if (
+            e.target.classList.contains(
+                "cerrar-modal17"
+            )
+        ) {
+            const modal =
+                e.target.closest(".modal17");
+            if (modal) {
+                modal.style.display =
+                    "none";
+            }
+        }
+        if (
+            e.target.classList.contains(
+                "btn-crear-vinculo17"
+            )
+        ) {
+            const select =
+                document.querySelector(
+                    ".select-modal17"
+                );
+            if (!select) return;
+            const valor =
+                select.value;
+            const texto =
+                select.options[
+                    select.selectedIndex
+                ].textContent.trim();
+            if (!valor) {
+                alert(
+                    "no hay ninguna opcion a vincular"
+                );
+                return;
+            }
+            alert(
+                `este boton a sido vinculado con "${texto}"`
+            );
+        }
+    }
+);
 //------------------------------------------//
 //--|funcionalidad_versiones_de_la_tienda|--//
 //------------------------------------------//

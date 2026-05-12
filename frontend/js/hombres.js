@@ -16,12 +16,25 @@ if (tienda) {
 //--|funcionalidad_menu_de_navegacion_dinamica|--//
 //-----------------------------------------------//
 const opcionesMenu = [
-    { nombre: "Opción 1" },
-    { nombre: "Opción 2" },
-    { nombre: "Opción 3" },
-    { nombre: "Opción 4" }
+    {
+        nombre: "Opción 1",
+        oculto: false
+    },
+    {
+        nombre: "Opción 2",
+        oculto: false
+    },
+    {
+        nombre: "Opción 3",
+        oculto: false
+    },
+    {
+        nombre: "Opción 4",
+        oculto: false
+    }
 ];
-const contenedorMenu = document.getElementById("opciones-menu");
+const contenedorMenu =
+    document.getElementById("opciones-menu");
 function crearMenu(lista) {
     contenedorMenu.innerHTML = "";
     const paginas = [
@@ -31,38 +44,65 @@ function crearMenu(lista) {
         "categorias.html"
     ];
     lista.forEach((opcion, index) => {
-        const li = document.createElement("li");
-        li.textContent = opcion.nombre || opcion;
+        if (opcion.oculto) return;
+        const li =
+            document.createElement("li");
+        li.textContent =
+            opcion.nombre || opcion;
         li.addEventListener("click", () => {
-            window.location.href = paginas[index];
+            window.location.href =
+                paginas[index];
         });
         contenedorMenu.appendChild(li);
     });
 }
 let data = null;
 try {
-    data = JSON.parse(localStorage.getItem("menuNavegacion"));
+    data =
+        JSON.parse(
+            localStorage.getItem("menuNavegacion")
+        );
 } catch (error) {
-    console.error("Error leyendo localStorage:", error);
+    console.error(
+        "Error leyendo localStorage:",
+        error
+    );
 }
 if (data) {
-    document.getElementById("titulo-menu").textContent = data.nombre;
-    if (data.logo && data.logo.trim() !== "") {
-        document.getElementById("logo-menu").src = data.logo;
+    document.getElementById("titulo-menu").textContent =
+        data.nombre;
+    if (
+        data.logo &&
+        data.logo.trim() !== ""
+    ) {
+        document.getElementById("logo-menu").src =
+            data.logo;
     }
-    crearMenu(data.opciones || opcionesMenu);
+    crearMenu(
+        data.opciones || opcionesMenu
+    );
     if (data.elementos) {
         document.getElementById("busqueda-container").style.display =
-            data.elementos.busqueda ? "flex" : "none";
+            data.elementos.busqueda
+                ? "flex"
+                : "none";
         document.getElementById("icono-perfil").style.display =
-            data.elementos.perfil ? "inline-block" : "none";
+            data.elementos.perfil
+                ? "inline-block"
+                : "none";
         document.getElementById("icono-notificaciones").style.display =
-            data.elementos.notificaciones ? "inline-block" : "none";
+            data.elementos.notificaciones
+                ? "inline-block"
+                : "none";
         document.getElementById("icono-carrito").style.display =
-            data.elementos.carrito ? "inline-block" : "none";
+            data.elementos.carrito
+                ? "inline-block"
+                : "none";
     }
 } else {
-    console.warn("No hay datos del menú, usando menú por defecto");
+    console.warn(
+        "No hay datos del menú, usando menú por defecto"
+    );
     crearMenu(opcionesMenu);
 }
 //----------------------------------------------//
@@ -113,27 +153,171 @@ botonLimpiarFiltro.addEventListener(
 //-----------------------------------------//
 //--|funcionalidad_contenido_18_dinamica|--//
 //-----------------------------------------//
+const dataContenido18 =
+JSON.parse(
+    localStorage.getItem(
+        "contenido18_hombres"
+    )
+);
+
 const itemsContenido18 =
 document.querySelectorAll(
     ".item_imagen_contenido_18"
 );
+
 const imagenPrincipalContenido18 =
 document.getElementById(
     "img_principal_contenido_18"
 );
+
+/*----------------------------------*/
+/*--|icono_y_texto_principal_18|--*/
+/*----------------------------------*/
+
+const iconoPrincipalContenido18 =
+document.getElementById(
+    "icono_imagen_principal_contenido_18"
+);
+
+const textoPrincipalContenido18 =
+document.getElementById(
+    "texto_imagen_principal_contenido_18"
+);
+
+if (dataContenido18) {
+
+    //-----------------------------------//
+    //--|imagen_principal_contenido_18|--//
+    //-----------------------------------//
+
+    if (
+        imagenPrincipalContenido18 &&
+        dataContenido18.imagenPrincipal
+    ) {
+
+        imagenPrincipalContenido18.src =
+        dataContenido18.imagenPrincipal;
+
+        //--------------------------------//
+        //--|ocultar_icono_y_texto|--//
+        //--------------------------------//
+
+        if (
+            iconoPrincipalContenido18
+        ) {
+
+            iconoPrincipalContenido18
+            .style.display = "none";
+
+        }
+
+        if (
+            textoPrincipalContenido18
+        ) {
+
+            textoPrincipalContenido18
+            .style.display = "none";
+
+        }
+
+    }
+
+    //--------------------------------//
+    //--|imagenes_secundarias_18|--//
+    //--------------------------------//
+
+    itemsContenido18.forEach(
+        (item, index) => {
+
+            const imagen =
+            dataContenido18.imagenes[index];
+
+            if (imagen) {
+
+                item.setAttribute(
+                    "data-imagen",
+                    imagen
+                );
+
+                //--------------------------------//
+                //--|icono_y_texto_item_18|--//
+                //--------------------------------//
+
+                const icono =
+                item.querySelector(
+                    ".icono_miniatura_contenido_18"
+                );
+
+                const texto =
+                item.querySelector(
+                    ".texto_item_contenido_18"
+                );
+
+                //--------------------------------//
+                //--|ocultar_icono_y_texto|--//
+                //--------------------------------//
+
+                if (icono) {
+
+                    icono.style.display =
+                    "none";
+
+                }
+
+                if (texto) {
+
+                    texto.style.display =
+                    "none";
+
+                }
+
+                //--------------------------------//
+                //--|mostrar_miniatura_real|--//
+                //--------------------------------//
+
+                item.innerHTML += `
+                    <img
+                        src="${imagen}"
+                        class="miniatura_contenido_18"
+                    >
+                `;
+
+            }
+
+        }
+    );
+
+}
+
+/*----------------------------------*/
+/*--|cambiar_imagen_principal_18|--*/
+/*----------------------------------*/
+
 itemsContenido18.forEach(
     (item) => {
+
         item.addEventListener(
             "click",
             () => {
+
                 const nuevaImagen =
                 item.getAttribute(
                     "data-imagen"
                 );
-                imagenPrincipalContenido18.src =
-                nuevaImagen;
+
+                if (
+                    nuevaImagen &&
+                    imagenPrincipalContenido18
+                ) {
+
+                    imagenPrincipalContenido18.src =
+                    nuevaImagen;
+
+                }
+
             }
         );
+
     }
 );
 //------------------------------------//
