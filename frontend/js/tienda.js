@@ -189,6 +189,7 @@ document.getElementById(
 );
 [
     "busqueda2",
+    "vincularopciones2",
     "perfil2",
     "notificaciones2",
     "carrito2"
@@ -335,6 +336,10 @@ function guardarAutomatico() {
                 document.getElementById(
                     "busqueda2"
                 ).checked,
+            vincularOpciones:
+                document.getElementById(
+                    "vincularopciones2"
+                ).checked,
             perfil:
                 document.getElementById(
                     "perfil2"
@@ -413,6 +418,11 @@ document.addEventListener(
                 "busqueda2"
             ).checked =
                 menuData.elementos.busqueda;
+            document.getElementById(
+                "vincularopciones2"
+            ).checked =
+                menuData.elementos
+                .vincularOpciones;
             document.getElementById(
                 "perfil2"
             ).checked =
@@ -494,6 +504,10 @@ document.getElementById(
             document.getElementById(
                 "busqueda2"
             ).checked;
+        const vincularOpciones =
+            document.getElementById(
+                "vincularopciones2"
+            ).checked;
         const perfil =
             document.getElementById(
                 "perfil2"
@@ -518,6 +532,7 @@ document.getElementById(
             logo: imagenBase64,
             elementos: {
                 busqueda,
+                vincularOpciones,
                 perfil,
                 notificaciones,
                 carrito
@@ -3229,6 +3244,8 @@ document.addEventListener("click", (e) => {
 //--|ventana_emergente_contenido_16|--//
 //------------------------------------//
 function actualizarSelectModal16(modal) {
+    // 🔴 VALIDACIÓN CLAVE (evita el error)
+    if (!modal || typeof modal.querySelector !== "function") return;
     const select =
         modal.querySelector(".select-modal16");
     if (!select) return;
@@ -3289,13 +3306,13 @@ document.addEventListener("click", (e) => {
         );
     }
 });
-document.addEventListener("DOMContentLoaded", () => {
-    const modales =
-        document.querySelectorAll(".modal16");
+function initModal16() {
+    const modales = document.querySelectorAll(".modal16");
     modales.forEach(modal => {
         actualizarSelectModal16(modal);
     });
-});
+}
+document.addEventListener("DOMContentLoaded", initModal16);
 //------------------------------------//
 //--|ventana_emergente_contenido_17|--//
 //------------------------------------//

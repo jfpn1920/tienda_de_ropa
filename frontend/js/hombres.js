@@ -159,165 +159,95 @@ JSON.parse(
         "contenido18_hombres"
     )
 );
-
 const itemsContenido18 =
 document.querySelectorAll(
     ".item_imagen_contenido_18"
 );
-
 const imagenPrincipalContenido18 =
 document.getElementById(
     "img_principal_contenido_18"
 );
-
-/*----------------------------------*/
-/*--|icono_y_texto_principal_18|--*/
-/*----------------------------------*/
-
 const iconoPrincipalContenido18 =
 document.getElementById(
     "icono_imagen_principal_contenido_18"
 );
-
 const textoPrincipalContenido18 =
 document.getElementById(
     "texto_imagen_principal_contenido_18"
 );
-
 if (dataContenido18) {
-
-    //-----------------------------------//
-    //--|imagen_principal_contenido_18|--//
-    //-----------------------------------//
-
     if (
         imagenPrincipalContenido18 &&
         dataContenido18.imagenPrincipal
     ) {
-
         imagenPrincipalContenido18.src =
         dataContenido18.imagenPrincipal;
-
-        //--------------------------------//
-        //--|ocultar_icono_y_texto|--//
-        //--------------------------------//
-
         if (
             iconoPrincipalContenido18
         ) {
-
             iconoPrincipalContenido18
             .style.display = "none";
-
         }
-
         if (
             textoPrincipalContenido18
         ) {
-
             textoPrincipalContenido18
             .style.display = "none";
-
         }
-
     }
-
-    //--------------------------------//
-    //--|imagenes_secundarias_18|--//
-    //--------------------------------//
-
     itemsContenido18.forEach(
         (item, index) => {
-
             const imagen =
             dataContenido18.imagenes[index];
-
             if (imagen) {
-
                 item.setAttribute(
                     "data-imagen",
                     imagen
                 );
-
-                //--------------------------------//
-                //--|icono_y_texto_item_18|--//
-                //--------------------------------//
-
                 const icono =
                 item.querySelector(
                     ".icono_miniatura_contenido_18"
                 );
-
                 const texto =
                 item.querySelector(
                     ".texto_item_contenido_18"
                 );
-
-                //--------------------------------//
-                //--|ocultar_icono_y_texto|--//
-                //--------------------------------//
-
                 if (icono) {
-
                     icono.style.display =
                     "none";
-
                 }
-
                 if (texto) {
-
                     texto.style.display =
                     "none";
-
                 }
-
-                //--------------------------------//
-                //--|mostrar_miniatura_real|--//
-                //--------------------------------//
-
                 item.innerHTML += `
                     <img
                         src="${imagen}"
                         class="miniatura_contenido_18"
                     >
                 `;
-
             }
-
         }
     );
-
 }
-
-/*----------------------------------*/
-/*--|cambiar_imagen_principal_18|--*/
-/*----------------------------------*/
-
 itemsContenido18.forEach(
     (item) => {
-
         item.addEventListener(
             "click",
             () => {
-
                 const nuevaImagen =
                 item.getAttribute(
                     "data-imagen"
                 );
-
                 if (
                     nuevaImagen &&
                     imagenPrincipalContenido18
                 ) {
-
                     imagenPrincipalContenido18.src =
                     nuevaImagen;
-
                 }
-
             }
         );
-
     }
 );
 //------------------------------------//

@@ -189,12 +189,17 @@ button:hover {
 .left2, .right2 { 
     flex: 1; 
 }
+.right2 { 
+    margin-top: 1px;
+    margin-left: -255px; 
+}
 .subtitulos1{
     margin-top: -5px;
     font-size: 15px;
 }
 .upload-box2 {
     height: 340px;
+    width: 250px;
     background: #cfcfcf;
     border: 2px dashed #888;
     margin-top: 5px;
@@ -226,10 +231,15 @@ button:hover {
     display: flex; 
     align-items: center; 
     gap: 8px; 
+    width: 500px;
 }
 .check-row2 input[type="checkbox"] { 
     width: auto; 
     margin-top: 5px; 
+}
+#vincularopciones2{
+    position: relative;
+    margin-left: 10px;
 }
 .check-row2 span { 
     margin-left: -3px; 
@@ -261,7 +271,7 @@ button:hover {
 }
 .lista2 {
     margin-top: 5px;
-    height: 310px;
+    height: 212px;
     background: #cfcfcf;
     border: 1px solid #999;
     padding: 5px;
