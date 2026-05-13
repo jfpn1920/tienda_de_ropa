@@ -96,6 +96,12 @@ body{
 /*---------------------------------*/
 /*--|estilo_formulario_de_tienda|--*/
 /*---------------------------------*/
+.main-content-8{
+    transition: margin-left 0.3s ease;
+}
+.main-content-8.active{
+    margin-left: 212px;
+}
 .form-container {
     width: 300px;
     background: #dcdcdc;
