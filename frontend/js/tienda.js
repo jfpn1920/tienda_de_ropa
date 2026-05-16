@@ -15,14 +15,29 @@ menuToggle.addEventListener("click", () => {
 //----------------------------------------//
 //--|funcionalidad_formulario_de_tienda|--//
 //----------------------------------------//
-const uploadBox = document.getElementById("uploadBox");
-const inputFile = document.getElementById("imagen");
-const preview = document.getElementById("preview");
-const placeholder = document.getElementById("placeholder");
-let tiendas = JSON.parse(localStorage.getItem("tiendas")) || [];
-const lista = document.getElementById("contenedor-sitios");
-document.getElementById("nombre").addEventListener("input", guardarFormulario);
-document.getElementById("pestanas").addEventListener("change", guardarFormulario);
+const uploadBox =
+    document.getElementById("uploadBox");
+const inputFile =
+    document.getElementById("imagen");
+const preview =
+    document.getElementById("preview");
+const placeholder =
+    document.getElementById("placeholder");
+let tiendas = JSON.parse(
+    localStorage.getItem("tiendas")
+) || [];
+document
+.getElementById("nombre")
+.addEventListener(
+    "input",
+    guardarFormulario
+);
+document
+.getElementById("pestanas")
+.addEventListener(
+    "change",
+    guardarFormulario
+);
 uploadBox.addEventListener("click", () => {
     inputFile.click();
 });
@@ -41,29 +56,56 @@ inputFile.addEventListener("change", () => {
 });
 function guardarFormulario() {
     const datosFormulario = {
-        nombre: document.getElementById("nombre").value,
-        pestanas: document.getElementById("pestanas").value,
-        imagen: preview.style.display === "block" ? preview.src : ""
+        nombre:
+            document.getElementById("nombre").value,
+        pestanas:
+            document.getElementById("pestanas").value,
+        imagen:
+            preview.style.display === "block"
+            ? preview.src
+            : ""
     };
-    localStorage.setItem("formularioTienda", JSON.stringify(datosFormulario));
+    localStorage.setItem(
+        "formularioTienda",
+        JSON.stringify(datosFormulario)
+    );
 }
 function cargarFormulario() {
-    const datos = JSON.parse(localStorage.getItem("formularioTienda"));
+    const datos = JSON.parse(
+        localStorage.getItem("formularioTienda")
+    );
     if (!datos) return;
-    document.getElementById("nombre").value = datos.nombre || "";
-    document.getElementById("pestanas").value = datos.pestanas || "0";
+    document.getElementById("nombre").value =
+        datos.nombre || "";
+    document.getElementById("pestanas").value =
+        datos.pestanas || "0";
     if (datos.imagen) {
         preview.src = datos.imagen;
         preview.style.display = "block";
         placeholder.style.display = "none";
     }
 }
-document.getElementById("crear").addEventListener("click", () => {
-    const nombre = document.getElementById("nombre").value.trim();
-    const pestanas = document.getElementById("pestanas").value;
-    const imagen = preview.style.display === "block" ? preview.src : "";
-    if (nombre === "" || pestanas === "0") {
-        alert("Completa todos los campos para crear la tienda.");
+document
+.getElementById("crear")
+.addEventListener("click", () => {
+    const nombre =
+        document.getElementById("nombre")
+        .value
+        .trim();
+    const pestanas =
+        document.getElementById("pestanas")
+        .value;
+    const imagen =
+        preview.style.display === "block"
+        ? preview.src
+        : "";
+    if (
+        nombre === "" ||
+        pestanas === "0"
+    ) {
+        alert(
+            "Completa todos los campos para crear la tienda."
+        );
         return;
     }
     const nuevaTienda = {
@@ -73,54 +115,31 @@ document.getElementById("crear").addEventListener("click", () => {
         imagen
     };
     tiendas.push(nuevaTienda);
-    localStorage.setItem("tiendas", JSON.stringify(tiendas));
-    alert(`Has creado la tienda "${nombre}" con éxito.`);
+    localStorage.setItem(
+        "tiendas",
+        JSON.stringify(tiendas)
+    );
+    localStorage.setItem(
+        "tiendaActiva",
+        nuevaTienda.id
+    );
+    alert(
+        `Has creado la tienda "${nombre}" con éxito.`
+    );
     document.getElementById("nombre").value = "";
     document.getElementById("pestanas").value = "0";
     preview.style.display = "none";
     placeholder.style.display = "block";
-    localStorage.removeItem("formularioTienda");
-    renderTiendas();
+    localStorage.removeItem(
+        "formularioTienda"
+    );
 });
-function renderTiendas() {
-    if (!lista) return;
-    lista.innerHTML = "";
-    tiendas.forEach(tienda => {
-        const card = document.createElement("div");
-        card.classList.add("tarjeta-sitio");
-        card.innerHTML = `
-            <div class="header-sitio">
-                ${tienda.nombre}
-            </div>
-            <div class="imagen-sitio">
-                ${tienda.imagen ? `<img src="${tienda.imagen}">` : "Sin imagen"}
-            </div>
-            <div class="acciones-sitio">
-                <button class="eliminar" onclick="eliminarTienda(${tienda.id})">Eliminar</button>
-                <button class="ver" onclick="window.open('tienda_de_ropa.html?id=${tienda.id}', '_blank')">Ver sitio web</button>
-                <button class="editar" onclick="editarTienda(${tienda.id})">Editar</button>
-            </div>
-        `;
-        lista.appendChild(card);
-    });
-}
-function eliminarTienda(id) {
-    tiendas = tiendas.filter(t => t.id !== id);
-    localStorage.setItem("tiendas", JSON.stringify(tiendas));
-    renderTiendas();
-}
-function verTienda(id) {
-    const tienda = tiendas.find(t => t.id === id);
-    alert("Viendo: " + tienda.nombre);
-}
-function editarTienda(id) {
-    const tienda = tiendas.find(t => t.id === id);
-    alert("Editar: " + tienda.nombre);
-}
-document.addEventListener("DOMContentLoaded", () => {
-    renderTiendas();
-    cargarFormulario();
-});
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+        cargarFormulario();
+    }
+);
 //----------------------------------------------------//
 //--|funcionalidad_formulario_de_menu_de_navegacion|--//
 //----------------------------------------------------//
@@ -3405,42 +3424,173 @@ document.addEventListener(
     }
 );
 //------------------------------------------//
-//--|funcionalidad_versiones_de_la_tienda|--//
+//--|funcionalidad_formulario_de_anuncios|--//
 //------------------------------------------//
-document.getElementById("btnBuscar6").addEventListener("click", () => {
-    const valor = document.getElementById("inputBusqueda6").value.toLowerCase();
-    const filtradas = tiendas.filter(tienda =>
-        tienda.nombre.toLowerCase().includes(valor)
+const btnCrear_anunciostienda =
+    document.querySelector(
+        ".btn-crear_anunciostienda"
     );
-    renderTiendasFiltradas(filtradas);
-});
-function renderTiendasFiltradas(listaFiltrada) {
-    lista.innerHTML = "";
-    listaFiltrada.forEach(tienda => {
-        const card = document.createElement("div");
-        card.classList.add("tarjeta-sitio");
-        card.innerHTML = `
-            <div class="header-sitio">
-                ${tienda.nombre}
-            </div>
-            <div class="imagen-sitio">
-                ${tienda.imagen ? `<img src="${tienda.imagen}">` : "Sin imagen"}
-            </div>
-            <div class="acciones-sitio">
-                <button class="eliminar" onclick="eliminarTienda(${tienda.id})">Eliminar</button>
-                <button class="ver" onclick="window.open('tienda_de_ropa.html?id=${tienda.id}', '_blank')">Ver sitio web</button>
-                <button class="editar" onclick="editarTienda(${tienda.id})">Editar</button>
-            </div>
-        `;
-        lista.appendChild(card);
-    });
-}
-document.getElementById("inputBusqueda6").addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-        document.getElementById("btnBuscar6").click();
+const tituloAnuncio_anunciostienda =
+    document.getElementById(
+        "tituloAnuncio_anunciostienda"
+    );
+const descripcionAnuncio_anunciostienda =
+    document.getElementById(
+        "descripcionAnuncio_anunciostienda"
+    );
+const imagen_anunciostienda =
+    document.getElementById(
+        "imagen_anunciostienda"
+    );
+const fechaInicio_anunciostienda =
+    document.getElementById(
+        "fechaInicio_anunciostienda"
+    );
+const fechaFinal_anunciostienda =
+    document.getElementById(
+        "fechaFinal_anunciostienda"
+    );
+const tiempoAnuncio_anunciostienda =
+    document.getElementById(
+        "tiempoAnuncio_anunciostienda"
+    );
+const uploadBox_anunciostienda =
+    document.getElementById(
+        "uploadBox_anunciostienda"
+    );
+const inputFile_anunciostienda =
+    document.getElementById(
+        "imagen_anunciostienda"
+    );
+const previewImagen_anunciostienda =
+    document.getElementById(
+        "previewImagen_anunciostienda"
+    );
+const iconoImagen_anunciostienda =
+    document.getElementById(
+        "iconoImagen_anunciostienda"
+    );
+const textoImagen_anunciostienda =
+    document.getElementById(
+        "textoImagen_anunciostienda"
+    );
+uploadBox_anunciostienda.addEventListener(
+    "click",
+    () => {
+        inputFile_anunciostienda.click();
     }
-});
-document.getElementById("btnFiltrar6").addEventListener("click", () => {
-    alert("Aquí puedes abrir opciones de filtrado");
-});
-renderTiendas();
+);
+inputFile_anunciostienda.addEventListener(
+    "change",
+    () => {
+        const archivo =
+            inputFile_anunciostienda.files[0];
+        if (archivo) {
+            const reader =
+                new FileReader();
+            reader.onload =
+                (e) => {
+                    previewImagen_anunciostienda.src =
+                        e.target.result;
+                    previewImagen_anunciostienda.style.display =
+                        "block";
+                    iconoImagen_anunciostienda.style.display =
+                        "none";
+                    textoImagen_anunciostienda.style.display =
+                        "none";
+                    localStorage.setItem(
+                        "imagen_anunciostienda",
+                        e.target.result
+                    );
+                };
+            reader.readAsDataURL(
+                archivo
+            );
+        }
+    }
+);
+btnCrear_anunciostienda.addEventListener(
+    "click",
+    () => {
+        const titulo =
+            tituloAnuncio_anunciostienda.value.trim();
+        const descripcion =
+            descripcionAnuncio_anunciostienda.value.trim();
+        const archivoImagen =
+            imagen_anunciostienda.files.length;
+        const inicio =
+            fechaInicio_anunciostienda.value;
+        const final =
+            fechaFinal_anunciostienda.value;
+        if (
+            titulo === "" ||
+            descripcion === "" ||
+            archivoImagen === 0 ||
+            inicio === "" ||
+            final === ""
+        ) {
+            alert(
+                "no hay ningun anuncio creado"
+            );
+        } else {
+            const datosAnuncio = {
+                titulo: titulo,
+                descripcion: descripcion,
+                fechaInicio: inicio,
+                fechaFinal: final,
+                tiempoAnuncio:
+                    tiempoAnuncio_anunciostienda.checked
+            };
+            localStorage.setItem(
+                "datos_anunciostienda",
+                JSON.stringify(
+                    datosAnuncio
+                )
+            );
+            alert(
+                "anuncio creado correctamente"
+            );
+            window.location.href =
+                "tienda_de_ropa.html";
+        }
+    }
+);
+window.addEventListener(
+    "DOMContentLoaded",
+    () => {
+        const datosGuardados =
+            localStorage.getItem(
+                "datos_anunciostienda"
+            );
+        const imagenGuardada =
+            localStorage.getItem(
+                "imagen_anunciostienda"
+            );
+        if (datosGuardados) {
+            const datos =
+                JSON.parse(
+                    datosGuardados
+                );
+            tituloAnuncio_anunciostienda.value =
+                datos.titulo;
+            descripcionAnuncio_anunciostienda.value =
+                datos.descripcion;
+            fechaInicio_anunciostienda.value =
+                datos.fechaInicio;
+            fechaFinal_anunciostienda.value =
+                datos.fechaFinal;
+            tiempoAnuncio_anunciostienda.checked =
+                datos.tiempoAnuncio;
+        }
+        if (imagenGuardada) {
+            previewImagen_anunciostienda.src =
+                imagenGuardada;
+            previewImagen_anunciostienda.style.display =
+                "block";
+            iconoImagen_anunciostienda.style.display =
+                "none";
+            textoImagen_anunciostienda.style.display =
+                "none";
+        }
+    }
+);

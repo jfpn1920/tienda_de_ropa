@@ -1,17 +1,48 @@
 //--------------------------------------------------//
 //--|funcionalidad_titular_del_sitio_web_dinamica|--//
 //--------------------------------------------------//
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
-const tiendas = JSON.parse(localStorage.getItem("tiendas")) || [];
-const tienda = tiendas.find(t => t.id == id);
-if (tienda) {
-    document.title = tienda.nombre;
-    const favicon = document.getElementById("favicon");
-    if (favicon && tienda.imagen) {
-        favicon.href = tienda.imagen;
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+        const tiendaActiva =
+            localStorage.getItem(
+                "tiendaActiva"
+            );
+        if (!tiendaActiva) {
+            console.warn(
+                "No hay tienda activa."
+            );
+            return;
+        }
+        const tiendas = JSON.parse(
+            localStorage.getItem(
+                "tiendas"
+            )
+        ) || [];
+        const tienda = tiendas.find(
+            t => t.id == tiendaActiva
+        );
+        if (!tienda) {
+            console.warn(
+                "La tienda no existe."
+            );
+            return;
+        }
+        document.title =
+            tienda.nombre;
+        const favicon =
+            document.getElementById(
+                "favicon"
+            );
+        if (
+            favicon &&
+            tienda.imagen
+        ) {
+            favicon.href =
+                tienda.imagen;
+        }
     }
-}
+);
 //-----------------------------------------------//
 //--|funcionalidad_menu_de_navegacion_dinamica|--//
 //-----------------------------------------------//
@@ -570,6 +601,154 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
         cargarContenido10();
+    }
+);
+//----------------------------------------------//
+//--|funcionalidad_anuncio_de_tienda_dinamica|--//
+//----------------------------------------------//
+const overlayPopup_anunciostienda =
+    document.getElementById(
+        "overlayAnuncio_anunciostienda"
+    );
+const cerrarPopup_anunciostienda =
+    document.getElementById(
+        "cerrarPopup_anunciostienda"
+    );
+const tituloPopup_anunciostienda =
+    document.getElementById(
+        "tituloPopup_anunciostienda"
+    );
+const descripcionPopup_anunciostienda =
+    document.getElementById(
+        "descripcionPopup_anunciostienda"
+    );
+const imagenPopup_anunciostienda =
+    document.getElementById(
+        "imagenPopup_anunciostienda"
+    );
+const defaultImagen_anunciostienda =
+    document.getElementById(
+        "defaultImagen_anunciostienda"
+    );
+const fechaInicioPopup_anunciostienda =
+    document.getElementById(
+        "fechaInicioPopup_anunciostienda"
+    );
+const fechaFinalPopup_anunciostienda =
+    document.getElementById(
+        "fechaFinalPopup_anunciostienda"
+    );
+window.addEventListener(
+    "DOMContentLoaded",
+    () => {
+        const popupMostrado =
+            sessionStorage.getItem(
+                "popupMostrado_anunciostienda"
+            );
+        const datosGuardados =
+            localStorage.getItem(
+                "datos_anunciostienda"
+            );
+        const imagenGuardada =
+            localStorage.getItem(
+                "imagen_anunciostienda"
+            );
+        if (datosGuardados) {
+            const datos =
+                JSON.parse(
+                    datosGuardados
+                );
+            tituloPopup_anunciostienda.textContent =
+                datos.titulo;
+            descripcionPopup_anunciostienda.textContent =
+                datos.descripcion;
+            fechaInicioPopup_anunciostienda.textContent =
+                datos.fechaInicio;
+            fechaFinalPopup_anunciostienda.textContent =
+                datos.fechaFinal;
+            const fechaActual =
+                new Date()
+                .toISOString()
+                .split("T")[0];
+            if (
+                fechaActual >= datos.fechaInicio &&
+                fechaActual <= datos.fechaFinal
+            ) {
+                if (!popupMostrado) {
+                    overlayPopup_anunciostienda.style.display =
+                        "flex";
+                    setTimeout(
+                        () => {
+                            overlayPopup_anunciostienda.classList.add(
+                                "active"
+                            );
+                        },
+                        50
+                    );
+                    sessionStorage.setItem(
+                        "popupMostrado_anunciostienda",
+                        "true"
+                    );
+                    if (
+                        datos.tiempoAnuncio
+                    ) {
+                        setTimeout(
+                            () => {
+                                overlayPopup_anunciostienda.classList.remove(
+                                    "active"
+                                );
+                                setTimeout(
+                                    () => {
+                                        overlayPopup_anunciostienda.style.display =
+                                            "none";
+                                    },
+                                    300
+                                );
+                            },
+                            10000
+                        );
+                    }
+                }
+            }
+            if (
+                fechaActual > datos.fechaFinal
+            ) {
+                localStorage.removeItem(
+                    "datos_anunciostienda"
+                );
+                localStorage.removeItem(
+                    "imagen_anunciostienda"
+                );
+                sessionStorage.removeItem(
+                    "popupMostrado_anunciostienda"
+                );
+                overlayPopup_anunciostienda.style.display =
+                    "none";
+            }
+        }
+        if(imagenGuardada) {
+            imagenPopup_anunciostienda.src =
+                imagenGuardada;
+            imagenPopup_anunciostienda.style.display =
+                "block";
+            defaultImagen_anunciostienda.style.display =
+                "none";
+        }
+    }
+);
+cerrarPopup_anunciostienda.addEventListener(
+    "click",
+    () => {
+        overlayPopup_anunciostienda.classList.remove(
+            "active"
+        );
+        setTimeout(
+            () => {
+                overlayPopup_anunciostienda.style.display =
+                    "none";
+            },
+            300
+        );
     }
 );
 //------------------------------------//

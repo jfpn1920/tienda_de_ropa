@@ -1,17 +1,48 @@
 //--------------------------------------------------//
 //--|funcionalidad_titular_del_sitio_web_dinamica|--//
 //--------------------------------------------------//
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
-const tiendas = JSON.parse(localStorage.getItem("tiendas")) || [];
-const tienda = tiendas.find(t => t.id == id);
-if (tienda) {
-    document.title = tienda.nombre;
-    const favicon = document.getElementById("favicon");
-    if (favicon && tienda.imagen) {
-        favicon.href = tienda.imagen;
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+        const tiendaActiva =
+            localStorage.getItem(
+                "tiendaActiva"
+            );
+        if (!tiendaActiva) {
+            console.warn(
+                "No hay tienda activa."
+            );
+            return;
+        }
+        const tiendas = JSON.parse(
+            localStorage.getItem(
+                "tiendas"
+            )
+        ) || [];
+        const tienda = tiendas.find(
+            t => t.id == tiendaActiva
+        );
+        if (!tienda) {
+            console.warn(
+                "La tienda no existe."
+            );
+            return;
+        }
+        document.title =
+            tienda.nombre;
+        const favicon =
+            document.getElementById(
+                "favicon"
+            );
+        if (
+            favicon &&
+            tienda.imagen
+        ) {
+            favicon.href =
+                tienda.imagen;
+        }
     }
-}
+);
 //-----------------------------------------------//
 //--|funcionalidad_menu_de_navegacion_dinamica|--//
 //-----------------------------------------------//

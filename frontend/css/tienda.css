@@ -131,7 +131,7 @@ input, select {
     width: 100%;
     min-height: 355px;
     max-height: 200px;
-    background: #cfcfcf;
+    background: #e6e6e6;
     border: 2px dashed #888;
     display: flex;
     justify-content: center;
@@ -212,7 +212,7 @@ button:hover {
 .upload-box2 {
     height: 340px;
     width: 250px;
-    background: #cfcfcf;
+    background: #e6e6e6;
     border: 2px dashed #888;
     margin-top: 5px;
     display: flex;
@@ -284,7 +284,7 @@ button:hover {
 .lista2 {
     margin-top: 5px;
     height: 212px;
-    background: #cfcfcf;
+    background: #e6e6e6;
     border: 1px solid #999;
     padding: 5px;
     overflow-y: auto;
@@ -378,7 +378,7 @@ button:hover {
     width: 100%;
     min-height: 324px;
     max-height: 500px;
-    background: #cfcfcf;
+    background: #e6e6e6;
     border: 2px dashed #888;
     display: flex;
     justify-content: center;
@@ -597,7 +597,7 @@ label {
 .upload-box8 {
     width: 100%;
     height: 78px;
-    background: #cfcfcf;
+    background: #e6e6e6;
     border: 2px dashed #888;
     display: flex;
     justify-content: center;
@@ -642,7 +642,7 @@ input {
     cursor: pointer;
 }
 .lista8 {
-    background: #cfcfcf;
+    background: #e6e6e6;
     padding: 10px;
     margin-top: 10px;
     height: 229px;
@@ -840,7 +840,7 @@ input {
 .editor5 {
     margin-top: 9px;
     height: 465px;
-    background: #bdbdbd;
+    background: #e6e6e6;
     border: 2px dashed #888;
     padding: 10px;
     overflow-y: auto;
@@ -2096,137 +2096,137 @@ input {
     object-fit:cover;
 }
 /*-----------------------------------*/
-/*--|estilo_versiones_de_la_tienda|--*/
+/*--|estilo_formulario_de_anuncios|--*/
 /*-----------------------------------*/
-.main-content-14 {
-    width: 87.7%;
-    display: flex;
-    justify-content: center;
-    transition: 0.3s;
+.main-content-14{
+    transition: margin-left 0.3s ease;
 }
 .main-content-14.active{
-    margin-left: 140px;
-    margin-top: 10px;
+    margin-left: 1065px;
+    margin-top: -1264px;
 }
-.contenedor-versiones6 {
-    width: 1200px;          
-    padding: 10px 15px;
-    font-family: Arial, sans-serif;
-    margin-top: 0px;
-    margin-left: 115px;         
+.formulario-anuncios_anunciostienda{
+    width:300px;
+    height: 632px;
+    background:#dcdcdc;
+    margin-top:0px;
+    margin-left:10px;
+    padding:14px;
+    box-sizing:border-box;
 }
-.titulo-versiones6 {
-    text-align: center;
-    margin-bottom: 5px;
-    font-weight: bold;
+.formulario-anuncios_anunciostienda h1{
+    margin:0;
+    margin-bottom:15px;
+    font-size:22px;
+    font-weight:bold;
+    text-align:center;
+    border-bottom:3px solid #5d87c7;
+    padding-bottom:5px;
+    padding-top:3px;
 }
-.barra-busqueda6 {
-    display: flex;
-    margin-top: -10px;
-    align-items: center;
+.grupo_anunciostienda{
+    margin-bottom:15px;
 }
-#inputBusqueda6 {
-    width: 100%;
-    height: 36px;
-    margin-top: 14px;
-    padding: 8px;
-    border: 1px solid #999;
-    outline: none;
+.grupo_anunciostienda label{
+    display:block;
+    margin-bottom:6px;
+    font-size:14px;
+    color:#222;
 }
-#btnBuscar6 {
-    width: 45px;
-    height: 36px;
-    position: relative;
-    background: #e0e0e0;
-    border: 1px solid #999;
-    cursor: pointer;
+.grupo_anunciostienda input[type="text"],
+.grupo_anunciostienda textarea{
+    width:100%;
+    box-sizing:border-box;
+    border:1px solid #8f8f8f;
+    background:#e6e6e6;
+    padding:8px;
+    font-size:12px;
+    outline:none;
 }
-#btnFiltrar6 {
-    width: 160px;
-    height: 36px;
-    margin-left: 10px;        
-    background: #5d7fa3;
-    color: white;
-    border: none;
-    cursor: pointer;
+.grupo_anunciostienda textarea{
+    height:100px;
+    resize:none;
 }
-#btnBuscar6:hover {
-    background: #cfcfcf;
+.grupo2_anunciostienda{
+    margin-top:-10px;
 }
-#btnFiltrar6:hover {
-    background: #4a6c90;
+.contenedor-imagen_anunciostienda{
+    height: 110px;
+    margin-top:7px;
+    border:2px dashed #9a9a9a;
+    background:#e6e6e6;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
 }
-/*------------------------------------*/
-/*--|estilo_categoria_del_sitio_web|--*/
-/*------------------------------------*/
-#contenedor-sitios {
-    margin-top: 2px;
-    margin-left: 130px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+#previewImagen_anunciostienda{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
 }
-.tarjeta-sitio {
-    width: 300px;
-    border: 1px solid #888;
-    background: #ccc;
+.icono-imagen_anunciostienda{
+    font-size:55px;
+    margin-bottom:12px;
+    color:#4e5a70;
 }
-.header-sitio {
-    background: #6c8ebf;
-    padding: 10px;
-    text-align: center;
-    font-weight: bold;
+.contenedor-imagen_anunciostienda p{
+    margin:0;
+    font-size:12px;
+    font-weight:bold;
+    color:#222;
 }
-.imagen-sitio {
-    height: 150px;
-    background: #bdbdbd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.contenedor-fechas_anunciostienda{
+    display:flex;
+    width:104px;
+    gap:5px;
 }
-.imagen-sitio img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.input-fecha_anunciostienda{
+    flex:1;
+    height:32px;
+    border:1px solid #8f8f8f;
+    background:#e6e6e6;
+    font-size:11px;
+    padding:0 5px;
+    box-sizing:border-box;
+    outline:none;
+    cursor:pointer;
 }
-.acciones-sitio {
-    background: #6c8ebf;
-    height: 35px;
-    padding: 10px;
+.titulo-configuracion_anunciostienda{
+    text-align:center;
+    font-weight:bold;
+    margin-bottom:8px !important;
 }
-.acciones-sitio button {
-    flex: 1;
-    background: #5d7fa3;
-    border: none;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 5px;
-    text-align: center;
+.checkbox-container_anunciostienda{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:8px;
 }
-.eliminar{
-    margin-top: 15px;
-    text-align: center;
-    margin-left: -19px;
-    position: relative;
-    min-width: 70px;
+.checkbox-container_anunciostienda input{
+    width:15px;
+    height:15px;
+    margin-top:-4px;
+    cursor:pointer;
 }
-.ver{
-    text-align: center;
-    margin-top: -10px;
-    margin-left: 9px;
-    width: 128px;
-    position: absolute;
-    height: 35px;
+.checkbox-label_anunciostienda{
+    margin-top:3px;
+    font-size:14px;
 }
-.editar{
-    margin-top: -10px;
-    margin-left: 137px;
-    width: 100px;
-    text-align: center;
-    position: absolute;
-    height: 35px;
+.btn-crear_anunciostienda{
+    width:100%;
+    height:36px;
+    margin-top:-10px;
+    border:none;
+    background:#5a7dab;
+    color:white;
+    cursor:pointer;
+    font-size:14px;
 }
-.eliminar:hover, .ver:hover, .editar:hover {
-    background: #6c8ebf;
+.btn-crear_anunciostienda:hover{
+    background:#3f6291;
 }
