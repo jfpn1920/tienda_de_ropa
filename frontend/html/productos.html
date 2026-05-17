@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>panel de control</title>
+    <link rel="stylesheet" href="../css/productos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="../js/productos.js" defer></script>
+</head>
+<body>
+    <!----------------------------------->
+    <!--|estructura_menu_de_navegacion|-->
+    <!----------------------------------->
+    <header class="header">
+        <div class="header-left-container">
+            <div class="header-left">
+                <i class="fas fa-bars menu-icon" id="menuToggle"></i>
+                <a href="panel_de_control.html" class="title">panel de control</a>
+            </div>
+        </div>
+        <div class="header-right">
+            <i class="fas fa-user-circle user-icon"></i>
+        </div>
+    </header>
+    <aside class="sidebar" id="sidebar">
+        <ul class="menu">
+            <li><a href="../html/tienda.html"><i class="fas fa-store"></i> Tienda</a></li>
+            <li><a href="../html/productos.html"><i class="fas fa-box"></i> Productos</a></li>
+            <li><a href="../html/inventario.html"><i class="fas fa-warehouse"></i> Inventario</a></li>
+            <li><a href="../html/categorias.html"><i class="fas fa-tags"></i> Categorías</a></li>
+            <li><a href="../html/filtraciones.html"><i class="fas fa-filter"></i> Filtraciones</a></li>
+            <li><a href="../html/estado.html"><i class="fas fa-chart-line"></i> Estado</a></li>
+            <li><a href="../html/historial.html"><i class="fas fa-clock"></i> Historial</a></li>
+            <li><a href="../html/comunidad.html"><i class="fas fa-users"></i> Comunidad</a></li>
+            <li><a href="../html/aliados.html"><i class="fas fa-handshake"></i> Aliados</a></li>
+            <li><a href="../html/pedidos.html"><i class="fas fa-shopping-cart"></i> Pedidos</a></li>
+            <li><a href="../html/eliminados.html"><i class="fas fa-trash"></i> Eliminados</a></li>
+            <li><a href="../html/configuracion.html"><i class="fas fa-cog"></i> Configuración</a></li>
+        </ul>
+    </aside>
+    <!--------------------------------------->
+    <!--|estructura_fomulario_de_productos|-->
+    <!--------------------------------------->
+    <div class="contenedor_formulario_productos">
+        <h1 class="titulo_formulario_productos">Formulario de productos</h1>
+        <div class="linea_inferior_formulario"></div>
+    </div>
+    <!------------------------------------------------->
+    <!--|estructura_formulario_de_productos_bloque_1|-->
+    <!------------------------------------------------->
+    <div class="contenedor_formulario_productos_bloque_1">
+        <div class="grupo_formulario">
+            <label class="titulo_input">
+                Agregar el nombre
+            </label>
+            <input
+                type="text"
+                class="input_texto"
+                placeholder="Escribe el nombre del producto..."
+            >
+        </div>
+        <div class="grupo_formulario">
+            <label class="titulo_input">
+                añade un sku
+            </label>
+            <input
+                type="text"
+                class="input_texto" placeholder="Escribe el SKU del producto..."
+            >
+        </div>
+        <div class="grupo_formulario">
+            <label class="titulo_input">
+                Generar codigo de barra
+            </label>
+            <input
+                type="text"
+                class="input_texto"
+                placeholder="Escribe el código de barra..."
+            >
+        </div>
+        <div class="grupo_formulario">
+            <button class="boton_generar">
+                Generar
+            </button>
+        </div>
+        <div class="grupo_formulario">
+            <label class="titulo_input">
+                Seleccionar categoria
+            </label>
+            <div class="contenedor_select">
+                <select class="select_formulario">
+                    <option>
+                        Ninguna categoria...
+                    </option>
+                    <option>
+                        Camisas
+                    </option>
+                    <option>
+                        Pantalones
+                    </option>
+                    <option>
+                        Zapatos
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="grupo_formulario">
+            <label class="titulo_input">
+                Seleccionar la marca
+            </label>
+            <div class="contenedor_select">
+                <select class="select_formulario">
+                    <option>
+                        Ninguna categoria...
+                    </option>
+                    <option>
+                        Nike
+                    </option>
+                    <option>
+                        Adidas
+                    </option>
+                    <option>
+                        Puma
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="grupo_formulario">
+            <label class="titulo_input">
+                Añadir la temporada
+            </label>
+            <input
+                type="text"
+                class="input_texto"
+                placeholder="Escribe la temporada..."
+            >
+        </div>
+        <div class="grupo_formulario">
+            <label class="titulo_input">
+                Seleccionar el descuento
+            </label>
+            <div class="contenedor_select">
+                <select class="select_formulario">
+                    <option>
+                        Ninguna descuento...
+                    </option>
+                    <option>
+                        10%
+                    </option>
+                    <option>
+                        20%
+                    </option>
+                    <option>
+                        30%
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="grupo_formulario">
+            <label class="titulo_input">
+                Cantidad en stock
+            </label>
+            <input
+                type="number"
+                class="input_texto"
+                placeholder="Escribe la cantidad deseada..."
+            >
+        </div>
+    </div>
+    <!------------------------------------------------->
+    <!--|estructura_formulario_de_productos_bloque_2|-->
+    <!------------------------------------------------->
+    <div class="contenedor_formulario_productos_bloque_2">
+        <div class="grupo_formulario_bloque_2">
+            <label class="titulo_input_bloque_2">
+                Stock minimo
+            </label>
+            <input
+                type="number"
+                class="input_texto_bloque_2"
+                placeholder="Escribe la cantidad minima..."
+            >
+        </div>
+        <div class="grupo_formulario_bloque_2">
+            <label class="titulo_input_bloque_2">
+                Estado del producto
+            </label>
+            <div class="contenedor_select_bloque_2">
+                <select class="select_formulario_bloque_2">
+                    <option>
+                        Ninguna estado...
+                    </option>
+                    <option>
+                        Disponible
+                    </option>
+                    <option>
+                        Agotado
+                    </option>
+                    <option>
+                        Oculto
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="grupo_formulario_bloque_2">
+            <label class="titulo_input_bloque_2">
+                Color del producto
+            </label>
+            <div class="contenedor_select_bloque_2">
+                <select class="select_formulario_bloque_2">
+                    <option>
+                        Ninguna color...
+                    </option>
+                    <option>
+                        Negro
+                    </option>
+                    <option>
+                        Blanco
+                    </option>
+                    <option>
+                        Azul
+                    </option>
+                </select>
+            </div>
+        </div>
+        <label class="titulo_input_bloque_22">
+            Talle del producto
+        </label>
+        <div class="contenedor_tallas_bloque_2">
+            <button class="boton_talla_bloque_2">XXXS</button>
+            <button class="boton_talla_bloque_2">XXS</button>
+            <button class="boton_talla_bloque_2">XS</button>
+            <button class="boton_talla_bloque_2">S</button>
+            <button class="boton_talla_bloque_2">M</button>
+            <button class="boton_talla_bloque_2">L</button>
+            <button class="boton_talla_bloque_2">XL</button>
+            <button class="boton_talla_bloque_2">XXL</button>
+            <button class="boton_talla_bloque_2">XXXL</button>
+            <button class="boton_talla_bloque_2">4XL</button>
+            <button class="boton_talla_bloque_2">5XL</button>
+            <button class="boton_talla_bloque_2">6XL</button>
+            <button class="boton_talla_bloque_2">7XL</button>
+            <button class="boton_talla_bloque_2">8XL</button>
+            <button class="boton_talla_bloque_2">0</button>
+            <button class="boton_talla_bloque_2">2</button>
+            <button class="boton_talla_bloque_2">4</button>
+            <button class="boton_talla_bloque_2">6</button>
+            <button class="boton_talla_bloque_2">8</button>
+            <button class="boton_talla_bloque_2">10</button>
+            <button class="boton_talla_bloque_2">12</button>
+            <button class="boton_talla_bloque_2">14</button>
+            <button class="boton_talla_bloque_2">16</button>
+            <button class="boton_talla_bloque_2">18</button>
+            <button class="boton_talla_bloque_2">20</button>
+            <button class="boton_talla_bloque_2">22</button>
+            <button class="boton_talla_bloque_2">24</button>
+            <button class="boton_talla_bloque_2">26</button>
+            <button class="boton_talla_bloque_2">28</button>
+            <button class="boton_talla_bloque_2">30</button>
+            <button class="boton_talla_bloque_2">32</button>
+            <button class="boton_talla_bloque_2">34</button>
+            <button class="boton_talla_bloque_2">36</button>
+            <button class="boton_talla_bloque_2">38</button>
+            <button class="boton_talla_bloque_2">40</button>
+            <button class="boton_talla_bloque_2">42</button>
+            <button class="boton_talla_bloque_2">44</button>
+            <button class="boton_talla_bloque_2">46</button>
+            <button class="boton_talla_bloque_2">48</button>
+            <button class="boton_talla_bloque_2">50</button>
+            <button class="boton_talla_bloque_2">52</button>
+            <button class="boton_talla_bloque_2">54</button>
+            <button class="boton_talla_bloque_2">56</button>
+            <button class="boton_talla_bloque_2">58</button>
+            <button class="boton_talla_bloque_2">60</button>
+            <button class="boton_talla_bloque_2">0M</button>
+            <button class="boton_talla_bloque_2">3M</button>
+            <button class="boton_talla_bloque_2">6M</button>
+            <button class="boton_talla_bloque_2">9M</button>
+            <button class="boton_talla_bloque_2">12M</button>
+            <button class="boton_talla_bloque_2">18M</button>
+            <button class="boton_talla_bloque_2">24M</button>
+            <button class="boton_talla_bloque_2">2T</button>
+            <button class="boton_talla_bloque_2">3T</button>
+            <button class="boton_talla_bloque_2">4T</button>
+            <button class="boton_talla_bloque_2">5T</button>
+            <button class="boton_talla_bloque_2">6</button>
+            <button class="boton_talla_bloque_2">7</button>
+            <button class="boton_talla_bloque_2">8</button>
+            <button class="boton_talla_bloque_2">10</button>
+            <button class="boton_talla_bloque_2">12</button>
+            <button class="boton_talla_bloque_2">14</button>
+            <button class="boton_talla_bloque_2">16</button>
+        </div>
+    </div>
+    <!------------------------------------------------->
+    <!--|estructura_formulario_de_productos_bloque_3|-->
+    <!------------------------------------------------->
+    <div class="contenedor_formulario_productos_bloque_3">
+        <h2 class="titulo_imagen_bloque_3">
+            Agregar imagen
+        </h2>
+        <div class="contenedor_imagen_producto_bloque_3">
+            <div class="icono_imagen_bloque_3">
+                <i class="fa-regular fa-image icono_fontawesome_bloque_3"></i>
+            </div>
+            <p class="texto_imagen_bloque_3">
+                Ninguna imagen seleccionado
+            </p>
+        </div>
+    </div>
+    <button class="boton_crear_producto">
+        Crear producto
+    </button>
+    <!------------------------------------------------->
+    <!--|estructura_formulario_de_productos_bloque_4|-->
+    <!------------------------------------------------->
+    <div class="formulario_de_productos_bloque_4">
+        <div class="barra_de_herramientas_bloque_4">
+            <select class="select_herramienta select_posicion">
+                <option>Ninguna posicion</option>
+            </select>
+            <select class="select_herramienta select_tipo">
+                <option>Ningun tipo</option>
+            </select>
+            <select class="select_herramienta select_cambio">
+                <option>Ninguna cambio</option>
+            </select>
+            <button class="boton_herramienta">
+                <b>B</b>
+            </button>
+            <button class="boton_herramienta">
+                <i>I</i>
+            </button>
+            <button class="boton_herramienta">
+                <u>A</u>
+            </button>
+            <select class="select_herramienta tamano_fuente">
+                <option>12 px</option>
+            </select>
+            <select class="select_herramienta descripcion_select">
+                <option>Ningun destino</option>
+            </select>
+        </div>
+        <div class="contenedor_editor_bloque_4">
+            <div class="mensaje_editor_bloque_4">
+                Ninguna contenido disponible
+            </div>
+        </div>
+        <button class="boton_crear_descripcion">
+            Crear descripcion
+        </button>
+    </div>
+</body>
+</html>
