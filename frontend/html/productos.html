@@ -76,7 +76,8 @@
             <input
                 type="text"
                 class="input_texto"
-                placeholder="Escribe el código de barra..."
+                placeholder="Código de barra..."
+                readonly
             >
         </div>
         <div class="grupo_formulario">
@@ -205,6 +206,16 @@
         </div>
         <div class="grupo_formulario_bloque_2">
             <label class="titulo_input_bloque_2">
+                Precio del producto
+            </label>
+            <input
+                type="number"
+                class="input_texto_bloque_2"
+                placeholder="Escribe el precio..."
+            >
+        </div>
+        <div class="grupo_formulario_bloque_2">
+            <label class="titulo_input_bloque_2">
                 Color del producto
             </label>
             <div class="contenedor_select_bloque_2">
@@ -301,6 +312,13 @@
             Agregar imagen
         </h2>
         <div class="contenedor_imagen_producto_bloque_3">
+            <input
+                type="file"
+                class="input_imagen_oculto"
+                accept="image/*"
+                multiple
+                hidden
+            >
             <div class="icono_imagen_bloque_3">
                 <i class="fa-regular fa-image icono_fontawesome_bloque_3"></i>
             </div>
@@ -343,13 +361,122 @@
             </select>
         </div>
         <div class="contenedor_editor_bloque_4">
-            <div class="mensaje_editor_bloque_4">
-                Ninguna contenido disponible
+            <div class="estructura_producto">
+                <input 
+                    type="text" 
+                    placeholder="Escribe el titulo"
+                    class="input_titulo_producto"
+                >
+                <div class="linea_producto"></div>
+                <div class="contenedor_imagen_principal">
+                    <div class="imagen_principal">
+                        <i class="fa-regular fa-image"></i>
+                        <span>selecciona una imagen</span>
+                    </div>
+                </div>
+                <div class="galeria_producto">
+                    <div class="mini_imagen">
+                        <i class="fa-regular fa-image"></i>
+                        <span>selecciona una imagen</span>
+                    </div>
+                    <div class="mini_imagen">
+                        <i class="fa-regular fa-image"></i>
+                        <span>selecciona una imagen</span>
+                    </div>
+                    <div class="mini_imagen">
+                        <i class="fa-regular fa-image"></i>
+                        <span>selecciona una imagen</span>
+                    </div>
+                </div>
+                <input 
+                    type="text" 
+                    placeholder="Escribe el subtitulo"
+                    class="input_subtitulo_producto"
+                >
+                <div class="linea_producto"></div>
+                <textarea 
+                    class="textarea_descripcion_producto"
+                    placeholder="Añade una descripcion"
+                ></textarea>
             </div>
         </div>
         <button class="boton_crear_descripcion">
-            Crear descripcion
+            Crear detalle
         </button>
+    </div>
+    <!--------------------------------------------->
+    <!--|estructura_tablero_de_productos_creados|-->
+    <!--------------------------------------------->
+    <div class="tablero_de_productos_creados">
+        <div class="titulo_tablero_productos">
+            <h2>
+                Tablero de productos creados
+            </h2>
+            <div class="linea_tablero_productos"></div>
+        </div>
+        <div class="estructura_completa_tablero">
+            <div class="contenido_tablero_productos">
+                <div
+                    class="area_scroll_tablero"
+                    id="areaScrollTablero"
+                >
+                    <div class="encabezado_tablero_productos">
+                        <div class="columna_tablero">
+                            Producto
+                        </div>
+                        <div class="columna_tablero">
+                            Imagen
+                        </div>
+                        <div class="columna_tablero">
+                            Sku
+                        </div>
+                        <div class="columna_tablero">
+                            Codigo de barra
+                        </div>
+                        <div class="columna_tablero">
+                            Categoria
+                        </div>
+                        <div class="columna_tablero">
+                            Marca
+                        </div>
+                        <div class="columna_tablero">
+                            Descuentos
+                        </div>
+                        <div class="columna_tablero">
+                            Cantidad max
+                        </div>
+                        <div class="columna_tablero">
+                            Cantidad min
+                        </div>
+                        <div class="columna_tablero">
+                            Estado
+                        </div>
+                        <div class="columna_tablero">
+                            Color
+                        </div>
+                        <div class="columna_tablero">
+                            Talla
+                        </div>
+                        <div class="columna_tablero">
+                            Precio
+                        </div>
+                        <div class="columna_tablero">
+                            Acciones
+                        </div>
+                    </div>
+                    <span
+                        class="mensaje_tablero_vacio"
+                        id="mensajeTableroVacio"
+                    >
+                        Ningun producto almacenado
+                    </span>
+                    <div
+                        class="contenedorFilasProductos"
+                        id="contenedorFilasProductos"
+                    ></div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
