@@ -96,6 +96,13 @@ body{
 /*-----------------------------------*/
 /*--|estilo_fomulario_de_productos|--*/
 /*-----------------------------------*/
+.main-content-15{
+    transition: margin-left 0.3s ease;
+}
+.main-content-15.active{
+    width: 1208px;
+    margin-left: 213px;
+}
 .contenedor_formulario_productos{
     width: 98.7%;
     margin-top: 71px;
@@ -120,6 +127,12 @@ body{
 /*---------------------------------------------*/
 /*--|estilo_formulario_de_productos_bloque_1|--*/
 /*---------------------------------------------*/
+.main-content-16{
+    transition: margin-left 0.3s ease;
+}
+.main-content-16.active{
+    margin-left: 213px;
+}
 .contenedor_formulario_productos_bloque_1{
     width: 270px;
     height: 630px;
@@ -183,6 +196,13 @@ body{
 /*---------------------------------------------*/
 /*--|estilo_formulario_de_productos_bloque_2|--*/
 /*---------------------------------------------*/
+.main-content-17{
+    transition: margin-left 0.3s ease;
+}
+.main-content-17.active{
+    margin-left: -57px;
+    margin-top: 568px;
+}
 .contenedor_formulario_productos_bloque_2{
     width: 270px;
     padding: 10px;
@@ -273,6 +293,16 @@ body{
 /*---------------------------------------------*/
 /*--|estilo_formulario_de_productos_bloque_3|--*/
 /*---------------------------------------------*/
+.main-content-18{
+    transition: margin-left 0.3s ease;
+}
+.main-content-18.active{
+    margin-left: -57px;
+}
+.boton-desplegar.active{
+    position: relative;
+    left: 133px;
+}
 .contenedor_formulario_productos_bloque_3{
     width: 270px;
     padding: 10px;
@@ -355,6 +385,16 @@ body{
 /*---------------------------------------------*/
 /*--|estilo_formulario_de_productos_bloque_4|--*/
 /*---------------------------------------------*/
+.main-content-19{
+    transition: margin-left 0.3s ease;
+}
+.main-content-19.active{
+    margin-left: -57px;
+    margin-top: -1232px;
+}
+.desplegable-3.active{
+    width: 922px;
+}
 .formulario_de_productos_bloque_4{
     width: 866px;
     height: 630px;
@@ -553,6 +593,19 @@ body{
 /*-----------------------------------------*/
 /*--|estilo_tablero_de_productos_creados|--*/
 /*-----------------------------------------*/
+.main-content-20{
+    transition: margin-left 0.3s ease;
+}
+.main-content-20.active{
+    margin-left: 483px;
+}
+.contenedor-desplegante-2.active{
+    width: 922px;
+    height: 568px;
+}
+.desplegable-2.active{
+    height: 502px;
+}
 .tablero_de_productos_creados{
     width: 98.7%;
     height: 685px;
