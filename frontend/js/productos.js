@@ -241,326 +241,437 @@ const botonCrearProducto =
     document.querySelector(
         ".boton_crear_producto"
     );
-
 botonCrearProducto.addEventListener(
     "click",
     function () {
-
         const inputs =
             document.querySelectorAll(
                 ".input_texto"
             );
-
         const inputsBloque2 =
             document.querySelectorAll(
                 ".input_texto_bloque_2"
             );
-
         const selects =
             document.querySelectorAll(
                 ".select_formulario"
             );
-
         const selectsBloque2 =
             document.querySelectorAll(
                 ".select_formulario_bloque_2"
             );
-
         let formularioLleno =
             false;
-
-        //--------------------------------//
-        //--|validacion_del_formulario|--//
-        //--------------------------------//
         inputs.forEach(
             function (input) {
-
                 if (
                     input.value.trim() !== ""
                 ) {
-
                     formularioLleno =
                         true;
-
                 }
-
             }
         );
-
         selects.forEach(
             function (select) {
-
                 if (
                     !select.value.includes(
                         "Ninguna"
                     )
                 ) {
-
                     formularioLleno =
                         true;
-
                 }
-
             }
         );
-
         if (
             !formularioLleno
         ) {
-
             alert(
                 "No has creado ningún producto"
             );
-
             return;
-
         }
-
-        //-----------------------------------//
-        //--|obtener_tallas_seleccionadas|--//
-        //-----------------------------------//
         const tallasSeleccionadas =
             [];
-
         botonesTallas.forEach(
             function (boton) {
-
                 if (
                     boton.classList.contains(
                         "activa_talla"
                     )
                 ) {
-
                     tallasSeleccionadas.push(
                         boton.textContent
                     );
-
                 }
-
             }
         );
-
-        //--------------------------------//
-        //--|obtener_imagenes_producto|--//
-        //--------------------------------//
         const archivos =
             Array.from(
                 inputImagen.files
             );
-
         const imagenesProducto =
             [];
-
-        //--------------------------------//
-        //--|si_hay_imagenes|--//
-        //--------------------------------//
         if (
             archivos.length > 0
         ) {
-
             let imagenesProcesadas =
                 0;
-
             archivos.forEach(
                 function (archivo) {
-
                     const lector =
                         new FileReader();
-
                     lector.readAsDataURL(
                         archivo
                     );
-
                     lector.onload =
                         function () {
-
                             imagenesProducto.push(
                                 lector.result
                             );
-
                             imagenesProcesadas++;
-
-                            //--------------------------------//
-                            //--|cuando_termine_todas|--//
-                            //--------------------------------//
                             if (
                                 imagenesProcesadas ===
                                 archivos.length
                             ) {
-
                                 const nuevoProducto = {
-
                                     nombre:
                                         inputs[0].value,
-
                                     sku:
                                         inputs[1].value,
-
                                     codigo_barras:
                                         inputs[2].value,
-
                                     categoria:
                                         selects[0].value,
-
                                     marca:
                                         selects[1].value,
-
                                     temporada:
                                         inputs[3].value,
-
                                     descuento:
                                         selects[2].value,
-
                                     stock:
                                         inputs[4].value,
-
                                     stock_minimo:
                                         inputsBloque2[0].value,
-
                                     precio:
                                         "$" +
                                         inputsBloque2[1].value,
-
                                     estado:
                                         selectsBloque2[0].value,
-
                                     color:
                                         selectsBloque2[1].value,
-
                                     tallas:
                                         tallasSeleccionadas,
-
                                     imagenes:
                                         imagenesProducto
-
                                 };
-
-                                //--------------------------------//
-                                //--|guardar_en_localstorage|--//
-                                //--------------------------------//
                                 const productosGuardados =
                                     JSON.parse(
                                         localStorage.getItem(
                                             "lista_productos"
                                         )
                                     ) || [];
-
                                 productosGuardados.push(
                                     nuevoProducto
                                 );
-
                                 localStorage.setItem(
                                     "lista_productos",
                                     JSON.stringify(
                                         productosGuardados
                                     )
                                 );
-
                                 alert(
                                     "Has creado el producto con éxito"
                                 );
-
                                 localStorage.removeItem(
                                     CLAVE_PRODUCTO
                                 );
-
                                 location.reload();
-
                             }
-
                         };
-
                 }
             );
-
         } else {
-
-            //--------------------------------//
-            //--|si_no_hay_imagenes|--//
-            //--------------------------------//
             const nuevoProducto = {
-
                 nombre:
                     inputs[0].value,
-
                 sku:
                     inputs[1].value,
-
                 codigo_barras:
                     inputs[2].value,
-
                 categoria:
                     selects[0].value,
-
                 marca:
                     selects[1].value,
-
                 temporada:
                     inputs[3].value,
-
                 descuento:
                     selects[2].value,
-
                 stock:
                     inputs[4].value,
-
                 stock_minimo:
                     inputsBloque2[0].value,
-
                 precio:
                     "$" +
                     inputsBloque2[1].value,
-
                 estado:
                     selectsBloque2[0].value,
-
                 color:
                     selectsBloque2[1].value,
-
                 tallas:
                     tallasSeleccionadas,
-
                 imagenes:
                     []
-
             };
-
             const productosGuardados =
                 JSON.parse(
                     localStorage.getItem(
                         "lista_productos"
                     )
                 ) || [];
-
             productosGuardados.push(
                 nuevoProducto
             );
-
             localStorage.setItem(
                 "lista_productos",
                 JSON.stringify(
                     productosGuardados
                 )
             );
-
             alert(
                 "Has creado el producto con éxito"
             );
-
             localStorage.removeItem(
                 CLAVE_PRODUCTO
             );
-
             location.reload();
-
         }
-
     }
 );
 window.addEventListener(
     "DOMContentLoaded",
     cargarFormularioLocalStorage
 );
+//----------------------------------------------------//
+//--|funcionalidad_formulario_de_productos_bloque_4|--//
+//----------------------------------------------------//
+let editorActivo = null;
+let tipoActivo = null;
+const inputTituloProductoBloque4 =
+    document.getElementById("input_titulo_producto_bloque_4");
+const inputSubtituloProductoBloque4 =
+    document.getElementById("input_subtitulo_producto_bloque_4");
+const textareaDescripcionProductoBloque4 =
+    document.getElementById("textarea_descripcion_producto_bloque_4");
+const inputCaracteristica1Bloque4 =
+    document.getElementById("input_caracteristica_1_bloque_4");
+const inputCaracteristica2Bloque4 =
+    document.getElementById("input_caracteristica_2_bloque_4");
+const inputCaracteristica3Bloque4 =
+    document.getElementById("input_caracteristica_3_bloque_4");
+const inputCaracteristica4Bloque4 =
+    document.getElementById("input_caracteristica_4_bloque_4");
+const botonCrearDescripcionBloque4 =
+    document.getElementById("boton_crear_descripcion_bloque_4");
+function aplicarEstiloPorTipo(el) {
+    const tipo = el.dataset.tipo;
+    el.style.fontWeight = "400";
+    el.style.fontSize = "";
+    el.style.lineHeight = "";
+    if (tipo === "titulo") {
+        el.style.fontSize = "26px";
+        el.style.fontWeight = "bold";
+        el.style.lineHeight = "1.2";
+    }
+    if (tipo === "subtitulo") {
+        el.style.fontSize = "18px";
+        el.style.fontWeight = "600";
+        el.style.lineHeight = "1.3";
+    }
+    if (tipo === "parrafo") {
+        el.style.fontSize = "14px";
+        el.style.fontWeight = "400";
+        el.style.lineHeight = "1.6";
+    }
+    if (tipo === "descripcion") {
+        el.style.fontSize = "14px";
+        el.style.fontWeight = "400";
+        el.style.lineHeight = "1.5";
+    }
+    if (tipo === "caracteristica") {
+        el.style.fontSize = "13px";
+        el.style.fontWeight = "400";
+        el.style.lineHeight = "1.4";
+    }
+}
+const camposEditor =
+    document.querySelectorAll(".editor_campo");
+camposEditor.forEach((el) => {
+    el.addEventListener("focus", () => {
+        editorActivo = el;
+        tipoActivo = el.dataset.tipo;
+        aplicarEstiloPorTipo(el);
+    });
+});
+botonCrearDescripcionBloque4.addEventListener(
+    "click",
+    () => {
+        const titulo =
+            inputTituloProductoBloque4.value.trim();
+        const subtitulo =
+            inputSubtituloProductoBloque4.value.trim();
+        const descripcion =
+            textareaDescripcionProductoBloque4.value.trim();
+        const caracteristica1 =
+            inputCaracteristica1Bloque4.value.trim();
+        const caracteristica2 =
+            inputCaracteristica2Bloque4.value.trim();
+        const caracteristica3 =
+            inputCaracteristica3Bloque4.value.trim();
+        const caracteristica4 =
+            inputCaracteristica4Bloque4.value.trim();
+        console.log("Titulo:", titulo);
+        console.log("Subtitulo:", subtitulo);
+        console.log("Descripcion:", descripcion);
+        console.log("Caracteristica 1:", caracteristica1);
+        console.log("Caracteristica 2:", caracteristica2);
+        console.log("Caracteristica 3:", caracteristica3);
+        console.log("Caracteristica 4:", caracteristica4);
+        if (
+            titulo === "" ||
+            subtitulo === "" ||
+            descripcion === ""
+        ) {
+            alert("Debes completar los campos principales");
+            return;
+        }
+        alert("Detalle creado correctamente");
+    }
+);
+const selectPosicion =
+    document.getElementById("select_posicion_bloque_4");
+selectPosicion.addEventListener(
+    "change",
+    () => {
+        if (!editorActivo) return;
+        const valor = selectPosicion.value;
+        if (valor === "Izquierda") {
+            editorActivo.style.textAlign = "left";
+        }
+        if (valor === "Centro") {
+            editorActivo.style.textAlign = "center";
+        }
+        if (valor === "Derecha") {
+            editorActivo.style.textAlign = "right";
+        }
+        if (valor === "justificado") {
+            editorActivo.style.textAlign = "justify";
+        }
+    }
+);
+const selectTipo =
+    document.getElementById("select_tipo_bloque_4");
+selectTipo.addEventListener(
+    "change",
+    () => {
+        const valor = selectTipo.value;
+        console.log("Tipo seleccionado:", valor);
+        if (!editorActivo) return;
+        editorActivo.dataset.tipo = valor.toLowerCase();
+        aplicarEstiloPorTipo(editorActivo);
+    }
+);
+const selectFuente =
+    document.getElementById("select_cambio_bloque_4");
+selectFuente.addEventListener(
+    "change",
+    () => {
+        if (!editorActivo) return;
+        editorActivo.style.fontFamily =
+            selectFuente.value;
+    }
+);
+const selectTamano =
+    document.getElementById("tamano_fuente_bloque_4");
+selectTamano.addEventListener(
+    "change",
+    () => {
+        if (!editorActivo) return;
+        editorActivo.style.fontSize =
+            selectTamano.value;
+    }
+);
+const botonNegrita =
+    document.getElementById("boton_negrita_bloque_4");
+botonNegrita.addEventListener("click", () => {
+    if (!editorActivo) return;
+    editorActivo.style.fontWeight =
+        editorActivo.style.fontWeight === "bold"
+            ? "400"
+            : "bold";
+});
+const botonCursiva =
+    document.getElementById("boton_cursiva_bloque_4");
+botonCursiva.addEventListener("click", () => {
+    if (!editorActivo) return;
+    editorActivo.style.fontStyle =
+        editorActivo.style.fontStyle === "italic"
+            ? "normal"
+            : "italic";
+});
+const botonSubrayado =
+    document.getElementById("boton_subrayado_bloque_4");
+botonSubrayado.addEventListener("click", () => {
+    if (!editorActivo) return;
+    editorActivo.style.textDecoration =
+        editorActivo.style.textDecoration === "underline"
+            ? "none"
+            : "underline";
+});
+const inputImagenBloque4 =
+    document.getElementById("input_imagen_bloque_4");
+const contenedorPrincipal =
+    document.getElementById("contenedor_imagen_principal_bloque_4");
+const miniImagen1 =
+    document.getElementById("mini_imagen_1_bloque_4");
+const miniImagen2 =
+    document.getElementById("mini_imagen_2_bloque_4");
+let contenedorImagenActivo = null;
+function abrirSelectorImagen(contenedor) {
+    contenedorImagenActivo = contenedor;
+    inputImagenBloque4.click();
+}
+contenedorPrincipal.addEventListener("click", () => {
+    abrirSelectorImagen(contenedorPrincipal);
+});
+miniImagen1.addEventListener("click", () => {
+    abrirSelectorImagen(miniImagen1);
+});
+miniImagen2.addEventListener("click", () => {
+    abrirSelectorImagen(miniImagen2);
+});
+inputImagenBloque4.addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const urlImagen = e.target.result;
+        if (!contenedorImagenActivo) return;
+        contenedorImagenActivo.innerHTML = `
+            <img 
+                src="${urlImagen}" 
+                style="
+                    width:100%;
+                    height:100%;
+                    object-fit:cover;
+                    border-radius:10px;
+                "
+            >
+        `;
+    };
+    reader.readAsDataURL(file);
+});
 //------------------------------------------------//
 //--|funcionalidad_tablero_de_productos_creados|--//
 //------------------------------------------------//
@@ -658,6 +769,7 @@ function mostrarProductosTablero() {
                 <div class="celda_tablero">
                     <button
                         class="boton_accion editar"
+                        data-index="${index}"
                         title="Editar producto"
                     >
                         <i class="fa-solid fa-pen-to-square"></i>
@@ -677,87 +789,201 @@ function mostrarProductosTablero() {
         }
     );
 }
-//--------------------------------//
-//--|eliminar_producto_tablero|--//
-//--------------------------------//
+//-------------------------------------//
+//--|boton_eliminar_producto_tablero|--//
+//-------------------------------------//
 document.addEventListener(
     "click",
     function (evento) {
-
-        //--------------------------------//
-        //--|boton_eliminar_producto|--//
-        //--------------------------------//
         if (
             evento.target.closest(
                 ".eliminar"
             )
         ) {
-
             const botonEliminar =
                 evento.target.closest(
                     ".eliminar"
                 );
-
             const index =
                 botonEliminar.dataset.index;
-
-            //--------------------------------//
-            //--|alert_confirmacion|--//
-            //--------------------------------//
             const confirmarEliminar =
                 confirm(
                     "¿Deseas eliminar este producto?"
                 );
-
-            //--------------------------------//
-            //--|si_cancela|--//
-            //--------------------------------//
             if (
                 !confirmarEliminar
             ) {
-
                 return;
-
             }
-
-            //--------------------------------//
-            //--|obtener_productos_guardados|--//
-            //--------------------------------//
             const productosGuardados =
                 JSON.parse(
                     localStorage.getItem(
                         CLAVE_PRODUCTOS
                     )
                 ) || [];
-
-            //--------------------------------//
-            //--|eliminar_producto|--//
-            //--------------------------------//
             productosGuardados.splice(
                 index,
                 1
             );
-
-            //--------------------------------//
-            //--|guardar_cambios|--//
-            //--------------------------------//
             localStorage.setItem(
                 CLAVE_PRODUCTOS,
                 JSON.stringify(
                     productosGuardados
                 )
             );
-
-            //--------------------------------//
-            //--|actualizar_tablero|--//
-            //--------------------------------//
             mostrarProductosTablero();
-
         }
-
     }
 );
 window.addEventListener(
     "DOMContentLoaded",
     mostrarProductosTablero
 );
+//-----------------------------------//
+//--|boton_editar_producto_tablero|--//
+//-----------------------------------//
+const overlayEditarProducto =
+    document.getElementById("overlayEditarProducto");
+const botonCerrarEditar =
+    document.getElementById("botonCerrarEditar");
+const inputEditarNombre =
+    document.getElementById("inputEditarNombre");
+const inputEditarSku =
+    document.getElementById("inputEditarSku");
+const inputEditarCodigoBarra =
+    document.getElementById("inputEditarCodigoBarra");
+const selectEditarCategoria =
+    document.getElementById("selectEditarCategoria");
+const selectEditarMarca =
+    document.getElementById("selectEditarMarca");
+const inputEditarStock =
+    document.getElementById("inputEditarStock");
+const selectEditarEstado =
+    document.getElementById("selectEditarEstado");
+const selectEditarDescuento =
+    document.getElementById("selectEditarDescuento");
+const selectEditarColor =
+    document.getElementById("selectEditarColor");
+const inputEditarStockMinimo =
+    document.getElementById("inputEditarStockMinimo");
+const inputEditarPrecio =
+    document.getElementById("inputEditarPrecio");
+const previewImagenesEditar =
+    document.getElementById("previewImagenesEditar");
+const inputImagenEditar =
+    document.getElementById("inputImagenEditar");
+const contenedorImagenEditar =
+    document.getElementById("contenedorImagenEditar");
+const textoImagenEditar =
+    document.getElementById("textoImagenEditar");
+const iconoImagenEditar =
+    document.querySelector(".contenedor_imagen_editar i");
+const botonesTallasEditar =
+    document.querySelectorAll(".boton_talla_bloque_2");
+const botonEditarTodo =
+    document.getElementById("botonEditarTodo");
+let indexProductoEditando = null;
+let nuevasImagenesEditar = [];
+document.addEventListener("click", function (evento) {
+    const botonEditar = evento.target.closest(".editar");
+    if (!botonEditar) return;
+    const index = botonEditar.dataset.index;
+    indexProductoEditando = index;
+    const productosGuardados =
+        JSON.parse(localStorage.getItem(CLAVE_PRODUCTOS)) || [];
+    const producto = productosGuardados[index];
+    inputEditarNombre.value = producto.nombre;
+    inputEditarSku.value = producto.sku;
+    inputEditarCodigoBarra.value = producto.codigo_barras;
+    selectEditarCategoria.value = producto.categoria;
+    selectEditarMarca.value = producto.marca;
+    inputEditarStock.value = producto.stock;
+    selectEditarEstado.value = producto.estado;
+    selectEditarDescuento.value = producto.descuento;
+    selectEditarColor.value = producto.color;
+    inputEditarStockMinimo.value = producto.stock_minimo;
+    inputEditarPrecio.value = producto.precio;
+    previewImagenesEditar.innerHTML = "";
+    nuevasImagenesEditar = [];
+    if (producto.imagenes && producto.imagenes.length > 0) {
+        iconoImagenEditar.style.display = "none";
+        textoImagenEditar.style.display = "none";
+        producto.imagenes.forEach(function (imagen) {
+            const img = document.createElement("img");
+            img.src = imagen;
+            previewImagenesEditar.appendChild(img);
+        });
+    } else {
+        iconoImagenEditar.style.display = "block";
+        textoImagenEditar.style.display = "block";
+    }
+    botonesTallasEditar.forEach(function (boton) {
+        boton.classList.remove("talla_activa");
+    });
+    overlayEditarProducto.style.display = "flex";
+});
+botonCerrarEditar.addEventListener("click", function () {
+    overlayEditarProducto.style.display = "none";
+});
+botonesTallasEditar.forEach(function (boton) {
+    boton.addEventListener("click", function (evento) {
+        evento.preventDefault();
+        boton.classList.toggle("talla_activa");
+    });
+});
+contenedorImagenEditar.addEventListener("click", function () {
+    inputImagenEditar.click();
+});
+inputImagenEditar.addEventListener("change", function (evento) {
+    const archivos = Array.from(evento.target.files);
+    previewImagenesEditar.innerHTML = "";
+    nuevasImagenesEditar = [];
+    if (archivos.length > 0) {
+        iconoImagenEditar.style.display = "none";
+        textoImagenEditar.style.display = "none";
+    }
+    archivos.forEach(function (file) {
+        const lector = new FileReader();
+        lector.onload = function (e) {
+            const base64 = e.target.result;
+            nuevasImagenesEditar.push(base64);
+            const img = document.createElement("img");
+            img.src = base64;
+            previewImagenesEditar.appendChild(img);
+        };
+        lector.readAsDataURL(file);
+    });
+});
+botonEditarTodo.addEventListener("click", function () {
+    const productosGuardados =
+        JSON.parse(localStorage.getItem(CLAVE_PRODUCTOS)) || [];
+    const producto =
+        productosGuardados[indexProductoEditando];
+    producto.nombre = inputEditarNombre.value;
+    producto.sku = inputEditarSku.value;
+    producto.codigo_barras = inputEditarCodigoBarra.value;
+    producto.categoria = selectEditarCategoria.value;
+    producto.marca = selectEditarMarca.value;
+    producto.stock = inputEditarStock.value;
+    producto.estado = selectEditarEstado.value;
+    producto.descuento = selectEditarDescuento.value;
+    producto.color = selectEditarColor.value;
+    producto.stock_minimo = inputEditarStockMinimo.value;
+    producto.precio = inputEditarPrecio.value;
+    const tallasSeleccionadas = [];
+    botonesTallasEditar.forEach(function (boton) {
+        if (boton.classList.contains("talla_activa")) {
+            tallasSeleccionadas.push(boton.textContent);
+        }
+    });
+    producto.tallas = tallasSeleccionadas;
+    if (nuevasImagenesEditar.length > 0) {
+        producto.imagenes = nuevasImagenesEditar;
+    }
+    localStorage.setItem(
+        CLAVE_PRODUCTOS,
+        JSON.stringify(productosGuardados)
+    );
+    mostrarProductosTablero();
+    overlayEditarProducto.style.display = "none";
+});
