@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>panel de control</title>
+    <link rel="stylesheet" href="../css/inventario.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="../js/inventario.js" defer></script>
+</head>
+<body>
+    <!----------------------------------->
+    <!--|estructura_menu_de_navegacion|-->
+    <!----------------------------------->
+    <header class="header">
+        <div class="header-left-container">
+            <div class="header-left">
+                <i class="fas fa-bars menu-icon" id="menuToggle"></i>
+                <a href="panel_de_control.html" class="title">panel de control</a>
+            </div>
+        </div>
+        <div class="header-right">
+            <i class="fas fa-user-circle user-icon"></i>
+        </div>
+    </header>
+    <aside class="sidebar" id="sidebar">
+        <ul class="menu">
+            <li><a href="../html/tienda.html"><i class="fas fa-store"></i> Tienda</a></li>
+            <li><a href="../html/productos.html"><i class="fas fa-box"></i> Productos</a></li>
+            <li><a href="../html/inventario.html"><i class="fas fa-warehouse"></i> Inventario</a></li>
+            <li><a href="../html/categorias.html"><i class="fas fa-tags"></i> Categorías</a></li>
+            <li><a href="../html/filtraciones.html"><i class="fas fa-filter"></i> Filtraciones</a></li>
+            <li><a href="../html/estado.html"><i class="fas fa-chart-line"></i> Estado</a></li>
+            <li><a href="../html/historial.html"><i class="fas fa-clock"></i> Historial</a></li>
+            <li><a href="../html/comunidad.html"><i class="fas fa-users"></i> Comunidad</a></li>
+            <li><a href="../html/aliados.html"><i class="fas fa-handshake"></i> Aliados</a></li>
+            <li><a href="../html/pedidos.html"><i class="fas fa-shopping-cart"></i> Pedidos</a></li>
+            <li><a href="../html/eliminados.html"><i class="fas fa-trash"></i> Eliminados</a></li>
+            <li><a href="../html/configuracion.html"><i class="fas fa-cog"></i> Configuración</a></li>
+        </ul>
+    </aside>
+    <!--------------------------->
+    <!--|estructura_inventario|-->
+    <!--------------------------->
+    <div class="barra_titulo">
+        <h1>Inventario</h1>
+    </div>
+    <!-------------------------------------->
+    <!--|estructura_grafica_de_inventario|-->
+    <!-------------------------------------->
+    <div class="contenedor-graficado">
+        <div class="contenedor_grafica">
+            <div class="titulo_grafica">
+                <h2>
+                    Grafica del inventario
+                </h2>
+            </div>
+            <div class="contenido_grafica">
+                <div class="numeros">
+                    <span>100</span>
+                    <span>95</span>
+                    <span>90</span>
+                    <span>85</span>
+                    <span>80</span>
+                    <span>75</span>
+                    <span>70</span>
+                    <span>65</span>
+                    <span>60</span>
+                    <span>55</span>
+                    <span>50</span>
+                    <span>45</span>
+                    <span>40</span>
+                    <span>35</span>
+                    <span>30</span>
+                    <span>25</span>
+                    <span>20</span>
+                    <span>15</span>
+                    <span>10</span>
+                    <span>5</span>
+                    <span>0</span>
+                </div>
+                <div class="area_grafica">
+                    <div class="grupo_barra">
+                        <div class="barra barra_total"></div>
+                        <p>
+                            Total
+                        </p>
+                    </div>
+                    <div class="grupo_barra">
+                        <div class="barra barra_agotados"></div>
+                        <p>
+                            Agotados
+                        </p>
+                    </div>
+                    <div class="grupo_barra">
+                        <div class="barra barra_valor"></div>
+                        <p>
+                            Valor
+                        </p>
+                    </div>
+                    <div class="grupo_barra">
+                        <div class="barra barra_vendidos"></div>
+                        <p>
+                            Vendidos
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------------------------------->
+    <!--|estructura_resumen_inventario|-->
+    <!----------------------------------->
+    <div class="contenedor_resumen_inventario">
+        <div class="card_resumen">
+            <div class="header_card">
+                <div class="icono_card">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </div>
+                <h2>
+                    Productos agotados
+                </h2>
+            </div>
+            <div class="contenido_card">
+                <span>
+                    0
+                </span>
+            </div>
+        </div>
+        <div class="card_resumen">
+            <div class="header_card">
+                <div class="icono_card">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                </div>
+                <h2>
+                    Valor inventario
+                </h2>
+            </div>
+            <div class="contenido_card">
+                <span>
+                    0
+                </span>
+            </div>
+        </div>
+        <div class="card_resumen">
+            <div class="header_card">
+                <div class="icono_card">
+                    <i class="fa-solid fa-cube"></i>
+                </div>
+                <h2>
+                    Total productos
+                </h2>
+            </div>
+            <div class="contenido_card">
+                <span>
+                    0
+                </span>
+            </div>
+        </div>
+        <div class="card_resumen">
+            <div class="header_card">
+                <div class="icono_card">
+                    <i class="fa-solid fa-shirt"></i>
+                </div>
+                <h2>
+                    Productos mas vendidos
+                </h2>
+            </div>
+            <div class="contenido_card">
+                <span>
+                    0
+                </span>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------>
+    <!--|estructura_observacion_de_inventario|-->
+    <!------------------------------------------>
+    <div class="contenedor_observacion_de_inventario">
+        <div class="titulo_observacion_de_inventario">
+            <h2>
+                Observacion de inventario
+            </h2>
+        </div>
+        <div class="contenedor_cards_observacion_de_inventario">
+            <div class="card_observacion_de_inventario">
+                <div class="header_card_observacion_de_inventario">
+                    <h3>
+                        Productos bajos
+                    </h3>
+                </div>
+                <div class="contenido_card_observacion_de_inventario">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                </div>
+                <div class="footer_card_observacion_de_inventario">
+                    <button>
+                        ver productos
+                    </button>
+                </div>
+            </div>
+            <div class="card_observacion_de_inventario">
+                <div class="header_card_observacion_de_inventario">
+                    <h3>
+                        Productos agotados
+                    </h3>
+                </div>
+                <div class="contenido_card_observacion_de_inventario">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                </div>
+                <div class="footer_card_observacion_de_inventario">
+                    <button>
+                        ver productos
+                    </button>
+                </div>
+            </div>
+            <div class="card_observacion_de_inventario">
+                <div class="header_card_observacion_de_inventario">
+                    <h3>
+                        Productos mas botados
+                    </h3>
+                </div>
+                <div class="contenido_card_observacion_de_inventario">
+                    <i class="fa-solid fa-hand-holding-hand"></i>
+                </div>
+                <div class="footer_card_observacion_de_inventario">
+                    <button>
+                        ver productos
+                    </button>
+                </div>
+            </div>
+            <div class="card_observacion_de_inventario">
+                <div class="header_card_observacion_de_inventario">
+                    <h3>
+                        Productos mas pedidos
+                    </h3>
+                </div>
+                <div class="contenido_card_observacion_de_inventario">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <div class="footer_card_observacion_de_inventario">
+                    <button>
+                        ver productos
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---------------------------------------->
+    <!--|estructura_productos_en_inventario|-->
+    <!---------------------------------------->
+    <div class="contenedor_productos_en_inventario">
+        <div class="titulo_productos_en_inventario">
+            <h2>
+                Productos en inventario
+            </h2>
+        </div>
+        <div class="buscador_productos_en_inventario">
+            <input
+                type="text"
+                class="input_buscador_productos_en_inventario"
+                placeholder="Buscar el producto del inventario..."
+            >
+            <button class="boton_buscador_productos_en_inventario">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        <div class="filtro_productos_en_inventario">
+            <select class="select_filtro_productos_en_inventario">
+                <option>
+                    Filtrar Inventario
+                </option>
+                <option>
+                    Productos agotados
+                </option>
+                <option>
+                    Productos bajos
+                </option>
+                <option>
+                    Productos vendidos
+                </option>
+                <option>
+                    Productos nuevos
+                </option>
+            </select>
+        </div>
+    </div>
+    <!-------------------------------------->
+    <!--|estructura_tablero_de_inventario|-->
+    <!-------------------------------------->
+    <div class="depliegue_tablero_de_inventario">
+        <div class="contenedor_tablero_de_inventario">
+            <table class="tabla_tablero_de_inventario">
+                <thead class="thead_tablero_de_inventario">
+                    <tr class="fila_encabezado_tablero_de_inventario">
+                        <th class="th_tablero_de_inventario">
+                            Producto
+                        </th>
+                        <th class="th_tablero_de_inventario">
+                            Imagen
+                        </th>
+                        <th class="th_tablero_de_inventario">
+                            Sku
+                        </th>
+                        <th class="th_tablero_de_inventario">
+                            Cantidad
+                        </th>
+                        <th class="th_tablero_de_inventario">
+                            Estado
+                        </th>
+                        <th class="th_tablero_de_inventario">
+                            Talla
+                        </th>
+                        <th class="th_tablero_de_inventario">
+                            Categoria
+                        </th>
+                        <th class="th_tablero_de_inventario">
+                            Precio
+                        </th>
+                        <th class="th_tablero_de_inventario">
+                            Marca
+                        </th>
+                        <th class="th_tablero_de_inventario">
+                            Acciones
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="tbody_tablero_de_inventario">
+                    <tr class="fila_vacia_tablero_de_inventario">
+                        <td 
+                        class="mensaje_vacio_tablero_de_inventario"
+                        colspan="10">
+                            Ningun producto almacenado
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!----------------------------------->
+    <!--|estructura_anuncio_importante|-->
+    <!----------------------------------->
+    <div class="contenedor_anuncio_importante">
+        <div class="icono_contenedor_anuncio_importante">
+            <div class="icono_anuncio_importante">
+                !
+            </div>
+        </div>
+        <div class="texto_anuncio_importante">
+            Para editar la informacion del producto, dirigete a la seccion de productos, ya que en inventario aqui podras ver el progreso de cada producto añadido en el panel de control.
+        </div>
+        <button class="boton_anuncio_importante">
+            Ir a productos
+        </button>
+    </div>
+</body>
+</html>
