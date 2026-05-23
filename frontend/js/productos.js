@@ -768,6 +768,13 @@ function mostrarProductosTablero() {
                 </div>
                 <div class="celda_tablero">
                     <button
+                        class="boton_accion agregar"
+                        data-index="${index}"
+                        title="Agregar producto"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <button
                         class="boton_accion editar"
                         data-index="${index}"
                         title="Editar producto"
@@ -795,6 +802,23 @@ function mostrarProductosTablero() {
 document.addEventListener(
     "click",
     function (evento) {
+        if (evento.target.closest(".agregar")) {
+            const botonAgregar =
+                evento.target.closest(".agregar");
+            const index =
+                botonAgregar.dataset.index;
+            const productosGuardados =
+                JSON.parse(localStorage.getItem(CLAVE_PRODUCTOS)) || [];
+            const producto =
+                productosGuardados[index];
+            producto.en_inventario = true;
+            localStorage.setItem(
+                CLAVE_PRODUCTOS,
+                JSON.stringify(productosGuardados)
+            );
+            alert("El producto fue agregado con éxito al sistema");
+            return;
+        }
         if (
             evento.target.closest(
                 ".eliminar"
@@ -810,9 +834,7 @@ document.addEventListener(
                 confirm(
                     "¿Deseas eliminar este producto?"
                 );
-            if (
-                !confirmarEliminar
-            ) {
+            if (!confirmarEliminar) {
                 return;
             }
             const productosGuardados =
@@ -821,15 +843,10 @@ document.addEventListener(
                         CLAVE_PRODUCTOS
                     )
                 ) || [];
-            productosGuardados.splice(
-                index,
-                1
-            );
+            productosGuardados.splice(index, 1);
             localStorage.setItem(
                 CLAVE_PRODUCTOS,
-                JSON.stringify(
-                    productosGuardados
-                )
+                JSON.stringify(productosGuardados)
             );
             mostrarProductosTablero();
         }

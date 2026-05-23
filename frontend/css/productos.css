@@ -758,8 +758,10 @@ body{
     background: #9e9e9e;
     color: #000000;
 }
-.boton_accion:hover {
-    transform: scale(1.08);
+
+.boton_accion.agregar {
+    background: #9e9e9e; /* base igual que los otros */
+    color: #000000;
 }
 .contenedor_imagenes_tablero {
     display: flex;
