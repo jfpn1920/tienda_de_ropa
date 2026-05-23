@@ -186,11 +186,11 @@
             <div class="card_observacion_de_inventario">
                 <div class="header_card_observacion_de_inventario">
                     <h3>
-                        Productos bajos
+                        Productos más rentables
                     </h3>
                 </div>
                 <div class="contenido_card_observacion_de_inventario">
-                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                    <i class="fa-solid fa-sack-dollar"></i>
                 </div>
                 <div class="footer_card_observacion_de_inventario">
                     <button>
@@ -201,11 +201,11 @@
             <div class="card_observacion_de_inventario">
                 <div class="header_card_observacion_de_inventario">
                     <h3>
-                        Productos agotados
+                        Productos con más devoluciones
                     </h3>
                 </div>
                 <div class="contenido_card_observacion_de_inventario">
-                    <i class="fa-solid fa-clipboard-list"></i>
+                    <i class="fa-solid fa-rotate-left"></i>
                 </div>
                 <div class="footer_card_observacion_de_inventario">
                     <button>
@@ -235,7 +235,7 @@
                     </h3>
                 </div>
                 <div class="contenido_card_observacion_de_inventario">
-                    <i class="fa-solid fa-user-tie"></i>
+                    <i class="fa-solid fa-cart-shopping"></i>
                 </div>
                 <div class="footer_card_observacion_de_inventario">
                     <button>
@@ -270,16 +270,22 @@
                     Filtrar Inventario
                 </option>
                 <option>
+                    Productos disponible
+                </option>
+                <option>
                     Productos agotados
                 </option>
                 <option>
-                    Productos bajos
+                    Productos ocultos
                 </option>
                 <option>
-                    Productos vendidos
+                    Ordenarlo alfabeticamente
                 </option>
                 <option>
-                    Productos nuevos
+                    Mayor precio
+                </option>
+                <option>
+                    Menor precio
                 </option>
             </select>
         </div>
@@ -341,6 +347,105 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+    <!------------------------------------------->
+    <!--|estructura_ventana_emergente_detalles|-->
+    <!------------------------------------------->
+    <div
+        class="overlay_ventana_emergente_detalles"
+        id="overlayVentanaEmergenteDetalles"
+    >
+        <div class="modal_ventana_emergente_detalles">
+            <div class="header_ventana_emergente_detalles">
+                <h2>
+                    Vista previa del producto
+                </h2>
+                <button
+                    class="boton_cerrar_ventana_emergente_detalles"
+                    id="botonCerrarVentanaEmergenteDetalles"
+                >
+                    X
+                </button>
+            </div>
+            <div class="contenido_ventana_emergente_detalles">
+                <div class="columna_imagenes_ventana_emergente_detalles">
+                    <div class="imagen_principal_ventana_emergente_detalles">
+                        <img
+                            id="imagenPrincipalVentanaEmergenteDetalles"
+                            src=""
+                            alt=""
+                        >
+                    </div>
+                    <div
+                        class="miniaturas_ventana_emergente_detalles"
+                        id="miniaturasVentanaEmergenteDetalles"
+                    ></div>
+                </div>
+                <div class="columna_detalles_ventana_emergente_detalles">
+                    <div class="titulo_detalles_ventana_emergente_detalles">
+                        <h3>
+                            Detalles del producto
+                        </h3>
+                        <div class="linea_detalles_ventana_emergente_detalles"></div>
+                    </div>
+                    <div class="informacion_ventana_emergente_detalles">
+                        <p>
+                            <strong>Nombre del producto:</strong>
+                            <span id="detalleNombreProducto"></span>
+                        </p>
+                        <p>
+                            <strong>Sku del producto:</strong>
+                            <span id="detalleSkuProducto"></span>
+                        </p>
+                        <div class="codigo_barra_ventana_emergente_detalles">
+                            <h4>
+                                Codigo de barra
+                            </h4>
+                            <img
+                                id="detalleCodigoBarraProducto"
+                                src=""
+                                alt=""
+                            >
+                            <span
+                                id="textoCodigoBarraProducto"
+                            ></span>
+                        </div>
+                        <p>
+                            <strong>Categoria:</strong>
+                            <span id="detalleCategoriaProducto"></span>
+                        </p>
+                        <p>
+                            <strong>Marca del producto:</strong>
+                            <span id="detalleMarcaProducto"></span>
+                        </p>
+                        <p>
+                            <strong>Descuento del producto:</strong>
+                            <span id="detalleDescuentoProducto"></span>
+                        </p>
+                        <p>
+                            <strong>Cantidad de stock:</strong>
+                            <span id="detalleStockProducto"></span>
+                        </p>
+                        <p>
+                            <strong>Stock minimo:</strong>
+                            <span id="detalleStockMinimoProducto"></span>
+                        </p>
+                        <p>
+                            <strong>Estado del producto:</strong>
+                            <span id="detalleEstadoProducto"></span>
+                        </p>
+                        <p>
+                            <strong>Color del producto:</strong>
+                            <span id="detalleColorProducto"></span>
+                        </p>
+                        <p>
+                            <strong>Talla del producto:</strong>
+                            <span id="detalleTallasProducto"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!----------------------------------->

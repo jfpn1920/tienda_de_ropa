@@ -402,13 +402,15 @@ body{
 }
 .contenedor_tablero_de_inventario{
     width: 100%;
-    height: 600px;
+    height: 597px;
     border: 1px solid #707070;
     background: #d3d3d3;
     font-family: Arial, Helvetica, sans-serif;
+    overflow-y: auto;
+    overflow-x: auto;
 }
 .tabla_tablero_de_inventario{
-    width: 100.1%;
+    width: 100.0%;
     border-collapse: collapse;
     min-width: 1100px;
     margin-top: -1px;
@@ -417,7 +419,7 @@ body{
 .thead_tablero_de_inventario{
     background: #d9d9d9;
     position: sticky;
-    top: 0;
+    top: -1px;
     z-index: 10;
 }
 .th_tablero_de_inventario{
@@ -466,6 +468,128 @@ body{
     font-size: 17px;
     font-weight: bold;
     color: #303030;
+}
+/*---------------------------------------*/
+/*--|estilo_ventana_emergente_detalles|--*/
+/*---------------------------------------*/
+.overlay_ventana_emergente_detalles{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+.modal_ventana_emergente_detalles{
+    width: 760px;
+    background: #dcdcdc;
+    border: 2px solid #5d5d5d;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+.header_ventana_emergente_detalles{
+    height: 45px;
+    background: #6f92d3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #5577b8;
+}
+.header_ventana_emergente_detalles h2{
+    flex: 1;
+    text-align: center;
+    font-size: 22px;
+    color: #111;
+}
+.boton_cerrar_ventana_emergente_detalles{
+    width: 50px;
+    height: 100%;
+    border: none;
+    border-left: 2px solid #5577b8;
+    background: #6f92d3;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.contenido_ventana_emergente_detalles{
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+}
+.columna_imagenes_ventana_emergente_detalles{
+    width: 45%;
+}
+.imagen_principal_ventana_emergente_detalles{
+    width: 100%;
+    height: 387.5px;
+    border: 1px solid #7f7f7f;
+    background: #efefef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imagen_principal_ventana_emergente_detalles img{
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+}
+.miniaturas_ventana_emergente_detalles{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.miniaturas_ventana_emergente_detalles img{
+    width: 102px;
+    height: 121px;
+    border: 1px solid #7f7f7f;
+    object-fit: cover;
+    cursor: pointer;
+    background: white;
+}
+.columna_detalles_ventana_emergente_detalles{
+    width: 55%;
+}
+.titulo_detalles_ventana_emergente_detalles h3{
+    text-align: center;
+    font-size: 30px;
+    color: #111;
+}
+.linea_detalles_ventana_emergente_detalles{
+    height: 3px;
+    background: #6f92d3;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.informacion_ventana_emergente_detalles p{
+    margin-bottom: 10px;
+    font-size: 17px;
+    color: #222;
+}
+.codigo_barra_ventana_emergente_detalles{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 18px;
+    margin-bottom: 20px;
+}
+.codigo_barra_ventana_emergente_detalles h4{
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+.codigo_barra_ventana_emergente_detalles img{
+    width: 100%;
+    max-width: 400px;
+    height: 120px;
+    object-fit: fill;
+}
+.codigo_barra_ventana_emergente_detalles span{
+    display: block;
+    margin-top: 5px;
+    font-size: 15px;
 }
 /*-------------------------------*/
 /*--|estilo_anuncio_importante|--*/
