@@ -12,6 +12,81 @@ menuToggle.addEventListener("click", () => {
         content.classList.toggle("active");
     });
 });
+//---------------------------------------------//
+//--|funcionalidad_observacion_de_inventario|--//
+//---------------------------------------------//
+const botonesVerProductos =
+    document.querySelectorAll(
+        ".boton_ver_productos"
+    );
+const modalRentables =
+    document.getElementById(
+        "modalRentables"
+    );
+const modalDevoluciones =
+    document.getElementById(
+        "modalDevoluciones"
+    );
+const modalBotados =
+    document.getElementById(
+        "modalBotados"
+    );
+const modalPedidos =
+    document.getElementById(
+        "modalPedidos"
+    );
+const modales = [
+    modalRentables,
+    modalDevoluciones,
+    modalBotados,
+    modalPedidos
+];
+function cerrarTodosLosModales(){
+    modales.forEach(modal => {
+        modal.style.display = "none";
+    });
+}
+function abrirModal(tipoModal){
+    cerrarTodosLosModales();
+    if(tipoModal === "rentables"){
+        modalRentables.style.display = "flex";
+    }
+    if(tipoModal === "devoluciones"){
+        modalDevoluciones.style.display = "flex";
+    }
+    if(tipoModal === "botados"){
+        modalBotados.style.display = "flex";
+    }
+    if(tipoModal === "pedidos"){
+        modalPedidos.style.display = "flex";
+    }
+}
+botonesVerProductos.forEach(boton => {
+    boton.addEventListener("click", () => {
+        const tipoModal =
+            boton.dataset.modal;
+        abrirModal(tipoModal);
+    });
+});
+const botonesCerrarModal =
+    document.querySelectorAll(
+        ".cerrar_modal_productos_mas_rentables, \
+        .cerrar_modal_productos_con_mas_devoluciones, \
+        .cerrar_modal_productos_mas_botados, \
+        .cerrar_modal_productos_mas_pedidos"
+    );
+botonesCerrarModal.forEach(boton => {
+    boton.addEventListener("click", () => {
+        cerrarTodosLosModales();
+    });
+});
+window.addEventListener("click", (e) => {
+    modales.forEach(modal => {
+        if(e.target === modal){
+            modal.style.display = "none";
+        }
+    });
+});
 //-------------------------------------------//
 //--|funcionalidad_productos_en_inventario|--//
 //-------------------------------------------//

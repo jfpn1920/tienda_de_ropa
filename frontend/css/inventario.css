@@ -331,6 +331,376 @@ body{
 .footer_card_observacion_de_inventario button:hover{
     opacity: 0.9;
 }
+/*-----------------------------------*/
+/*--|estilo_ventanas_de_emergentes|--*/
+/*-----------------------------------*/
+.modal_inventario{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.contenido_modal_inventario{
+    width: 700px;
+    min-height: 400px;
+    background: #dcdcdc;
+    border: 2px solid #6e97d6;
+    position: relative;
+    padding: 20px;
+}
+.contenido_modal_inventario h2{
+    margin: 0;
+    text-align: center;
+    font-size: 24px;
+    color: #1f1f1f;
+}
+.cerrar_modal{
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 1px solid #5b5b5b;
+    background: #6e97d6;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.cerrar_modal:hover{
+    opacity: 0.9;
+}
+/*------------------------------------------*/
+/*--|estilo_modal_productos mas_rentables|--*/
+/*------------------------------------------*/
+.contenido_modal_inventario_productos_mas_rentables{
+    width: 750px;
+    height: 500px;
+    background: #dcdcdc;
+    border: 1px solid #7b7b7b;
+    display: flex;
+    flex-direction: column;
+}
+.header_modal_productos_mas_rentables{
+    width: 100%;
+    height: 38px;
+    background: #6e97d6;
+    border-bottom: 1px solid #5b5b5b;
+    display: flex;
+    align-items: center;
+}
+.icono_modal_productos_mas_rentables{
+    width: 42px;
+    height: 100%;
+    border-right: 1px solid #5b5b5b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icono_modal_productos_mas_rentables i{
+    font-size: 18px;
+    color: #1f1f1f;
+}
+.titulo_modal_productos_mas_rentables{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.titulo_modal_productos_mas_rentables h2{
+    font-size: 14px;
+    font-weight: bold;
+    color: #1f1f1f;
+}
+.cerrar_modal_productos_mas_rentables{
+    width: 40px;
+    height: 100%;
+    border: none;
+    border-left: 1px solid #5b5b5b;
+    background: #6e97d6;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.cerrar_modal_productos_mas_rentables:hover{
+    background: #5f89ca;
+}
+.contenido_modal_productos_mas_rentables{
+    flex: 1;
+    padding: 12px;
+}
+.tabla_productos_mas_rentables{
+    width: 100%;
+    border-collapse: collapse;
+}
+.tabla_productos_mas_rentables th{
+    height: 28px;
+    width: 13%;
+    border: 1px solid #7b7b7b;
+    background: #cfcfcf;
+    font-size: 13px;
+    color: #2a2a2a;
+}
+.tabla_productos_mas_rentables td{
+    border: 1px solid #7b7b7b;
+}
+.mensaje_vacio_productos_mas_rentables{
+    height: 400px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: bold;
+    color: #3a3a3a;
+}
+/*-------------------------------------------------*/
+/*--|estilo_modal_productos_con_mas_devoluciones|--*/
+/*-------------------------------------------------*/
+.contenido_modal_inventario_productos_con_mas_devoluciones{
+    width: 750px;
+    height: 500px;
+    background: #dcdcdc;
+    border: 1px solid #7b7b7b;
+    display: flex;
+    flex-direction: column;
+}
+.header_modal_productos_con_mas_devoluciones{
+    width: 100%;
+    height: 38px;
+    background: #6e97d6;
+    border-bottom: 1px solid #5b5b5b;
+    display: flex;
+    align-items: center;
+}
+.icono_modal_productos_con_mas_devoluciones{
+    width: 42px;
+    height: 100%;
+    border-right: 1px solid #5b5b5b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icono_modal_productos_con_mas_devoluciones i{
+    font-size: 18px;
+    color: #1f1f1f;
+}
+.titulo_modal_productos_con_mas_devoluciones{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.titulo_modal_productos_con_mas_devoluciones h2{
+    font-size: 14px;
+    font-weight: bold;
+    color: #1f1f1f;
+}
+.cerrar_modal_productos_con_mas_devoluciones{
+    width: 40px;
+    height: 100%;
+    border: none;
+    border-left: 1px solid #5b5b5b;
+    background: #6e97d6;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.cerrar_modal_productos_con_mas_devoluciones:hover{
+    background: #5f89ca;
+}
+.contenido_modal_productos_con_mas_devoluciones{
+    flex: 1;
+    padding: 12px;
+}
+.tabla_productos_con_mas_devoluciones{
+    width: 100%;
+    border-collapse: collapse;
+}
+.tabla_productos_con_mas_devoluciones th{
+    height: 28px;
+    width: 13%;
+    border: 1px solid #7b7b7b;
+    background: #cfcfcf;
+    font-size: 13px;
+    color: #2a2a2a;
+}
+.tabla_productos_con_mas_devoluciones td{
+    border: 1px solid #7b7b7b;
+}
+.mensaje_vacio_productos_con_mas_devoluciones{
+    height: 400px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: bold;
+    color: #3a3a3a;
+}
+/*----------------------------------------*/
+/*--|estilo_modal_productos_mas_botados|--*/
+/*----------------------------------------*/
+.contenido_modal_inventario_productos_mas_botados{
+    width: 750px;
+    height: 500px;
+    background: #dcdcdc;
+    border: 1px solid #7b7b7b;
+    display: flex;
+    flex-direction: column;
+}
+.header_modal_productos_mas_botados{
+    width: 100%;
+    height: 45px;
+    background: #6e97d6;
+    border-bottom: 1px solid #5b5b5b;
+    display: flex;
+    align-items: center;
+}
+.icono_modal_productos_mas_botados{
+    width: 50px;
+    height: 100%;
+    border-right: 1px solid #5b5b5b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icono_modal_productos_mas_botados i{
+    font-size: 18px;
+    color: #1f1f1f;
+}
+.titulo_modal_productos_mas_botados{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.titulo_modal_productos_mas_botados h2{
+    font-size: 22px;
+    color: #1f1f1f;
+}
+.cerrar_modal_productos_mas_botados{
+    width: 45px;
+    height: 100%;
+    border: none;
+    border-left: 1px solid #5b5b5b;
+    background: #6e97d6;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.cerrar_modal_productos_mas_botados:hover{
+    opacity: 0.9;
+}
+.contenido_tabla_productos_mas_botados{
+    flex: 1;
+    padding: 12px;
+}
+.contenido_tabla_productos_mas_botados table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.contenido_tabla_productos_mas_botados th{
+    height: 30px;
+    width: 20%;
+    border: 1px solid #7b7b7b;
+    background: #cfcfcf;
+    font-size: 14px;
+    color: #2a2a2a;
+}
+.contenido_tabla_productos_mas_botados td{
+    border: 1px solid #7b7b7b;
+}
+.mensaje_vacio_productos_mas_botados{
+    height: 400px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 22px;
+    font-weight: bold;
+    color: #3a3a3a;
+}
+/*----------------------------------------*/
+/*--|estilo_modal_productos_mas_pedidos|--*/
+/*----------------------------------------*/
+.contenido_modal_inventario_productos_mas_pedidos{
+    width: 750px;
+    height: 500px;
+    background: #dcdcdc;
+    border: 1px solid #7b7b7b;
+    display: flex;
+    flex-direction: column;
+}
+.header_modal_productos_mas_pedidos{
+    width: 100%;
+    height: 45px;
+    background: #6e97d6;
+    border-bottom: 1px solid #5b5b5b;
+    display: flex;
+    align-items: center;
+}
+.icono_modal_productos_mas_pedidos{
+    width: 50px;
+    height: 100%;
+    border-right: 1px solid #5b5b5b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icono_modal_productos_mas_pedidos i{
+    font-size: 18px;
+    color: #1f1f1f;
+}
+.titulo_modal_productos_mas_pedidos{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.titulo_modal_productos_mas_pedidos h2{
+    font-size: 22px;
+    color: #1f1f1f;
+}
+.cerrar_modal_productos_mas_pedidos{
+    width: 45px;
+    height: 100%;
+    border: none;
+    border-left: 1px solid #5b5b5b;
+    background: #6e97d6;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.cerrar_modal_productos_mas_pedidos:hover{
+    opacity: 0.9;
+}
+.contenido_tabla_productos_mas_pedidos{
+    flex: 1;
+    padding: 12px;
+}
+.contenido_tabla_productos_mas_pedidos table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.contenido_tabla_productos_mas_pedidos th{
+    height: 30px;
+    width: 50px;
+    border: 1px solid #7b7b7b;
+    background: #cfcfcf;
+    font-size: 14px;
+    color: #2a2a2a;
+}
+.contenido_tabla_productos_mas_pedidos td{
+    border: 1px solid #7b7b7b;
+}
+.mensaje_vacio_productos_mas_pedidos{
+    height: 400px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 22px;
+    font-weight: bold;
+    color: #3a3a3a;
+}
 /*------------------------------------*/
 /*--|estilo_productos_en_inventario|--*/
 /*------------------------------------*/

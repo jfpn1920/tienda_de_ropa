@@ -193,9 +193,7 @@
                     <i class="fa-solid fa-sack-dollar"></i>
                 </div>
                 <div class="footer_card_observacion_de_inventario">
-                    <button>
-                        ver productos
-                    </button>
+                    <button class="boton_ver_productos" data-modal="rentables">ver productos</button>
                 </div>
             </div>
             <div class="card_observacion_de_inventario">
@@ -208,7 +206,10 @@
                     <i class="fa-solid fa-rotate-left"></i>
                 </div>
                 <div class="footer_card_observacion_de_inventario">
-                    <button>
+                    <button
+                        class="boton_ver_productos"
+                        data-modal="devoluciones"
+                    >
                         ver productos
                     </button>
                 </div>
@@ -223,7 +224,10 @@
                     <i class="fa-solid fa-hand-holding-hand"></i>
                 </div>
                 <div class="footer_card_observacion_de_inventario">
-                    <button>
+                    <button
+                        class="boton_ver_productos"
+                        data-modal="botados"
+                    >
                         ver productos
                     </button>
                 </div>
@@ -238,10 +242,245 @@
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
                 <div class="footer_card_observacion_de_inventario">
-                    <button>
+                    <button
+                        class="boton_ver_productos"
+                        data-modal="pedidos"
+                    >
                         ver productos
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------------------------->
+    <!--|estructura_ventanas_de_emergentes|-->
+    <!--------------------------------------->
+    <div
+        class="modal_inventario"
+        id="modalRentables"
+    >
+        <div class="contenido_modal_inventario_productos_mas_rentables">
+            <div class="header_modal_productos_mas_rentables">
+                <div class="icono_modal_productos_mas_rentables">
+                    <i class="fa-solid fa-sack-dollar"></i>
+                </div>
+                <div class="titulo_modal_productos_mas_rentables">
+                    <h2>
+                        Productos mas rentables
+                    </h2>
+                </div>
+                <button
+                    class="cerrar_modal_productos_mas_rentables"
+                >
+                    X
+                </button>
+            </div>
+            <div class="contenido_modal_productos_mas_rentables">
+                <table class="tabla_productos_mas_rentables">
+                    <thead>
+                        <tr>
+                            <th>
+                                Imagen
+                            </th>
+                            <th>
+                                Producto
+                            </th>
+                            <th>
+                                Talla
+                            </th>
+                            <th>
+                                Marca
+                            </th>
+                            <th>
+                                Ventas totales
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td
+                                colspan="5"
+                                class="mensaje_vacio_productos_mas_rentables"
+                            >
+                                Ningun producto en progreso
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------>
+    <!--|modal_productos_con_mas_devoluciones|-->
+    <!------------------------------------------>
+    <div
+        class="modal_inventario"
+        id="modalDevoluciones"
+    >
+        <div class="contenido_modal_inventario_productos_con_mas_devoluciones">
+            <div class="header_modal_productos_con_mas_devoluciones">
+                <div class="icono_modal_productos_con_mas_devoluciones">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </div>
+                <div class="titulo_modal_productos_con_mas_devoluciones">
+                    <h2>
+                        Productos mas devoluciones
+                    </h2>
+                </div>
+                <button
+                    class="cerrar_modal_productos_con_mas_devoluciones"
+                >
+                    X
+                </button>
+            </div>
+            <div class="contenido_modal_productos_con_mas_devoluciones">
+                <table class="tabla_productos_con_mas_devoluciones">
+                    <thead>
+                        <tr>
+                            <th>
+                                Imagen
+                            </th>
+                            <th>
+                                Producto
+                            </th>
+                            <th>
+                                Talla
+                            </th>
+                            <th>
+                                Marca
+                            </th>
+                            <th>
+                                Devoluciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td
+                                colspan="5"
+                                class="mensaje_vacio_productos_con_mas_devoluciones"
+                            >
+                                Ningun producto en progreso
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--------------------------------->
+    <!--|modal_productos_mas_botados|-->
+    <!--------------------------------->
+    <div
+        class="modal_inventario"
+        id="modalBotados"
+    >
+        <div class="contenido_modal_inventario_productos_mas_botados">
+            <div class="header_modal_productos_mas_botados">
+                <div class="icono_modal_productos_mas_botados">
+                    <i class="fa-solid fa-hand-holding-hand"></i>
+                </div>
+                <div class="titulo_modal_productos_mas_botados">
+                    <h2>
+                        Productos mas botados
+                    </h2>
+                </div>
+                <button
+                    class="cerrar_modal_productos_mas_botados"
+                >
+                    X
+                </button>
+            </div>
+            <div class="contenido_tabla_productos_mas_botados">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Imagen
+                            </th>
+                            <th>
+                                Producto
+                            </th>
+                            <th>
+                                Talla
+                            </th>
+                            <th>
+                                Marca
+                            </th>
+                            <th>
+                                Calificado
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td
+                                colspan="5"
+                                class="mensaje_vacio_productos_mas_botados"
+                            >
+                                Ningun producto en progreso
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--------------------------------->
+    <!--|modal_productos_mas_pedidos|-->
+    <!--------------------------------->
+    <div
+        class="modal_inventario"
+        id="modalPedidos"
+    >
+        <div class="contenido_modal_inventario_productos_mas_pedidos">
+            <div class="header_modal_productos_mas_pedidos">
+                <div class="icono_modal_productos_mas_pedidos">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="titulo_modal_productos_mas_pedidos">
+                    <h2>
+                        Productos mas pedidos
+                    </h2>
+                </div>
+                <button
+                    class="cerrar_modal_productos_mas_pedidos"
+                >
+                    X
+                </button>
+            </div>
+            <div class="contenido_tabla_productos_mas_pedidos">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Imagen
+                            </th>
+                            <th>
+                                Producto
+                            </th>
+                            <th>
+                                Talla
+                            </th>
+                            <th>
+                                Marca
+                            </th>
+                            <th>
+                                Pedidos realizados
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td
+                                colspan="5"
+                                class="mensaje_vacio_productos_mas_pedidos"
+                            >
+                                Ningun producto en progreso
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
