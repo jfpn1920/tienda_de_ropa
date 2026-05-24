@@ -96,6 +96,13 @@ body{
 /*-----------------------*/
 /*--|estilo_inventario|--*/
 /*-----------------------*/
+.main-content-21{
+    transition: margin-left 0.3s ease;
+}
+.main-content-21.active{
+    width: 1208px;
+    margin-left: 213px;
+}
 .barra_titulo h1{
     margin: 0;
     font-size: 28px;
@@ -116,6 +123,13 @@ body{
 /*----------------------------------*/
 /*--|estilo_grafica_de_inventario|--*/
 /*----------------------------------*/
+.main-content-22{
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+}
+.main-content-22.active{
+    margin-left: 213px;
+}
 .contenedor-graficado{
     background: #dcdcdc;
     padding: 9px;
@@ -215,6 +229,17 @@ body{
 /*-------------------------------*/
 /*--|estilo_resumen_inventario|--*/
 /*-------------------------------*/
+.main-content-23{
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+}
+.main-content-23.active{
+    margin-left: 212px;
+    width: -100px;
+}
+.contenedor-deplegable-4.active{
+    width: 675px;
+}
 .contenedor_resumen_inventario{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -273,14 +298,29 @@ body{
 /*--------------------------------------*/
 /*--|estilo_observacion_de_inventario|--*/
 /*--------------------------------------*/
+.main-content-24{
+    width: 100%;
+    transition:
+        margin-left 0.3s ease,
+        width 0.3s ease;
+}
+.main-content-24.active{
+    margin-left: 213px;
+    width: calc(100% - 217px);
+}
+.contenedor_cards_observacion_de_inventario_parte_2.active{
+    width: 99.2%;
+}
 .contenedor_observacion_de_inventario{
-    width: 1406px;
+    width: 98.7%;
     margin-left: 10px;
     background: #dcdcdc;
     padding: 4px;
+    box-sizing: border-box;
 }
 .titulo_observacion_de_inventario{
-    width: 100%;
+    width: 99.2%;
+    margin-left: 5px;
     border-bottom: 4px solid #6e97d6;
     margin-bottom: 10px;
 }
@@ -294,12 +334,17 @@ body{
 .contenedor_cards_observacion_de_inventario{
     display: flex;
     gap: 10px;
+    width: 99.2%;
+    margin-left: 5px;
+    flex-wrap: wrap;
 }
 .card_observacion_de_inventario{
-    width: 336.5px;
-    margin-left: 4px;
+    flex: 1 1 0;
+    min-width: 0;
+    width: 100%;
     background: #dcdcdc;
     border: 1px solid #7b7b7b;
+    box-sizing: border-box;
 }
 .header_card_observacion_de_inventario{
     width: 100%;
@@ -717,6 +762,18 @@ body{
 /*------------------------------------*/
 /*--|estilo_productos_en_inventario|--*/
 /*------------------------------------*/
+.main-content-26{
+    width: 100%;
+    transition:
+        margin-left 0.3s ease,
+        width 0.3s ease;
+}
+.main-content-26.active{
+    margin-left: 213px;
+}
+.contenedor_productos_en_inventario_parte_2.active{
+    width: 1192px;
+}
 .contenedor_productos_en_inventario{
     width: 1406px;
     margin-left: 10px;
@@ -776,6 +833,18 @@ body{
 /*----------------------------------*/
 /*--|estilo_tablero_de_inventario|--*/
 /*----------------------------------*/
+.main-content-27{
+    width: 100%;
+    transition:
+        margin-left 0.3s ease,
+        width 0.3s ease;
+}
+.main-content-27.active{
+    margin-left: 213px;
+}
+.depliegue_tablero_de_inventario_parte_2.active{
+    width: 1192px;
+}
 .depliegue_tablero_de_inventario{
     padding: 10px;
     width: 98.7%;
@@ -793,7 +862,7 @@ body{
     overflow-x: auto;
 }
 .tabla_tablero_de_inventario{
-    width: 100.0%;
+    width: 100%;
     border-collapse: collapse;
     min-width: 1100px;
     margin-top: -1px;
@@ -977,6 +1046,18 @@ body{
 /*-------------------------------*/
 /*--|estilo_anuncio_importante|--*/
 /*-------------------------------*/
+.main-content-28{
+    width: 100%;
+    transition:
+        margin-left 0.3s ease,
+        width 0.3s ease;
+}
+.main-content-28.active{
+    margin-left: 213px;
+}
+.contenedor_anuncio_importante_parte_2.active{
+    width: 1192px;
+}
 .contenedor_anuncio_importante{
     width: 1406px;
     height: 48px;
