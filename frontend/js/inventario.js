@@ -12,6 +12,93 @@ menuToggle.addEventListener("click", () => {
         content.classList.toggle("active");
     });
 });
+//-----------------------------------------//
+//--|funcionalidad_grafica_de_inventario|--//
+//-----------------------------------------//
+const contenedor_graficado_grafica_de_inventario = document.getElementById(
+    "contenedor_graficado_grafica_de_inventario"
+);
+console.log(
+    contenedor_graficado_grafica_de_inventario
+);
+//--------------------------------------//
+//--|funcionalidad_resumen_inventario|--//
+//--------------------------------------//
+const contenedor_resumen_inventario_resumen_inventario =
+    document.getElementById(
+        "contenedor_resumen_inventario_resumen_inventario"
+    );
+console.log(
+    contenedor_resumen_inventario_resumen_inventario
+);
+//---------------------------//
+//--|cantidad_de_productos|--//
+//---------------------------//
+const cantidad_productos_resumen_inventario =
+    document.getElementById(
+        "cantidad_productos_resumen_inventario"
+    );
+function mostrarCantidadProductos() {
+    const productos =
+        JSON.parse(
+            localStorage.getItem(
+                CLAVE_PRODUCTOS
+            )
+        ) || [];
+    const productosInventario =
+        productos.filter(
+            function (producto) {
+                return (
+                    producto.en_inventario === true
+                );
+            }
+        );
+    cantidad_productos_resumen_inventario.textContent =
+        productosInventario.length;
+}
+//----------------------//
+//--|Valor_inventario|--//
+//----------------------//
+const valor_inventario_resumen_inventario =
+    document.getElementById(
+        "valor_inventario_resumen_inventario"
+    );
+function mostrarValorInventario() {
+    const productos =
+        JSON.parse(
+            localStorage.getItem(
+                CLAVE_PRODUCTOS
+            )
+        ) || [];
+    const productosInventario =
+        productos.filter(
+            function (producto) {
+                return (
+                    producto.en_inventario === true
+                );
+            }
+        );
+    let valorTotalInventario = 0;
+    productosInventario.forEach(
+        function (producto) {
+            const precioLimpio =
+                producto.precio
+                    ?.toString()
+                    .replace(/\$/g, "")
+                    .replace(/\./g, "")
+                    .replace(/,/g, "")
+                    .trim() || "0";
+            const precio =
+                parseInt(precioLimpio) || 0;
+            valorTotalInventario += precio;
+        }
+    );
+    valor_inventario_resumen_inventario.textContent =
+        "$" +
+        valorTotalInventario.toLocaleString(
+            "es-CO"
+        );
+}
 //---------------------------------------------//
 //--|funcionalidad_observacion_de_inventario|--//
 //---------------------------------------------//
@@ -341,7 +428,11 @@ function mostrarInventario() {
 }
 window.addEventListener(
     "DOMContentLoaded",
-    mostrarInventario
+    function () {
+        mostrarInventario();
+        mostrarCantidadProductos();
+        mostrarValorInventario();
+    }
 );
 //----------------------------------------------//
 //--|funcionalidad_ventana_emergente_detalles|--//
@@ -486,3 +577,9 @@ botonCerrarVentanaEmergenteDetalles.addEventListener(
             "none";
     }
 );
+//--------------------------------------//
+//--|funcionalidad_anuncio_importante|--//
+//--------------------------------------//
+function irAProductos(){
+    window.location.href = "../html/productos.html";
+}

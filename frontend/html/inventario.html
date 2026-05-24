@@ -48,7 +48,10 @@
     <!-------------------------------------->
     <!--|estructura_grafica_de_inventario|-->
     <!-------------------------------------->
-    <div class="contenedor-graficado">
+    <div 
+        class="contenedor-graficado"
+        id="contenedor_graficado_grafica_de_inventario"
+    >
         <div class="contenedor_grafica">
             <div class="titulo_grafica">
                 <h2>
@@ -81,9 +84,9 @@
                 </div>
                 <div class="area_grafica">
                     <div class="grupo_barra">
-                        <div class="barra barra_total"></div>
+                        <div class="barra barra_nivel"></div>
                         <p>
-                            Total
+                            Nivel
                         </p>
                     </div>
                     <div class="grupo_barra">
@@ -93,15 +96,27 @@
                         </p>
                     </div>
                     <div class="grupo_barra">
-                        <div class="barra barra_valor"></div>
+                        <div class="barra barra_devoluciones"></div>
                         <p>
-                            Valor
+                            Devoluciones
                         </p>
                     </div>
                     <div class="grupo_barra">
-                        <div class="barra barra_vendidos"></div>
+                        <div class="barra barra_bajo"></div>
+                    </div>
+                    <div class="grupo_barra">
+                        <div class="barra barra_medio"></div>
                         <p>
-                            Vendidos
+                            Botados
+                        </p>
+                    </div>
+                    <div class="grupo_barra">
+                        <div class="barra barra_alto"></div>
+                    </div>
+                    <div class="grupo_barra">
+                        <div class="barra barra_pedidos"></div>
+                        <p>
+                            pedidos
                         </p>
                     </div>
                 </div>
@@ -111,7 +126,10 @@
     <!----------------------------------->
     <!--|estructura_resumen_inventario|-->
     <!----------------------------------->
-    <div class="contenedor_resumen_inventario">
+    <div 
+        class="contenedor_resumen_inventario"
+        id="contenedor_resumen_inventario_resumen_inventario"
+    >
         <div class="card_resumen">
             <div class="header_card">
                 <div class="icono_card">
@@ -137,7 +155,7 @@
                 </h2>
             </div>
             <div class="contenido_card">
-                <span>
+                <span id="valor_inventario_resumen_inventario">
                     0
                 </span>
             </div>
@@ -148,7 +166,7 @@
                     <i class="fa-solid fa-cube"></i>
                 </div>
                 <h2>
-                    Total productos
+                    Nivel de inventario
                 </h2>
             </div>
             <div class="contenido_card">
@@ -163,11 +181,11 @@
                     <i class="fa-solid fa-shirt"></i>
                 </div>
                 <h2>
-                    Productos mas vendidos
+                    Cantidad de productos
                 </h2>
             </div>
             <div class="contenido_card">
-                <span>
+                <span id="cantidad_productos_resumen_inventario">
                     0
                 </span>
             </div>
@@ -699,7 +717,7 @@
         <div class="texto_anuncio_importante">
             Para editar la informacion del producto, dirigete a la seccion de productos, ya que en inventario aqui podras ver el progreso de cada producto añadido en el panel de control.
         </div>
-        <button class="boton_anuncio_importante">
+        <button class="boton_anuncio_importante" onclick="irAProductos()">
             Ir a productos
         </button>
     </div>

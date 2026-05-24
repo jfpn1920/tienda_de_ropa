@@ -187,16 +187,29 @@ body{
     background: #4d7be8;
     border-radius: 0px;
 }
-.barra_total{
+.barra_nivel{
     height: 360px;
 }
 .barra_agotados{
     height: 280px;
 }
-.barra_valor{
+.barra_devoluciones{
     height: 220px;
 }
-.barra_vendidos{
+.barra_bajo{
+    position: relative;
+    height: 140px;
+    top: -22px;
+}
+.barra_medio{
+    height: 220px;
+}
+.barra_alto{
+    position: relative;
+    height: 280px;
+    top: -22px;
+}
+.barra_pedidos{
     height: 140px;
 }
 /*-------------------------------*/
