@@ -25,6 +25,44 @@ const selectsFormulario =
     document.querySelectorAll(
         ".select_formulario, .select_formulario_bloque_2"
     );
+//--------------------------------//
+//--|CARGAR CATEGORIAS|--//
+//--------------------------------//
+function cargarCategorias() {
+    const selectCategoria =
+        document.querySelector(
+            "#select_categoria_producto"
+        );
+    if (!selectCategoria) {
+        return;
+    }
+    const categorias =
+        JSON.parse(
+            localStorage.getItem(
+                "lista_categorias"
+            )
+        ) || [];
+    selectCategoria.innerHTML = `
+        <option value="">
+            Ninguna categoria...
+        </option>
+    `;
+    categorias.forEach(
+        function(categoria){
+            const option =
+                document.createElement(
+                    "option"
+                );
+            option.value =
+                categoria;
+            option.textContent =
+                categoria;
+            selectCategoria.appendChild(
+                option
+            );
+        }
+    );
+}
 function guardarFormularioLocalStorage() {
     const datosProducto = {
         inputs: [],
@@ -451,7 +489,10 @@ botonCrearProducto.addEventListener(
 );
 window.addEventListener(
     "DOMContentLoaded",
-    cargarFormularioLocalStorage
+    function(){
+        cargarCategorias();
+        cargarFormularioLocalStorage();
+    }
 );
 //----------------------------------------------------//
 //--|funcionalidad_formulario_de_productos_bloque_4|--//
@@ -802,21 +843,62 @@ function mostrarProductosTablero() {
 document.addEventListener(
     "click",
     function (evento) {
-        if (evento.target.closest(".agregar")) {
+        if (
+            evento.target.closest(".agregar")
+        ) {
             const botonAgregar =
-                evento.target.closest(".agregar");
+                evento.target.closest(
+                    ".agregar"
+                );
             const index =
                 botonAgregar.dataset.index;
             const productosGuardados =
-                JSON.parse(localStorage.getItem(CLAVE_PRODUCTOS)) || [];
+                JSON.parse(
+                    localStorage.getItem(
+                        CLAVE_PRODUCTOS
+                    )
+                ) || [];
             const producto =
                 productosGuardados[index];
-            producto.en_inventario = true;
+            let productosCategoria =
+                JSON.parse(
+                    localStorage.getItem(
+                        "lista_productos_categoria"
+                    )
+                ) || [];
+            const existeCategoria =
+                productosCategoria.some(
+                    function(item){
+                        return (
+                            item.sku ===
+                            producto.sku
+                        );
+                    }
+                );
+            if (
+                !existeCategoria
+            ) {
+                productosCategoria.push(
+                    producto
+                );
+                localStorage.setItem(
+                    "lista_productos_categoria",
+                    JSON.stringify(
+                        productosCategoria
+                    )
+                );
+            }
+            producto.en_inventario =
+                true;
             localStorage.setItem(
                 CLAVE_PRODUCTOS,
-                JSON.stringify(productosGuardados)
+                JSON.stringify(
+                    productosGuardados
+                )
             );
-            alert("El producto fue agregado con éxito al sistema");
+            alert(
+                "Producto enviado a Categorías e Inventario"
+            );
             return;
         }
         if (

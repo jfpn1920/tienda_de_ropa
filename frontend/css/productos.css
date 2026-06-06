@@ -760,7 +760,7 @@ body{
 }
 
 .boton_accion.agregar {
-    background: #9e9e9e; /* base igual que los otros */
+    background: #9e9e9e;
     color: #000000;
 }
 .contenedor_imagenes_tablero {

@@ -562,6 +562,12 @@ document.getElementById(
             "menuNavegacion",
             JSON.stringify(menuData)
         );
+        localStorage.setItem(
+            "ubicaciones_menu",
+            JSON.stringify(
+                menuData.opciones
+            )
+        );
         const selectDestino =
             document.getElementById(
                 "destino5"
