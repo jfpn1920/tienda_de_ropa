@@ -860,6 +860,14 @@ document.addEventListener(
                 ) || [];
             const producto =
                 productosGuardados[index];
+            if (
+                !producto
+            ) {
+                alert(
+                    "No se encontró el producto."
+                );
+                return;
+            }
             let productosCategoria =
                 JSON.parse(
                     localStorage.getItem(
@@ -876,18 +884,68 @@ document.addEventListener(
                     }
                 );
             if (
-                !existeCategoria
+                existeCategoria
             ) {
-                productosCategoria.push(
-                    producto
+                alert(
+                    "El producto ya existe en Categorías."
                 );
+                return;
+            }
+            //----------------------------------//
+            //--|guardar solo referencia sku|--//
+            //----------------------------------//
+            productosCategoria.push({
+                nombre:
+                    producto.nombre || "",
+                imagenes:
+                    producto.imagenes || [],
+                sku:
+                    producto.sku || "",
+                codigo_barras:
+                    producto.codigo_barras || "",
+                categoria:
+                    producto.categoria || "",
+                marca:
+                    producto.marca || "",
+                descuento:
+                    producto.descuento || "",
+                stock:
+                    producto.stock || 0,
+                stock_minimo:
+                    producto.stock_minimo || 0,
+                estado:
+                    producto.estado || "",
+                color:
+                    producto.color || "",
+                tallas:
+                    Array.isArray(producto.tallas)
+                    ? producto.tallas
+                    : [],
+                precio:
+                    producto.precio || "",
+                seleccionado:
+                    false
+            });
+            try {
                 localStorage.setItem(
                     "lista_productos_categoria",
                     JSON.stringify(
                         productosCategoria
                     )
                 );
+            } catch(error) {
+                console.error(
+                    "Error al guardar:",
+                    error
+                );
+                alert(
+                    "No hay espacio suficiente en localStorage."
+                );
+                return;
             }
+            //--------------------------------//
+            //--|marcar en inventario|--//
+            //--------------------------------//
             producto.en_inventario =
                 true;
             localStorage.setItem(
@@ -896,8 +954,35 @@ document.addEventListener(
                     productosGuardados
                 )
             );
+            //--------------------------------//
+            //--|informacion consola|--//
+            //--------------------------------//
+            console.log(
+                "Producto enviado:",
+                referenciaProducto
+            );
+            console.log(
+                "Tamaño lista_productos:",
+                JSON.stringify(
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lista_productos"
+                        )
+                    ) || []
+                ).length
+            );
+            console.log(
+                "Tamaño lista_productos_categoria:",
+                JSON.stringify(
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lista_productos_categoria"
+                        )
+                    ) || []
+                ).length
+            );
             alert(
-                "Producto enviado a Categorías e Inventario"
+                "Producto enviado correctamente."
             );
             return;
         }
