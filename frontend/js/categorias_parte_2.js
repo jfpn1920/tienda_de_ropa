@@ -963,6 +963,11 @@ function cargarTableroCategorias(){
                                     onclick="eliminarCategoria(${categoria.id})"
                                     title="Eliminar"
                                 ></i>
+                                <i
+                                    class="fa-solid fa-filter icono_agregar_filtro"
+                                    onclick="agregarAlFiltro(${categoria.id})"
+                                    title="Añadir al filtro"
+                                ></i>
                             </td>
                         </tr>
                     `;
@@ -1112,3 +1117,40 @@ function eliminarCategoria(
     );
 }
 cargarTableroCategorias();
+//-------------------//
+//--|filtrarciones|--//
+//-------------------//
+function agregarAlFiltro(
+    idCategoria
+){
+    let categorias =
+        JSON.parse(
+            localStorage.getItem(
+                "categorias_creadas"
+            )
+        ) || [];
+    let categoriaSeleccionada =
+        categorias.find(
+            function(categoria){
+                return (
+                    categoria.id ===
+                    idCategoria
+                );
+            }
+        );
+    if(
+        !categoriaSeleccionada
+    ){
+        alert(
+            "Categoría no encontrada."
+        );
+        return;
+    }
+    console.log(
+        "Categoria seleccionada para filtro:",
+        categoriaSeleccionada
+    );
+    alert(
+        "Categoría preparada para añadir al filtro."
+    );
+}

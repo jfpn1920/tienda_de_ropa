@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>panel de control</title>
+    <link rel="stylesheet" href="../css/filtraciones.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="../js/filtraciones.js" defer></script>
+</head>
+<body>
+    <!----------------------------------->
+    <!--|estructura_menu_de_navegacion|-->
+    <!----------------------------------->
+    <header class="header">
+        <div class="header-left-container">
+            <div class="header-left">
+                <i class="fas fa-bars menu-icon" id="menuToggle"></i>
+                <a href="panel_de_control.html" class="title">panel de control</a>
+            </div>
+        </div>
+        <div class="header-right">
+            <i class="fas fa-user-circle user-icon"></i>
+        </div>
+    </header>
+    <aside class="sidebar" id="sidebar">
+        <ul class="menu">
+            <li><a href="../html/tienda.html"><i class="fas fa-store"></i> Tienda</a></li>
+            <li><a href="../html/productos.html"><i class="fas fa-box"></i> Productos</a></li>
+            <li><a href="../html/inventario.html"><i class="fas fa-warehouse"></i> Inventario</a></li>
+            <li><a href="../html/categorias_parte_2.html"><i class="fas fa-tags"></i> Categorías</a></li>
+            <li><a href="../html/filtraciones.html"><i class="fas fa-filter"></i> Filtraciones</a></li>
+            <li><a href="../html/estado.html"><i class="fas fa-chart-line"></i> Estado</a></li>
+            <li><a href="../html/historial.html"><i class="fas fa-clock"></i> Historial</a></li>
+            <li><a href="../html/comunidad.html"><i class="fas fa-users"></i> Comunidad</a></li>
+            <li><a href="../html/aliados.html"><i class="fas fa-handshake"></i> Aliados</a></li>
+            <li><a href="../html/pedidos.html"><i class="fas fa-shopping-cart"></i> Pedidos</a></li>
+            <li><a href="../html/eliminados.html"><i class="fas fa-trash"></i> Eliminados</a></li>
+            <li><a href="../html/configuracion.html"><i class="fas fa-cog"></i> Configuración</a></li>
+        </ul>
+    </aside>
+    <!------------------------------------->
+    <!--|estructura_formulario_de_filtro|-->
+    <!------------------------------------->
+    <div class="formulario_filtros">
+        <h1>Formulario de filtros</h1>
+        <div class="grupo">
+            <label>Agregar nombre al filtro</label>
+            <input type="text" placeholder="Escribe el nombre del filtro...">
+        </div>
+        <div class="grupo">
+            <label>Seleccionar el tipo de filtro</label>
+            <select>
+                <option>Ningun tipo de filtro...</option>
+                <option>Texto</option>
+                <option>Número</option>
+                <option>Fecha</option>
+            </select>
+        </div>
+        <div class="grupo">
+            <label>Añadir la etiqueta</label>
+            <input type="text" placeholder="Escribe la etiqueta...">
+        </div>
+        <div class="grupo">
+            <h2>Lista de etiquetas creados</h2>
+            <div class="lista_etiquetas">
+                <span>Ninguna orden dentro del filtro</span>
+            </div>
+        </div>
+    </div>
+    <!---------------------------------------->
+    <!--|estructura_control_de_herramientas|-->
+    <!---------------------------------------->
+    <div class="barra_herramientas">
+        <div class="contenedor_busqueda">
+            <input type="text" placeholder="Buscar la categoria...">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <select>
+            <option>Filtrar categoria</option>
+            <option>Camisas</option>
+            <option>Pantalones</option>
+            <option>Zapatos</option>
+        </select>
+        <button class="boton_accion">Agregar todo</button>
+        <button class="boton_accion">Eliminar todo</button>
+        <button class="boton_accion">Crear filtro</button>
+    </div>
+    <!------------------------------------------------->
+    <!--|estructura_tablero_de_producos_para_filtros|-->
+    <!------------------------------------------------->
+    <div class="tablero_productos_para_filtros">
+        <div class="titulo_tablero_de_productos_para_filtros">
+            Tablero de productos para filtros
+        </div>
+        <table class="tabla_productos_para_filtros">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Producto</th>
+                    <th>Descripcion</th>
+                    <th>Ubicacion</th>
+                    <th>Talla</th>
+                    <th>Color</th>
+                    <th>Marca</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla_productos_para_filtros">
+                <tr class="fila_vacia_tablero_de_productos_para_filtros">
+                    <td colspan="9">
+                        Ningun categoria añadida
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--------------------------------------------->
+    <!--|estructura_contador_recorrido_de_filtro|-->
+    <!--------------------------------------------->
+    <div class="contenedor_contador_recorrido_de_filtro">
+        <div class="tarjeta_contador_recorrido_de_filtro">
+            <div class="encabezado_tarjeta_contador_recorrido_de_filtro">
+                <div class="icono_tarjeta_contador_recorrido_de_filtro">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+                <div class="titulo_tarjeta_contador_recorrido_de_filtro">
+                    Total de filtros
+                </div>
+            </div>
+            <div class="valor_tarjeta_contador_recorrido_de_filtro" id="total_de_filtros_contador_recorrido_de_filtro">
+                0
+            </div>
+        </div>
+        <div class="tarjeta_contador_recorrido_de_filtro">
+            <div class="encabezado_tarjeta_contador_recorrido_de_filtro">
+                <div class="icono_tarjeta_contador_recorrido_de_filtro">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <div class="titulo_tarjeta_contador_recorrido_de_filtro">
+                    Cantidad disponibles
+                </div>
+            </div>
+            <div class="valor_tarjeta_contador_recorrido_de_filtro" id="cantidad_disponibles_contador_recorrido_de_filtro">
+                0
+            </div>
+        </div>
+    </div>
+    <!---------------------------------->
+    <!--|estructura_tablero_de_filtro|-->
+    <!---------------------------------->
+    <div class="barra_herramientas_tablero_de_filtro">
+        <div class="titulo_tablero_de_filtro">
+            Tablero filtrados dinamicos creados
+        </div>
+        <div class="contenedor_selector_tablero_de_filtro">
+            <select
+                id="selector_tablero_de_filtro"
+                class="selector_tablero_de_filtro"
+            >
+                <option>
+                    Ningun filtro
+                </option>
+            </select>
+        </div>
+        <button
+            id="boton_agregar_todos_los_filtros_tablero_de_filtro"
+            class="boton_tablero_de_filtro"
+        >
+            Agregar todos los filtros
+        </button>
+        <button
+            id="boton_eliminar_todos_los_filtros_tablero_de_filtro"
+            class="boton_tablero_de_filtro"
+        >
+            Eliminar todos los filtros
+        </button>
+        <button
+            id="boton_crear_todos_los_filtros_tablero_de_filtro"
+            class="boton_tablero_de_filtro"
+        >
+            Crear todos los filtros
+        </button>
+    </div>
+    <!------------------------------------------>
+    <!--|contenedor_principal_tablero_filtros|-->
+    <!------------------------------------------>
+    <div class="contenedor_tablero_filtros_dinamicos">
+        <div class="mensaje_tablero_filtros_dinamicos">
+            <p class="subtitular_tablero_filtros_dinamicos"></p>Ningun tablero de filtro dinamico disponible
+        </div>
+    </div>
+    <div class="footer"></div>
+</body>
+</html>
