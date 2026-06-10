@@ -42,166 +42,170 @@
     <!---------------------------------------->
     <!--|estructura_formulario_de_categoria|-->
     <!---------------------------------------->
-    <div class="titulo_formulario">
-        <h1>Formulario de categoria</h1>
-    </div>
-    <div class="formulario_categoria">
-        <div class="encabezado">
-            <h2 class="titularisacion">Agregar categoria</h2>
-            <button class="boton_crear">
-                Crear categoria
-            </button>
+    <div class="main-content-29">
+        <div class="titulo_formulario">
+            <h1>Formulario de categoria</h1>
         </div>
-        <input
-            type="text"
-            placeholder="Escribe el nombre de categoria..."
-            class="campo_texto2 input_categoria"
-        >
-        <h2>Seleccionar la ubicacion</h2>
-        <select class="campo_select">
-            <option>
-                Ninguna ubicacion...
-            </option>
-            <option>
-                Inicio
-            </option>
-            <option>
-                Menu
-            </option>
-            <option>
-                Footer
-            </option>
-        </select>
-        <h2>Agregar descripcion corta</h2>
-        <textarea
-            placeholder="Añade una descripcion..."
-            class="campo_descripcion"
-        ></textarea>
+        <div class="formulario_categoria">
+            <div class="encabezado">
+                <h2 class="titularisacion">Agregar categoria</h2>
+                <button class="boton_crear">
+                    Crear categoria
+                </button>
+            </div>
+            <input
+                type="text"
+                placeholder="Escribe el nombre de categoria..."
+                class="campo_texto2 input_categoria"
+            >
+            <h2>Seleccionar la ubicacion</h2>
+            <select class="campo_select">
+                <option>
+                    Ninguna ubicacion...
+                </option>
+                <option>
+                    Inicio
+                </option>
+                <option>
+                    Menu
+                </option>
+                <option>
+                    Footer
+                </option>
+            </select>
+            <h2>Agregar descripcion corta</h2>
+            <textarea
+                placeholder="Añade una descripcion..."
+                class="campo_descripcion"
+            ></textarea>
+        </div>
     </div>
     <!---------------------------------------------->
     <!--|estructura_tablero_de_datos_en_productos|-->
     <!---------------------------------------------->
-    <div class="tablero_de_datos_productos">
-        <div class="barra_herramientas">
-            <div class="contenedor_buscador">
-                <input
-                    type="text"
-                    id="input_buscar_categoria"
-                    placeholder="Buscar la categoria..."
-                >
-                <button
-                    id="btn_buscar_categoria"
-                >
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </div>
-            <div class="contenedor_filtro">
-                <div
-                    class="campo_filtro"
-                    id="campo_filtro"
-                >
-                    <span
-                        id="texto_filtro"
+    <div class="main-content-30">
+        <div class="tablero_de_datos_productos tablero_de_datos_productos-parte-2">
+            <div class="barra_herramientas">
+                <div class="contenedor_buscador contenedor_buscador-parte-2">
+                    <input
+                        type="text"
+                        id="input_buscar_categoria"
+                        placeholder="Buscar la categoria..."
                     >
-                        Ordenar por
-                    </span>
+                    <button
+                        id="btn_buscar_categoria"
+                    >
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <div class="contenedor_filtro">
+                    <div
+                        class="campo_filtro"
+                        id="campo_filtro"
+                    >
+                        <span
+                            id="texto_filtro"
+                        >
+                            Ordenar por
+                        </span>
+                    </div>
+                    <button
+                        id="btn_desplegar_filtro"
+                        type="button"
+                    >
+                        <i
+                            class="fa-solid fa-chevron-down"
+                        ></i>
+                    </button>
+                    <div
+                        class="lista_filtro"
+                        id="lista_filtro"
+                    >
+                        <div
+                            class="opcion_filtro"
+                            data-filtro=""
+                        >
+                            Todos
+                        </div>
+                        <div
+                            class="opcion_filtro"
+                            data-filtro="alfabetico"
+                        >
+                            Alfabético
+                        </div>
+                        <div
+                            class="opcion_filtro"
+                            data-filtro="precio_alto"
+                        >
+                            Precios altos
+                        </div>
+                        <div
+                            class="opcion_filtro"
+                            data-filtro="precio_bajo"
+                        >
+                            Precios bajos
+                        </div>
+                        <div
+                            class="opcion_filtro"
+                            data-filtro="negro"
+                        >
+                            Negro
+                        </div>
+                        <div
+                            class="opcion_filtro"
+                            data-filtro="blanco"
+                        >
+                            Blanco
+                        </div>
+                        <div
+                            class="opcion_filtro"
+                            data-filtro="azul"
+                        >
+                            Azul
+                        </div>
+                    </div>
                 </div>
                 <button
-                    id="btn_desplegar_filtro"
-                    type="button"
+                    id="btn_agregar_todo"
+                    class="btn_accion"
                 >
-                    <i
-                        class="fa-solid fa-chevron-down"
-                    ></i>
+                    Agregar todo
                 </button>
-                <div
-                    class="lista_filtro"
-                    id="lista_filtro"
+                <button
+                    id="btn_eliminar_todo"
+                    class="btn_accion"
                 >
-                    <div
-                        class="opcion_filtro"
-                        data-filtro=""
-                    >
-                        Todos
-                    </div>
-                    <div
-                        class="opcion_filtro"
-                        data-filtro="alfabetico"
-                    >
-                        Alfabético
-                    </div>
-                    <div
-                        class="opcion_filtro"
-                        data-filtro="precio_alto"
-                    >
-                        Precios altos
-                    </div>
-                    <div
-                        class="opcion_filtro"
-                        data-filtro="precio_bajo"
-                    >
-                        Precios bajos
-                    </div>
-                    <div
-                        class="opcion_filtro"
-                        data-filtro="negro"
-                    >
-                        Negro
-                    </div>
-                    <div
-                        class="opcion_filtro"
-                        data-filtro="blanco"
-                    >
-                        Blanco
-                    </div>
-                    <div
-                        class="opcion_filtro"
-                        data-filtro="azul"
-                    >
-                        Azul
-                    </div>
+                    Eliminar todo
+                </button>
+                <div class="contenedorcrear-categoria">
+                    <button class="botones-crear-categoria btn_accion">crear esta categoria</button>
                 </div>
             </div>
-            <button
-                id="btn_agregar_todo"
-                class="btn_accion"
-            >
-                Agregar todo
-            </button>
-            <button
-                id="btn_eliminar_todo"
-                class="btn_accion"
-            >
-                Eliminar todo
-            </button>
-            <div class="contenedorcrear-categoria">
-                <button class="botones-crear-categoria btn_accion">crear esta categoria</button>
-            </div>
-        </div>
-        <div class="contenedores_tablerero">
-            <div class="contenedor_productos">
-                <div class="contenedor_datos">
-                    <table class="tabla_productos">
-                        <thead>
-                            <tr>
-                                <th>Producto</th>
-                                <th>Imagen</th>
-                                <th>Categoria</th>
-                                <th>Talla</th>
-                                <th>Color</th>
-                                <th>Marca</th>
-                                <th>Precio</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody_productos">
-                        </tbody>
-                    </table>
-                    <div
-                        id="mensaje_vacio"
-                        class="mensaje_vacio"
-                    >
-                        Ningun producto almacenado
+            <div class="contenedores_tablerero">
+                <div class="contenedor_productos contenedor_productos-parte-2">
+                    <div class="contenedor_datos">
+                        <table class="tabla_productos">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Imagen</th>
+                                    <th>Categoria</th>
+                                    <th>Talla</th>
+                                    <th>Color</th>
+                                    <th>Marca</th>
+                                    <th>Precio</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_productos">
+                            </tbody>
+                        </table>
+                        <div
+                            id="mensaje_vacio"
+                            class="mensaje_vacio"
+                        >
+                            Ningun producto almacenado
+                        </div>
                     </div>
                 </div>
             </div>
@@ -210,80 +214,84 @@
     <!------------------------------------------------->
     <!--|estructura_contador_progresivo_de_categoria|-->
     <!------------------------------------------------->
-    <div class="contenedor_estadisticas">
-        <div class="tarjeta_estadistica">
-            <div class="encabezado_estadistica">
-                <i class="fa-solid fa-table-cells-large"></i>
-                <span>
-                    Total de categorias
-                </span>
+    <div class="main-content-31">
+        <div class="contenedor_estadisticas contenedor_estadisticas-parte-2">
+            <div class="tarjeta_estadistica">
+                <div class="encabezado_estadistica">
+                    <i class="fa-solid fa-table-cells-large"></i>
+                    <span>
+                        Total de categorias
+                    </span>
+                </div>
+                <div
+                    id="total_categorias"
+                    class="contenido_estadistica"
+                >
+                    0
+                </div>
             </div>
-            <div
-                id="total_categorias"
-                class="contenido_estadistica"
-            >
-                0
+            <div class="tarjeta_estadistica">
+                <div class="encabezado_estadistica">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>
+                        Categorias activas
+                    </span>
+                </div>
+                <div
+                    id="categorias_activas"
+                    class="contenido_estadistica"
+                >
+                    0
+                </div>
             </div>
-        </div>
-        <div class="tarjeta_estadistica">
-            <div class="encabezado_estadistica">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>
-                    Categorias activas
-                </span>
-            </div>
-            <div
-                id="categorias_activas"
-                class="contenido_estadistica"
-            >
-                0
-            </div>
-        </div>
-        <div class="tarjeta_estadistica">
-            <div class="encabezado_estadistica">
-                <i class="fa-solid fa-circle-xmark"></i>
-                <span>
-                    Productos inactivos
-                </span>
-            </div>
-            <div
-                id="categorias_inactivas"
-                class="contenido_estadistica"
-            >
-                0
+            <div class="tarjeta_estadistica">
+                <div class="encabezado_estadistica">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                    <span>
+                        Productos inactivos
+                    </span>
+                </div>
+                <div
+                    id="categorias_inactivas"
+                    class="contenido_estadistica"
+                >
+                    0
+                </div>
             </div>
         </div>
     </div>
     <!-------------------------------------->
     <!--|estructura_tablero_de_categorias|-->
     <!-------------------------------------->
-    <div class="contenedor_tablero_categorias">
-        <div class="titulo_tablero_categorias">
-            Tablero de categorias
-        </div>
-        <div class="contenedor_datos_categorias">
-            <table class="tabla_tablero_categorias">
-                <thead>
-                    <tr>
-                        <th>Imagen</th>
-                        <th>Producto</th>
-                        <th>Descripcion</th>
-                        <th>Ubicacion</th>
-                        <th>Talla</th>
-                        <th>Color</th>
-                        <th>Marca</th>
-                        <th>Precio</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody_tablero_categorias">
-                    <tr class="fila_vacia_tablero_categorias">
-                        <td colspan="9">
-                            Ningun categoria añadida
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <div  class="main-content-32">
+        <div class="contenedor_tablero_categorias contenedor_tablero_categorias-parte-2">
+            <div class="titulo_tablero_categorias">
+                Tablero de categorias
+            </div>
+            <div class="contenedor_datos_categorias">
+                <table class="tabla_tablero_categorias">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Producto</th>
+                            <th>Descripcion</th>
+                            <th>Ubicacion</th>
+                            <th>Talla</th>
+                            <th>Color</th>
+                            <th>Marca</th>
+                            <th>Precio</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody_tablero_categorias">
+                        <tr class="fila_vacia_tablero_categorias">
+                            <td colspan="9">
+                                Ningun categoria añadida
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </body>

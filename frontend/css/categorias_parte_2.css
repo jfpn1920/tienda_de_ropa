@@ -96,6 +96,13 @@ body{
 /*------------------------------------*/
 /*--|estilo_formulario_de_categoria|--*/
 /*------------------------------------*/
+.main-content-29{
+    transition: margin-left 0.3s ease;
+}
+.main-content-29.active{
+    width: 1208px;
+    margin-left: 213px;
+}
 .titulo_formulario{
     background:#d9d9d9;
     padding-top: 10px;
@@ -200,6 +207,22 @@ body{
 /*------------------------------------------*/
 /*--|estilo_tablero_de_datos_en_productos|--*/
 /*------------------------------------------*/
+.main-content-30{
+    transition: margin-left 0.3s ease;
+}
+.main-content-30.active{
+    width: 1208px;
+    margin-left: 213px;
+}
+.tablero_de_datos_productos-parte-2.active{
+    width: 894px;
+}
+.contenedor_buscador-parte-2.active{
+    width: 257px;
+}
+.contenedor_productos-parte-2.active{
+    width: 873px;
+}
 .tablero_de_datos_productos{
     position: relative;
     background:#d9d9d9;
@@ -430,6 +453,16 @@ body{
 /*---------------------------------------------*/
 /*--|estilo_contador_progresivo_de_categoria|--*/
 /*---------------------------------------------*/
+.main-content-31{
+    transition: margin-left 0.3s ease;
+}
+.main-content-31.active{
+    margin-left: 13px;
+}
+.contenedor_estadisticas-parte-2.active{
+    margin-left: 213px;
+    width: 1187px;
+}
 .contenedor_estadisticas{
     display:flex;
     margin-top: -58px;
@@ -484,6 +517,15 @@ body{
 /*----------------------------------*/
 /*--|estilo_tablero_de_categorias|--*/
 /*----------------------------------*/
+.main-content-32{
+    transition: margin-left 0.3s ease;
+}
+.main-content-32.active{
+    margin-left: 213px;
+}
+.contenedor_tablero_categorias-parte-2.active{
+    width: 1187px;
+}
 .contenedor_tablero_categorias{
     width:1400px;
     min-height:420px;

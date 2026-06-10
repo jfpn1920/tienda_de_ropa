@@ -4,7 +4,7 @@
 const menuToggle = document.getElementById("menuToggle");
 const sidebar = document.getElementById("sidebar");
 const contents = document.querySelectorAll(
-    ".main-content-21, .main-content-22, .main-content-23, .main-content-24, .main-content-25, .main-content-26, .main-content-27, .main-content-28, .contenedor-deplegable-4, .contenedor_cards_observacion_de_inventario_parte_2, .contenedor_productos_en_inventario_parte_2, .depliegue_tablero_de_inventario_parte_2, .contenedor_anuncio_importante_parte_2"
+    ".main-content-29, .main-content-30, .main-content-31, .main-content-32, .tablero_de_datos_productos-parte-2, .contenedor_buscador-parte-2, .contenedor_productos-parte-2, .contenedor_estadisticas-parte-2, .contenedor_tablero_categorias-parte-2"
 );
 menuToggle.addEventListener("click", () => {
     sidebar.classList.toggle("active");
