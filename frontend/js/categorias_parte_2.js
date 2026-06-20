@@ -1138,19 +1138,86 @@ function agregarAlFiltro(
                 );
             }
         );
-    if(
-        !categoriaSeleccionada
-    ){
+    if(!categoriaSeleccionada){
         alert(
             "Categoría no encontrada."
         );
         return;
     }
-    console.log(
-        "Categoria seleccionada para filtro:",
-        categoriaSeleccionada
+    let productosParaFiltros =
+        JSON.parse(
+            localStorage.getItem(
+                "productos_para_filtros"
+            )
+        ) || [];
+    let productosAgregados = 0;
+    categoriaSeleccionada.productos.forEach(
+        function(producto){
+            let existe =
+                productosParaFiltros.some(
+                    function(item){
+                        return (
+                            item.producto ===
+                            producto.nombre
+                            &&
+                            item.marca ===
+                            producto.marca
+                        );
+                    }
+                );
+            if(existe){
+                return;
+            }
+            productosParaFiltros.push({
+                imagen:
+                    producto.imagenes &&
+                    producto.imagenes.length > 0
+                    ?
+                    producto.imagenes[0]
+                    :
+                    "",
+                producto:
+                    producto.nombre,
+                descripcion:
+                    categoriaSeleccionada.descripcion,
+                ubicacion:
+                    categoriaSeleccionada.ubicacion,
+                talla:
+                    Array.isArray(
+                        producto.tallas
+                    )
+                    ?
+                    producto.tallas.join(", ")
+                    :
+                    "",
+                color:
+                    producto.color,
+                marca:
+                    producto.marca,
+                precio:
+                    producto.precio
+            });
+            productosAgregados++;
+        }
     );
-    alert(
-        "Categoría preparada para añadir al filtro."
+    localStorage.setItem(
+        "productos_para_filtros",
+        JSON.stringify(
+            productosParaFiltros
+        )
     );
+    if(
+        productosAgregados > 0
+    ){
+        alert(
+            "Se añadieron " +
+            productosAgregados +
+            " producto(s) al tablero de filtros."
+        );
+    }
+    else{
+        alert(
+            "Todos los productos de esta categoría ya se encuentran en el tablero de filtros."
+        );
+    }
 }

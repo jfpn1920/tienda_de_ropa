@@ -231,10 +231,10 @@ select{
 /*--|estilo_tablero_de_producos_para_filtros|--*/
 /*---------------------------------------------*/
 .tablero_productos_para_filtros{
-    width: 1135px;
-    height: 464px;
-    margin-left: 280px;
-    margin-top: -8px;
+    width:1135px;
+    height:464px;
+    margin-left:280px;
+    margin-top:-8px;
     padding:8px;
     background:#ececec;
 }
@@ -243,17 +243,29 @@ select{
     background:#5f84b8;
     display:flex;
     border:1px solid #707070;
-    border-bottom: none;
+    border-bottom:none;
     justify-content:center;
     align-items:center;
-    font-size: 14px;
+    font-size:14px;
     font-weight:bold;
 }
+.contenedor_datos_productos_para_filtros{
+    height:410px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    border:1px solid #707070;
+    border-top:none;
+}
 .tabla_productos_para_filtros{
-    width:100%;
+    width:100.2%;
+    margin-left: -1px;
     border-collapse:collapse;
+    table-layout:fixed;
 }
 .tabla_productos_para_filtros thead th{
+    position:sticky;
+    top:0;
+    z-index:10;
     height:30px;
     background:#d7d7d7;
     border:1px solid #707070;
@@ -269,13 +281,95 @@ select{
     text-align:center;
     padding:8px;
     font-size:13px;
+    vertical-align:middle;
+}
+.tabla_productos_para_filtros td img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    display:block;
+    margin:auto;
+}
+.tabla_productos_para_filtros td:nth-child(3){
+    text-align:justify;
+    vertical-align:top;
+    white-space:normal;
+    word-break:break-word;
+    overflow-wrap:break-word;
+    line-height:1.5;
+}
+.tabla_productos_para_filtros th:nth-child(1),
+.tabla_productos_para_filtros td:nth-child(1){
+    width:90px;
+}
+.tabla_productos_para_filtros th:nth-child(2),
+.tabla_productos_para_filtros td:nth-child(2){
+    width:170px;
+}
+.tabla_productos_para_filtros th:nth-child(3),
+.tabla_productos_para_filtros td:nth-child(3){
+    width:310px;
+}
+.tabla_productos_para_filtros th:nth-child(4),
+.tabla_productos_para_filtros td:nth-child(4){
+    width:120px;
+}
+.tabla_productos_para_filtros th:nth-child(5),
+.tabla_productos_para_filtros td:nth-child(5){
+    width:55px;
+}
+.tabla_productos_para_filtros th:nth-child(6),
+.tabla_productos_para_filtros td:nth-child(6){
+    width:70px;
+}
+.tabla_productos_para_filtros th:nth-child(7),
+.tabla_productos_para_filtros td:nth-child(7){
+    width:90px;
+}
+.tabla_productos_para_filtros th:nth-child(8),
+.tabla_productos_para_filtros td:nth-child(8){
+    width:85px;
+}
+.tabla_productos_para_filtros th:nth-child(9),
+.tabla_productos_para_filtros td:nth-child(9){
+    width:80px;
 }
 .fila_vacia_tablero_de_productos_para_filtros td{
-    height: 379px;
+    height:382px;
     font-size:28px;
     font-weight:bold;
     color:#222;
     vertical-align:middle;
+    text-align:center;
+    border:none;
+}
+/*---------------------------------------------*/
+/*--|acciones_tablero_de_productos_para_filtros|--*/
+/*---------------------------------------------*/
+.tabla_productos_para_filtros td:nth-child(9){
+    text-align:center;
+    white-space:nowrap;
+}
+
+.tabla_productos_para_filtros td:nth-child(9) button{
+    width:28px;
+    height:28px;
+    margin:0 3px;
+    padding:0;
+    border:1px solid #707070;
+    border-radius:4px;
+    background:#f5f5f5;
+    cursor:pointer;
+    transition:0.2s;
+    vertical-align:middle;
+}
+
+.tabla_productos_para_filtros td:nth-child(9) button:hover{
+    background:#e4e4e4;
+}
+
+.tabla_productos_para_filtros td:nth-child(9) button i{
+    font-size:14px;
 }
 /*-----------------------------------------*/
 /*--|estilo_contador_recorrido_de_filtro|--*/

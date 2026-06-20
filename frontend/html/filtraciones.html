@@ -93,28 +93,30 @@
         <div class="titulo_tablero_de_productos_para_filtros">
             Tablero de productos para filtros
         </div>
-        <table class="tabla_productos_para_filtros">
-            <thead>
-                <tr>
-                    <th>Imagen</th>
-                    <th>Producto</th>
-                    <th>Descripcion</th>
-                    <th>Ubicacion</th>
-                    <th>Talla</th>
-                    <th>Color</th>
-                    <th>Marca</th>
-                    <th>Precio</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="tabla_productos_para_filtros">
-                <tr class="fila_vacia_tablero_de_productos_para_filtros">
-                    <td colspan="9">
-                        Ningun categoria añadida
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="contenedor_datos_productos_para_filtros">
+            <table class="tabla_productos_para_filtros">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Producto</th>
+                        <th>Descripcion</th>
+                        <th>Ubicacion</th>
+                        <th>Talla</th>
+                        <th>Color</th>
+                        <th>Marca</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla_productos_para_filtros">
+                    <tr class="fila_vacia_tablero_de_productos_para_filtros">
+                        <td colspan="9">
+                            Ningun categoria añadida
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <!--------------------------------------------->
     <!--|estructura_contador_recorrido_de_filtro|-->
@@ -155,40 +157,20 @@
             Tablero filtrados dinamicos creados
         </div>
         <div class="contenedor_selector_tablero_de_filtro">
-            <select
-                id="selector_tablero_de_filtro"
-                class="selector_tablero_de_filtro"
-            >
-                <option>
-                    Ningun filtro
-                </option>
+            <select id="selector_tablero_de_filtro" class="selector_tablero_de_filtro">
+                <option>Ningun filtro</option>
             </select>
         </div>
-        <button
-            id="boton_agregar_todos_los_filtros_tablero_de_filtro"
-            class="boton_tablero_de_filtro"
-        >
-            Agregar todos los filtros
-        </button>
-        <button
-            id="boton_eliminar_todos_los_filtros_tablero_de_filtro"
-            class="boton_tablero_de_filtro"
-        >
-            Eliminar todos los filtros
-        </button>
-        <button
-            id="boton_crear_todos_los_filtros_tablero_de_filtro"
-            class="boton_tablero_de_filtro"
-        >
-            Crear todos los filtros
-        </button>
+        <button id="boton_agregar_todos_los_filtros_tablero_de_filtro" class="boton_tablero_de_filtro">Agregar todos los filtros</button>
+        <button id="boton_eliminar_todos_los_filtros_tablero_de_filtro" class="boton_tablero_de_filtro">Eliminar todos los filtros</button>
+        <button id="boton_crear_todos_los_filtros_tablero_de_filtro" class="boton_tablero_de_filtro">Crear todos los filtros</button>
     </div>
     <!------------------------------------------>
     <!--|contenedor_principal_tablero_filtros|-->
     <!------------------------------------------>
     <div class="contenedor_tablero_filtros_dinamicos">
         <div class="mensaje_tablero_filtros_dinamicos">
-            <p class="subtitular_tablero_filtros_dinamicos"></p>Ningun tablero de filtro dinamico disponible
+            <p class="subtitular_tablero_filtros_dinamicos">Ningun tablero de filtro dinamico disponible</p>
         </div>
     </div>
     <div class="footer"></div>
